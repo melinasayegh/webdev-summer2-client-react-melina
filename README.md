@@ -1,3 +1,14 @@
+## cs4550-summer2-melina-java-server
+
+Melina Sayegh<br>
+CS 4550 Web Development<br>
+Assignment 2: Developing Web Applications
+React
+
+***
+Heroku App: 
+
+***
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

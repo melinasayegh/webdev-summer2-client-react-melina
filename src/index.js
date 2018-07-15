@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloWorld from './hello';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 class ModuleListItem extends React.Component {
     render() {
         return (
             <li className="list-group-item">
                 {this.props.title}
+
+                <span className="pull-right">
+                    <i className="fa fa-trash"></i>
+                    <i className="fa fa-pencil"></i>
+                </span>
+
             </li>
         )
     }
@@ -33,7 +41,7 @@ class ModuleList extends React.Component {
 class CourseCard extends React.Component {
     render() {
         return (
-            <div className="card" style={{width: '18rem'}}>
+            <div className="card">
                 <img className="card-img-top"
                      src="https://picsum.photos/300/200"/>
                 <div className="card-body">

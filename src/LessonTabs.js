@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from "react";
 
-class LessonTabs extends React.Component {
+export default class LessonTabs extends Component {
     render() {
         return(
 
@@ -24,8 +24,6 @@ class LessonTabs extends React.Component {
 
             </div>
 
-        )
+        );
     }
 }
-
-export default LessonTabs;

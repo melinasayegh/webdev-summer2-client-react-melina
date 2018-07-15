@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from "react";
 
-class TopicPills extends React.Component {
+export default class TopicPills extends Component {
     render() {
         return(
             <div>
@@ -19,8 +19,6 @@ class TopicPills extends React.Component {
                     </li>
                 </ul>
             </div>
-        )
+        );
     }
 }
-
-export default TopicPills;

@@ -1,66 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './hello';
-import LessonTabs from './LessonTabs';
-import TopicPills from './TopicPills';
+import HelloWorld from './hello.js';
+import CourseCard from './CourseCard.js';
+import ModuleList from './ModuleList.js';
+import LessonTabs from './LessonTabs.js';
+import TopicPills from './TopicPills.js';
+import CourseEditor from './CourseEditor.js';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-
-class ModuleListItem extends React.Component {
-    render() {
-        return (
-            <li className="list-group-item">
-                {this.props.title}
-
-                <span className="pull-right">
-                    <i className="fa fa-trash"></i>
-                    <i className="fa fa-pencil"></i>
-                </span>
-
-            </li>
-        )
-    }
-}
-
-class ModuleList extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Module List</h1>
-                <ul className="list-group">
-                    <ModuleListItem title="Module 1"/>
-                    <ModuleListItem title="Module 2"/>
-                    <ModuleListItem title="Module 3"/>
-                    <ModuleListItem title="Module 4"/>
-                    <ModuleListItem title="Module 5"/>
-                </ul>
-            </div>
-        )
-    }
-}
-
-class CourseCard extends React.Component {
-    render() {
-        return (
-            <div className="card">
-                <img className="card-img-top"
-                     src="https://picsum.photos/300/200"/>
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Card text.</p>
-                    <a href="#" className="btn btn-primary">More...</a>
-                </div>
-            </div>
-        )
-    }
-}
 
 class WhiteBoard extends React.Component {
     render() {
         return (
             <div className="container-fluid">
                 <h1>Whiteboard</h1>
+
+                <div>
+                    <CourseEditor/>
+                </div>
 
                 <div>
                     <TopicPills/>

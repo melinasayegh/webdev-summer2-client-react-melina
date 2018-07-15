@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloWorld from './hello';
+import LessonTabs from './LessonTabs';
+import TopicPills from './TopicPills';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -59,6 +61,14 @@ class WhiteBoard extends React.Component {
         return (
             <div className="container-fluid">
                 <h1>Whiteboard</h1>
+
+                <div>
+                    <TopicPills/>
+                </div>
+
+                <div>
+                    <LessonTabs/>
+                </div>
 
                 <div>
                     <ModuleList/>

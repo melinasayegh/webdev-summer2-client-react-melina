@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from "react";
 import LessonTabs from './LessonTabs.js';
 import ModuleList from './ModuleList.js';
 
-class CourseEditor extends React.Component {
+export default class CourseEditor extends Component {
     render() {
         return(
             <div>
@@ -17,8 +17,6 @@ class CourseEditor extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
-
-export default CourseEditor;

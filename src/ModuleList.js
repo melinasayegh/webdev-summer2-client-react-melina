@@ -7,15 +7,16 @@ export default class ModuleList extends Component {
         this.state = {
             module: {title: ''},
             modules: [
-            {title: 'Module 1 - jQuery', id:123},
-            {title: 'Module 2 - React', id:123},
-            {title: 'Module 3 - Redux', id:123},
-            {title: 'Module 4 - Angular', id:123},
-            {title: 'Module 5 - Node.js', id:123},
-            {title: 'Module 6 - MongoDB', id:123},
+            {title: 'Module 1 - jQuery'},
+            {title: 'Module 2 - React'},
+            {title: 'Module 3 - Redux'},
+            {title: 'Module 4 - Angular'},
+            {title: 'Module 5 - Node.js'},
+            {title: 'Module 6 - MongoDB'},
         ]
     };
         this.titleChanged = this.titleChanged.bind(this);
+        this.createModule = this.createModule.bind(this);
     }
 
     titleChanged(event) {
@@ -24,22 +25,39 @@ export default class ModuleList extends Component {
     }
 
     renderListOfModules() {
-        let modules = this.state.modules.map(function(module) {
-                return <ModuleListItem title={module.title} key={module.id}/>
-            });
+        let modules = this.state.modules.map((module, i) =>
+            <ModuleListItem
+                title={module.title}
+                key={i}/>
+        );
         return modules;
+    }
+
+    createModule = () => {
+        console.log(this.state.title);
+        console.log(this.state.modules);
+        var module = {title: this.state.title};
+        this.state.modules.push(module);
+        this.setState({"modules": this.state.modules})
     }
 
     render() {
         return (
             <div>
-                <input className="form-control" placeholder="title"/>
 
-                <input onChange={this.titleChanged}/>
+                <h1>Module List</h1>
+                <h2>{this.state.title}</h2>
 
-                <button className="btn btn-primary btn-block">
+                <input className="form-control"
+                       onChange={this.titleChanged}
+                       placeholder="title"/>
+
+                <button className="btn btn-primary btn-block"
+                        onClick={this.createModule}>
                     <i className="fa fa-plus"></i>
                 </button>
+
+                <p>{this.state.title}</p>
 
                 <ul className="list-group">
                     {this.renderListOfModules()}

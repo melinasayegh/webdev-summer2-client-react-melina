@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+// make this stateless
 export default class ModuleListItem extends Component {
     constructor(props) {
         super(props);

@@ -6,6 +6,7 @@ import ModuleList from './ModuleList.js';
 import LessonTabs from './LessonTabs.js';
 import TopicPills from './TopicPills.js';
 import CourseEditor from './CourseEditor.js';
+import CourseList from './CourseList.js';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -111,7 +112,7 @@ class App extends Component {
 
                     <Route path="/pageUpdate/:id"
                     component={PageUpdate}/>
-                    
+
                 </div>
 
             </Router>

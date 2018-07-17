@@ -1,5 +1,6 @@
 let _singleton = Symbol();
-class CourseService {
+
+export default class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
@@ -9,18 +10,25 @@ class CourseService {
             this[_singleton] = new CourseService(_singleton);
         return this[_singleton]
     }
-}
-export default CourseService;
 
+    COURSE_API_URL = 'http://localhost:8080/api/course';
 
-
-COURSE_API_URL =
-    'https://webdev-client-react-melina.herokuapp.com/api/course';
-class CourseService {
+    // find all courses
     findAllCourses() {
         return fetch(COURSE_API_URL)
             .then(function(response){
                 return response.json();
             });
+    }
+
+    // create course
+    createCourse(course) {
+        return fetch(COURSE_API_URL, {
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        });
     }
 }

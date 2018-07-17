@@ -60,8 +60,38 @@ const PageParam = ({match}) => {
     )
 };
 
+class PageUpdate extends Component {
+    render() {
+        return (
+            <h2>PageUpdate
+                {this.state.id}
+            </h2>
+        )
+    }
 
-class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.updatePage = this.updatePage.bind(this);
+        this.state = {id: ''}
+    }
+
+    componentDidMount() {
+        this.updatePage
+        (this.props.match.params.id);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.updatePage
+        (newProps.match.params.id);
+    }
+
+    updatePage(id) {
+        this.setState({id: id});
+    }
+}
+
+
+class App extends Component {
     render() {
         return(
             <Router>
@@ -70,20 +100,18 @@ class App extends React.Component {
                     <Link to="/page1">Page1</Link> |
                     <Link to="/page2">Page2</Link>
                     <Route path="/hello"
-                           component={HelloWorld}>
-                    </Route>
+                           component={HelloWorld}/>
                     <Route path="/page1"
-                           component={Page1}>
-                    </Route>
+                           component={Page1}/>
                     <Route path="/page2"
-                           component={Page2}>
-                    </Route>
+                           component={Page2}/>
 
-                    <Route path='/pageParam/:id'
+                    <Route path="/pageParam/:id"
                            component={PageParam}/>
 
-
-
+                    <Route path="/pageUpdate/:id"
+                    component={PageUpdate}/>
+                    
                 </div>
 
             </Router>

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ModuleListItem from './ModuleListItem';
+import ModuleListItemStateless from './ModuleListItem';
 
 export default class ModuleList extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export default class ModuleList extends Component {
 
     renderListOfModules() {
         let modules = this.state.modules.map((module, i) =>
-            <ModuleListItem
+            <ModuleListItemStateless
                 title={module.title}
                 key={i}/>
         );
@@ -52,9 +53,8 @@ export default class ModuleList extends Component {
                        onChange={this.titleChanged}
                        placeholder="title"/>
 
-                <button className="btn btn-primary btn-block"
+                <button className="btn btn-primary btn-block fa fa-plus"
                         onClick={this.createModule}>
-                    <i className="fa fa-plus"></i>
                 </button>
 
                 <p>{this.state.title}</p>

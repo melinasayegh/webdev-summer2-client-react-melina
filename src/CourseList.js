@@ -16,18 +16,14 @@ export default class CourseList extends React.Component {
         this.setState({
             newCourse: {title: event.target.value}
         })
-    }
+    };
 
-    createCourse(course) {
+    createCourse = () => {
         //this.state.courses.push(this.state.newCourse);
 
-
-        courseService.createCourse(course)
-            .then(function (response) {
-            return response.json();
-        })
-    }
-
+        this.courseService.createCourse(this.state.newCourse)
+            .then((course) => console.log(course));
+    };
 
     render() {
         return (

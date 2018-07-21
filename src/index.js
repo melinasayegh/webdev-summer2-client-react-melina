@@ -19,6 +19,12 @@ class WhiteBoard extends Component {
                 <h1>Whiteboard</h1>
 
                 <div>
+                    <CourseList/>
+                </div>
+
+
+                {/*}
+                <div>
                     <CourseEditor/>
                 </div>
 
@@ -41,6 +47,7 @@ class WhiteBoard extends Component {
                     <CourseCard/>
                     <CourseCard/>
                 </div>
+                */}
             </div>
         )
     }
@@ -102,8 +109,8 @@ class App extends Component {
                     <Link to="/page2">Page2</Link>
                     <Route path="/hello"
                            component={HelloWorld}/>
-                    <Route path="/page1"
-                           component={Page1}/>
+                    <Route path="/whiteboard"
+                           component={WhiteBoard}/>
                     <Route path="/page2"
                            component={Page2}/>
 
@@ -120,7 +127,10 @@ class App extends Component {
     }
 }
 
+
 ReactDOM.render(
-    <App/>,
+    <div className="container-fluid">
+        <WhiteBoard/>
+    </div>,
     document.getElementById('root')
 );

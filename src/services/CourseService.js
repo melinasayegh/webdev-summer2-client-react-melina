@@ -1,6 +1,7 @@
 let _singleton = Symbol();
 
 export default class CourseService {
+
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
@@ -15,7 +16,7 @@ export default class CourseService {
 
     // find all courses
     findAllCourses() {
-        return fetch(COURSE_API_URL)
+        return fetch(this.COURSE_API_URL)
             .then(function(response){
                 return response.json();
             });
@@ -23,12 +24,12 @@ export default class CourseService {
 
     // create course
     createCourse(course) {
-        return fetch(COURSE_API_URL, {
+        return fetch(this.COURSE_API_URL, {
+            method: 'post',
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            method: 'POST'
+            }
         });
     }
 }

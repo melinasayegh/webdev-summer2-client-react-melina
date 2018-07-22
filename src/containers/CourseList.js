@@ -46,7 +46,7 @@ export default class CourseList extends React.Component {
     renderCourseRows() {
         let courses = null;
 
-        console.log("render coruse rows")
+        console.log("render course rows")
         console.log(this.state)
         if(this.state) {
             courses = this.state.courses.map(
@@ -76,7 +76,7 @@ export default class CourseList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.renderCourseRows()}
+                        {this.renderCourseRows()}
                     </tbody>
                 </table>
             </div>

@@ -2,34 +2,30 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css';
-
 
 export default class Header extends Component {
     render() {
         return (
 
-
-            <div className="pos-f-t">
+            <div>
                 <div className="collapse" id="navbarToggleExternalContent">
                     <div className="bg-dark p-4">
                         <h5 className="text-white h4">Menu</h5>
                         <span className="text-muted">Test.</span>
                     </div>
                 </div>
-                <nav className="navbar navbar-dark bg-dark">
+                <nav className="navbar navbar-dark bg-primary">
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"/>
                     </button>
 
                     <a className="navbar-brand" href="#">WhiteBoard</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"/>
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,7 +44,9 @@ export default class Header extends Component {
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a className="dropdown-item" href="#">Action</a>
                                     <a className="dropdown-item" href="#">Another action</a>
-                                    <div className="dropdown-divider"></div>
+                                    <div className="dropdown-divider">
+
+                                    </div>
                                     <a className="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </li>
@@ -57,8 +55,9 @@ export default class Header extends Component {
                             </li>
                         </ul>
                         <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                                   aria-label="Search">
+                            <input className="form-control mr-sm-2" type="search"
+                                   placeholder="Search"
+                                   aria-label="Search"/>
                                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>

@@ -19,21 +19,50 @@ export default class CourseService {
     // find all courses
     findAllCourses() {
         return fetch(COURSE_API_URL)
-            .then(function(response){
-                return response.json();
-            });
+            .then(function (response) {
+                return response.json()
+            })
+    }
+
+    // find course by id
+    findCourseById(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId)
+            .then(function (response) {
+                return response.json()
+            })
     }
 
     // create course
     createCourse(course) {
-        return fetch(this.COURSE_API_URL, {
+        return fetch(COURSE_API_URL, {
             method: 'post',
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(function (response) {
-            return response.json();
+            return response.json()
         })
+    }
+
+    deleteCourse (courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'delete',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            return response
+        })
+    }
+
+    updateCourse(courseId, course) {
+        return fetch(COURSE_API_URL + '/' + courseId), {
+            method: 'put',
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
     }
 }

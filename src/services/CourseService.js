@@ -1,4 +1,5 @@
 let _singleton = Symbol();
+const COURSE_API_URL = 'http://localhost8080/api/course';
 
 export default class CourseService {
 
@@ -6,17 +7,18 @@ export default class CourseService {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
     }
+
     static get instance() {
         if(!this[_singleton])
             this[_singleton] = new CourseService(_singleton);
-        return this[_singleton]
+        return this[_singleton];
     }
 
-    COURSE_API_URL = 'http://localhost:8080/api/course';
+    //COURSE_API_URL = 'http://localhost:8080/api/course';
 
     // find all courses
     findAllCourses() {
-        return fetch(this.COURSE_API_URL)
+        return fetch(COURSE_API_URL)
             .then(function(response){
                 return response.json();
             });
@@ -30,6 +32,8 @@ export default class CourseService {
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+        }).then(function (response) {
+            return response.json();
+        })
     }
 }

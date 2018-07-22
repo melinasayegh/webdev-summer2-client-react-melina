@@ -1,57 +1,17 @@
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
-import HelloWorld from './hello.js';
-import CourseCard from './CourseCard.js';
-import ModuleList from './ModuleList.js';
-import LessonTabs from './LessonTabs.js';
+import HelloWorld from './components/hello.js';
+import CourseCard from './components/CourseCard.js';
+import ModuleList from './containers/ModuleList.js';
+import LessonTabs from './containers/LessonTabs.js';
 import TopicPills from './TopicPills.js';
-import CourseEditor from './CourseEditor.js';
-import CourseList from './CourseList.js';
+import CourseEditor from './containers/CourseEditor.js';
+import CourseList from './containers/CourseList.js';
+import CourseManager from './containers/CourseManager.js';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-
-class WhiteBoard extends Component {
-    render() {
-        return (
-            <div className="container-fluid">
-                <h1>Whiteboard</h1>
-
-                <div>
-                    <CourseList/>
-                </div>
-
-
-                {/*}
-                <div>
-                    <CourseEditor/>
-                </div>
-
-                <div>
-                    <TopicPills/>
-                </div>
-
-                <div>
-                    <LessonTabs/>
-                </div>
-
-                <div>
-                    <ModuleList/>
-                </div>
-
-                <div className="card-deck">
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                </div>
-                */}
-            </div>
-        )
-    }
-}
 
 const Page1 = () => {
     return(<h2>Page 1</h2>)
@@ -110,7 +70,7 @@ class App extends Component {
                     <Route path="/hello"
                            component={HelloWorld}/>
                     <Route path="/whiteboard"
-                           component={WhiteBoard}/>
+                           component={CourseManager}/>
                     <Route path="/page2"
                            component={Page2}/>
 
@@ -130,7 +90,7 @@ class App extends Component {
 
 ReactDOM.render(
     <div className="container-fluid">
-        <WhiteBoard/>
+        <CourseManager/>
     </div>,
     document.getElementById('root')
 );

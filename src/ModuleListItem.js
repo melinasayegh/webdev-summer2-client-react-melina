@@ -5,7 +5,7 @@ import React, {Component} from "react";
 // make this stateless
 const ModuleListItemStateless = ({title}) =>
     <li className="list-group-item">
-        {this.props.title}
+        {title}
 
         <span className="pull-right">
                 <i className="fa fa-trash"/>

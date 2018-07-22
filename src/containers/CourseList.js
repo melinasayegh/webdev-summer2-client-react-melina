@@ -37,22 +37,16 @@ export default class CourseList extends React.Component {
             .then(() => { this.findAllCourses(); });
     };
 
-    courseRows() {
-        return (
-            <tr><td>Course Row</td></tr>
-        )
-    }
-
-    renderCourseRows() {
+    renderCourseRows = () => {
         let courses = null;
 
-        console.log("render coruse rows")
+        console.log("render course rows")
         console.log(this.state)
-        if(this.state) {
+        if(this.state.courses) {
             courses = this.state.courses.map(
-                function (course) {
-                    return <CourseRow key={course.id}
-                                      course={course}/>
+                function (courses) {
+                    return <CourseRow key={courses.id}
+                                      course={courses}/>
                 }
             )
         }
@@ -76,7 +70,7 @@ export default class CourseList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.renderCourseRows()}
+                        {this.renderCourseRows()}
                     </tbody>
                 </table>
             </div>

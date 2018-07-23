@@ -98,24 +98,25 @@ export default class CourseList extends React.Component {
         </div>
     };
 */
-    /*
+
     renderCourseRows = () => {
 
-        //let courses = null;
+        let courses = null;
 
         console.log("render course rows");
         console.log(this.state.courses);
 
 
-
-        //if(this.state) {
-       //     courses = this.state.courses.map((course) =>
-      //              <CourseRow key={course.id} course={course}/>
-      //      );
-       // }
-        //return (courses);
+        if(this.state) {
+            courses = this.state.courses.map((course) =>
+                    <CourseRow key={course.id} course={course}
+                               deleteCourse={this.deleteCourse}
+                               editCourse={this.editCourse}/>
+            );
+        }
+        return (courses);
     };
-    */
+
 
     render() {
         return (
@@ -157,46 +158,7 @@ export default class CourseList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {this.state.courses.map((course, index) =>
-                            <tr>
-                                <td>
-                                    <i className="fa fa-angle-double-right"/>
-                                </td>
-                                <td>
-                                    <Link to="/course/${course.id}/edit">
-                                        {course.title}
-                                    </Link>
-                                </td>
-
-                                <td>
-                                    {course.owner}
-                                </td>
-
-                                <td>
-                                    {new Date(course.created).toLocaleString()}
-                                </td>
-
-                                <td>
-                                    {new Date(course.modified).toLocaleString()}
-                                </td>
-
-                                <td>
-                                    <div>
-                                        <button className="btn btn-primary btn-sm col-xs-2 btn-group"
-                                                onClick={() =>
-                                                this.editCourse(course.id)}>
-                                            Edit
-                                        </button>
-                                        <button className="btn btn-danger  btn-sm col-xs-2 btn-group"
-                                                onClick={() =>
-                                                this.deleteCourse(course.id)}>
-                                            Delete
-                                        </button>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        )}
+                        {this.renderCourseRows}
                     </tbody>
                 </table>
             </div>

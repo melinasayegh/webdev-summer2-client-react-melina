@@ -41,14 +41,6 @@ export default class CourseList extends React.Component {
         })
     };
 
-    /*
-    ownerChanged = (event) => {
-        this.setState({
-            newCourse: {title: event.target.value}
-        })
-    };
-*/
-
     createCourse = () => {
 
         const newDate = new Date();
@@ -125,18 +117,13 @@ export default class CourseList extends React.Component {
                     <thead>
                     <tr>
                         <th/>
-                        <th>
+                        <th colspan="4">
                             <input className="form-control"
                                    placeholder="Title"
                                    onChange={this.titleChanged}/>
                         </th>
                         <th>
-                            <input className="form-control"
-                                   placeholder="Owner"
-                                   onChange={this.ownerChanged}/>
-                        </th>
-                        <th>
-                            <button className="btn btn-success"
+                            <button className="btn btn-success btn-sm col-xs-2"
                                     onClick={this.createCourse}>
                                 Add
                             </button>
@@ -153,11 +140,11 @@ export default class CourseList extends React.Component {
                         <th>Owner</th>
                         <th>Created At</th>
                         <th>Modified At</th>
-                        <th>Actions</th>
+                        <th/>
                     </tr>
                     </thead>
                     <tbody>
-                        {this.state.courses.map((course, index) =>
+                        {this.state.courses.map((course) =>
                             <tr>
                                 <td>
                                     <i className="fa fa-angle-double-right"/>

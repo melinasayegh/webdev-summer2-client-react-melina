@@ -24,8 +24,15 @@ export default class ModuleListItem extends Component {
                 {this.props.title}
 
                 <span className="pull-right">
-                    <i className="fa fa-trash"/>
-                    <i className="fa fa-pencil"/>
+
+                    <button className="btn btn-primary btn-sm col-xs-1 btn-group"
+                            onClick={() =>  this.props.editModule(this.props.key)}>
+                        Edit
+                    </button>
+                    <button className="btn btn-danger  btn-sm col-xs-1 btn-group"
+                            onClick={() => this.props.deleteModule(this.props.key)}>
+                        Delete
+                    </button>
                 </span>
 
             </li>

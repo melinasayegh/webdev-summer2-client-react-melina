@@ -57,7 +57,10 @@ export default class ModuleList extends Component {
 
     renderListOfModules() {
         let modules = this.state.modules.map(function (module) {
-                <ModuleListItem module={module.title} key={module.id}/>
+                <ModuleListItem module={module.title}
+                                editModue={this.editModule}
+                                deleteModule={this.deleteModule}
+                                key={module.id}/>
             });
         return modules;
     }
@@ -71,6 +74,12 @@ export default class ModuleList extends Component {
 
         this.moduleService.createModule(this.props.courseId, this.state.module);
         this.setState({"modules": this.state.modules});
+    };
+
+    deleteModule = (moduleId) => {
+        this.moduleService.deleteModule(moduleId)
+            .then(() => this.moduleService.findAllCourses())
+            .then(modules => this.setState({modules: modules}))
     };
 
     render() {
@@ -93,7 +102,7 @@ export default class ModuleList extends Component {
                 <p>{this.state.title}</p>
 
                 <ul className="list-group">
-                    {this.renderListOfModules()}
+                    {this.renderListOfModules}
                 </ul>
             </div>
         );

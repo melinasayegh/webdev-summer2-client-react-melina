@@ -4,6 +4,8 @@ i {
 
 .btn-group {
     padding: 10px;
+    margin-right: 5px;
+    margin-bottom: 2px;
 }
 
 tr#spacingUnder {

@@ -5,22 +5,11 @@ export default class LessonTabs extends Component {
         return(
 
             <div>
-                <h3>LessonTabs</h3>
+                <h3>Lessons for Module {}: </h3>
 
-                <ul className="nav nav-tabs">
-                    <li className="nav-item">
-                        <a className="nav-link active" href="#">Active</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
+                <h3><span className="badge badge-primary">Lesson 1.1.1</span></h3>
+                <h3><span className="badge badge-primary">Lesson 1.1.2</span></h3>
+                <h3><span className="badge badge-primary">Lesson 1.1.3</span></h3>
 
             </div>
 

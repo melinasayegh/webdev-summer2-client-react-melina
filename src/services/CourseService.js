@@ -60,12 +60,14 @@ export default class CourseService {
 
     // update this course
     updateCourse(courseId, course) {
-        return fetch(COURSE_API_URL + '/' + courseId), {
+        return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'PUT',
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        }).then(function (response) {
+            return response.json()
+        })
     }
 }

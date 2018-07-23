@@ -8,7 +8,10 @@ export default class CourseEditor extends Component {
     constructor(props) {
         super(props)
         this.courseService = CourseService.instance;
-        this.state = {courseId: '', courseTitle: ''};
+        this.state = {
+            courseId: '',
+            courseTitle: ''};
+
         this.selectCourse = this.selectCourse.bind(this);
     }
 
@@ -24,12 +27,22 @@ export default class CourseEditor extends Component {
         this.setState({courseId: courseId});
     }
 
+    findCourseTitleById = (courseId) => {
+        console.log(courseId);
+
+        let course = this.courseService.findCourseById(courseId);
+        console.log(course);
+        return course.title;
+    };
+
 
     render() {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <h3>Editing course: {this.state.courseId}</h3>
+                <p>Editing course: {this.state.courseId} Title: {this.findCourseTitleById(this.state.courseId)}
+                or: {this.state.course.title}</p>
+                <br/>
 
                 <div className="row">
                     <div className="col-4">

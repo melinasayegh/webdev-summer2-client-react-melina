@@ -7,6 +7,10 @@ export default class LessonTabs extends Component {
             <div>
                 <h3>LessonTabs</h3>
 
+                <h3><span className="badge badge-primary">New</span></h3>
+                <h3><span className="badge badge-primary">New</span></h3>
+                <h3><span className="badge badge-primary">New</span></h3>
+
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <a className="nav-link active" href="#">Active</a>

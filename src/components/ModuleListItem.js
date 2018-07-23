@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+/*
 // make this stateless
 const ModuleListItemStateless = ({title}) =>
     <li className="list-group-item">
@@ -12,7 +13,7 @@ const ModuleListItemStateless = ({title}) =>
 
     </li>
 ;
-
+*/
 
 export default class ModuleListItem extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ export default class ModuleListItem extends Component {
     render() {
         return (
             <li className="list-group-item">
-                {this.props.title}
+                {this.props.module.title}
 
                 <span className="pull-right">
 

@@ -73,6 +73,10 @@ export default class CourseList extends React.Component {
         }
     };
 
+    editCourse = (courseId) => {
+
+    };
+
 
     deleteCourse = (courseId) => {
         this.courseService.deleteCourse(courseId)
@@ -89,7 +93,7 @@ export default class CourseList extends React.Component {
                 courseId={this.state.courseId}/>
         </div>
     };
-*/
+    */
     /*
     renderCourseRows = () => {
 

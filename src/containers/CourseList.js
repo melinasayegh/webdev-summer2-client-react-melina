@@ -1,7 +1,6 @@
 import React from 'react';
 import CourseService from '../services/CourseService.js';
 import CourseRow from '../components/CourseRow';
-import { Link } from 'react-router-dom';
 
 import '../style.css';
 
@@ -11,6 +10,7 @@ export default class CourseList extends React.Component {
     constructor() {
         super();
 
+        this.titleInput = document.getElementById('titleInput');
         this.courseService = CourseService.instance;
         this.state = {
             newCourse: {title:"New Course"},
@@ -74,7 +74,12 @@ export default class CourseList extends React.Component {
     };
 
     editCourse = (courseId) => {
+        this.setState({selectedCourse: this.courseService.findCourseById(courseId)});
+        this.titleInput.val(this.state.selectedCourse.title);
+    };
 
+    updateCourse = (courseId) => {
+        //this.titleInput.val(courseId);
     };
 
 
@@ -84,16 +89,6 @@ export default class CourseList extends React.Component {
             .then(courses => this.setState({courses: courses}))
     };
 
-    /*
-    loadModuleList = (courseId) => {
-        <div>
-            <h3>Course {this.state.courseId}
-            </h3>
-            <ModuleList
-                courseId={this.state.courseId}/>
-        </div>
-    };
-    */
 
     renderCourseRows = () => {
 
@@ -117,20 +112,27 @@ export default class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <table className = "table">
+                <table className="table">
                     <thead>
                     <tr>
                         <th/>
-                        <th colspan="4">
-                            <input className="form-control"
+                        <th colSpan="4">
+                            <input id="titleInput"
+                                   className="form-control"
                                    placeholder="Title"
                                    onChange={this.titleChanged}/>
                         </th>
                         <th>
-                            <button className="btn btn-success btn-sm col-xs-2"
-                                    onClick={this.createCourse}>
-                                Add
-                            </button>
+                            <div>
+                                <button className="btn btn-success btn-sm col-xs-2 btn-group"
+                                        onClick={this.createCourse}>
+                                    Add
+                                </button>
+                                <button className="btn btn-secondary btn-sm col-xs-2 btn-group"
+                                        onClick={this.updateCourse}>
+                                    Update
+                                </button>
+                            </div>
                         </th>
                         <th/>
                         <th/>

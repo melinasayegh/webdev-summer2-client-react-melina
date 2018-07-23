@@ -11,7 +11,7 @@ export default class CourseRow extends React.Component {
                     <i className="fa fa-angle-double-right"/>
                 </td>
                 <td>
-                    <Link to="/course/${this.props.course.id}/edit">
+                    <Link to={`/course/${this.props.course.id}/edit`}>
                         {this.props.course.title}
                     </Link>
                 </td>
@@ -38,7 +38,6 @@ export default class CourseRow extends React.Component {
                                 onClick={() => this.props.deleteCourse(this.props.course.id)}>
                             Delete
                         </button>
-
                     </div>
                 </td>
             </tr>

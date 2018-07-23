@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import CourseCard from '../components/CourseCard'
-import ModuleList from './ModuleList'
-import LessonTabs from './LessonTabs'
 import CourseEditor from './CourseEditor'
 import CourseList from "./CourseList";
 import Header from "../components/Header";

@@ -16,9 +16,7 @@ const ModuleListItemStateless = ({title}) =>
 */
 
 export default class ModuleListItem extends Component {
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         return (
             <li className="list-group-item">
@@ -27,11 +25,11 @@ export default class ModuleListItem extends Component {
                 <span className="pull-right">
 
                     <button className="btn btn-primary btn-sm col-xs-1 btn-group"
-                            onClick={() =>  this.props.editModule(this.props.key)}>
+                            onClick={() =>  this.props.editModule(this.props.module.id)}>
                         Edit
                     </button>
                     <button className="btn btn-danger  btn-sm col-xs-1 btn-group"
-                            onClick={() => this.props.deleteModule(this.props.key)}>
+                            onClick={() => this.props.deleteModule(this.props.module.id)}>
                         Delete
                     </button>
                 </span>

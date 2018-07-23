@@ -3,18 +3,26 @@ import CourseService from '../services/CourseService.js';
 import CourseRow from './CourseList.js';
 import { Link } from 'react-router-dom';
 
+import '../style.css';
+
 
 export default class CourseList extends React.Component {
 
     constructor() {
         super();
+
         this.courseService = CourseService.instance;
-        this.state = {courses: []};
+        this.state = {
+            newCourse: {title:"New Course"},
+            courses: []
+        };
     }
 
     componentDidMount() {
-        console.log("in did mount");
-        this.findAllCourses();
+        this.courseService.findAllCourses()
+            .then(courses => {
+                this.setState({courses: courses});
+            });
     }
 
     findAllCourses() {
@@ -33,11 +41,43 @@ export default class CourseList extends React.Component {
     };
 
     createCourse = () => {
-        this.courseService.createCourse(this.state.course)
-            .then(() => { this.findAllCourses(); });
+
+        const newDate = new Date();
+
+        const tempCourse = {
+            title:"New Course",
+            owner:"Default",
+            created:newDate,
+            modified:newDate
+        };
+
+        if (!this.state.newCourse.title) {
+
+            this.courseService.createCourse(tempCourse)
+                .then(()  => this.courseService.findAllCourses())
+                .then(courses => this.setState({courses: courses}))
+
+        } else {
+
+            const newCourse = {
+                title:this.state.newCourse.title,
+                owner:"Professor",
+                created:newDate,
+                modified:newDate};
+
+            this.courseService.createCourse(newCourse)
+                .then(()  => this.courseService.findAllCourses())
+                .then(courses => this.setState({courses: courses}))
+        }
     };
 
+    deleteCourse = (courseId) => {
+        this.courseService.deleteCourse(courseId)
+            .then(() => this.courseService.findAllCourses())
+            .then(courses => this.setState({courses: courses}))
+    };
 
+    /*
     renderCourseRows = () => {
 
         //let courses = null;
@@ -54,7 +94,7 @@ export default class CourseList extends React.Component {
        // }
         //return (courses);
     };
-
+    */
 
     render() {
         return (
@@ -62,15 +102,28 @@ export default class CourseList extends React.Component {
                 <h2>Course List</h2>
                 <table className = "table">
                     <thead>
-                        <tr>
-                            <th>Title</th>
-                        </tr>
-                        <tr>
-                            <th><input className="form-control"
-                                       onChange={this.titleChanged}/></th>
-                            <th><button className="btn btn-primary"
-                                        onClick={this.createCourse}>Add</button></th>
-                        </tr>
+                    <tr>
+                        <th colspan="4">
+                            <input className="form-control"
+                                   onChange={this.titleChanged}/>
+                        </th>
+                        <th>
+                            <button className="btn btn-success"
+                                    onClick={this.createCourse}>
+                                Add
+                            </button>
+                        </th>
+                    </tr>
+                    <tr className="spacer">
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <th>Owner</th>
+                        <th>Created At</th>
+                        <th>Modified At</th>
+                        <th>Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
                         {this.state.courses.map((course, index) =>
@@ -80,13 +133,33 @@ export default class CourseList extends React.Component {
                                         {course.title}
                                     </Link>
                                 </td>
+
                                 <td>
-                                    <button className="btn btn-danger"
-                                            onClick={() =>
-                                                this.deleteCourse(course.id)
-                                            }>
-                                        Delete
-                                    </button>
+                                    {course.owner}
+                                </td>
+
+                                <td>
+                                    {course.created}
+                                </td>
+
+                                <td>
+                                    {course.modified}
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <button className="btn btn-primary btn-sm col-xs-2 btn-group"
+                                                onClick={() =>
+                                                this.editCourse(course.id)}>
+                                            Edit
+                                        </button>
+                                        <button className="btn btn-danger  btn-sm col-xs-2 btn-group"
+                                                onClick={() =>
+                                                this.deleteCourse(course.id)}>
+                                            Delete
+                                        </button>
+
+                                    </div>
                                 </td>
                             </tr>
                         )}

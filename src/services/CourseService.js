@@ -47,7 +47,7 @@ export default class CourseService {
     }
 
     // delete this course
-    deleteCourse (courseId) {
+    deleteCourse(courseId) {
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'DELETE',
             headers: {

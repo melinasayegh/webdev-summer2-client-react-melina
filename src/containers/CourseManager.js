@@ -22,9 +22,6 @@ export default class CourseManager extends Component {
 
                   <h1>Course Manager</h1>
 
-                  <Link to="/home">WhiteBoard</Link> |
-                  <Link to="/course">CourseList</Link>
-
                   <Route path="/course"
                          component={CourseList}>
                   </Route>

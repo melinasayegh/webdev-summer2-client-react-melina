@@ -6,8 +6,9 @@ import CourseService from "../services/CourseService";
 export default class CourseEditor extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.courseService = CourseService.instance;
+
         this.state = {
             courseId: '',
             courseTitle: ''};
@@ -17,6 +18,11 @@ export default class CourseEditor extends Component {
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
+
+        this.courseService.findCourseById(this.state.courseId)
+            .then(course => {
+                this.setState({courseTitle: course.title});
+            });
     }
 
     componentWillReceiveProps(newProps){
@@ -27,12 +33,10 @@ export default class CourseEditor extends Component {
         this.setState({courseId: courseId});
     }
 
-    findCourseTitleById = (courseId) => {
-        console.log(courseId);
-
+    findCourseById = (courseId) => {
         let course = this.courseService.findCourseById(courseId);
         console.log(course);
-        return course.title;
+        return course;
     };
 
 
@@ -40,8 +44,7 @@ export default class CourseEditor extends Component {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <p>Editing course: {this.state.courseId} Title: {this.findCourseTitleById(this.state.courseId)}
-                or: {this.state.course.title}</p>
+                <p>Editing course: {this.state.courseId}, {this.state.courseTitle}</p>
                 <br/>
 
                 <div className="row">

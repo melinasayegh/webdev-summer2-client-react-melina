@@ -18,6 +18,7 @@ export default class CourseService {
 
     // find all courses
     findAllCourses() {
+        console.log("find all courses fetch");
         return fetch(COURSE_API_URL)
             .then(function (response) {
                 return response.json()
@@ -28,14 +29,14 @@ export default class CourseService {
     findCourseById(courseId) {
         return fetch(COURSE_API_URL + '/' + courseId)
             .then(function (response) {
-                return response.json()
+                return response
             })
     }
 
     // create course
     createCourse(course) {
         return fetch(COURSE_API_URL, {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
@@ -45,9 +46,10 @@ export default class CourseService {
         })
     }
 
+    // delete this course
     deleteCourse (courseId) {
         return fetch(COURSE_API_URL + '/' + courseId, {
-            method: 'delete',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -56,9 +58,10 @@ export default class CourseService {
         })
     }
 
+    // update this course
     updateCourse(courseId, course) {
         return fetch(COURSE_API_URL + '/' + courseId), {
-            method: 'put',
+            method: 'PUT',
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'

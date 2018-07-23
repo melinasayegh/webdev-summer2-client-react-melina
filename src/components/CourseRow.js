@@ -3,17 +3,26 @@ import { Link } from 'react-router-dom';
 
 export default class CourseRow extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <tr><td>
-                <Link to="/course/${this.props.course.id}">
-                    {this.props.course.title}
-                </Link>
-            </td></tr>
+            <tr>
+                <td>
+                    <Link to="/course/${this.props.course.id}">
+                        {this.props.course.title}
+                    </Link>
+                </td>
+                <td>
+                    <button className="btn btn-danger"
+                            onClick={() =>
+                                this.props.deleteCourse(this.props.course.id)
+                            }>
+                        Delete
+                    </button>
+                </td>
+            </tr>
         )
     }
 }
+
+
+// ERROR

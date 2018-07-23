@@ -14,7 +14,8 @@ export default class CourseList extends React.Component {
         this.courseService = CourseService.instance;
         this.state = {
             newCourse: {title:"New Course"},
-            courses: []
+            courses: [],
+            selectedCourse: null
         };
     }
 
@@ -40,13 +41,21 @@ export default class CourseList extends React.Component {
         })
     };
 
+    /*
+    ownerChanged = (event) => {
+        this.setState({
+            newCourse: {title: event.target.value}
+        })
+    };
+*/
+
     createCourse = () => {
 
         const newDate = new Date();
 
         const tempCourse = {
             title:"New Course",
-            owner:"Default",
+            owner:"Me",
             created:newDate,
             modified:newDate
         };
@@ -61,7 +70,8 @@ export default class CourseList extends React.Component {
 
             const newCourse = {
                 title:this.state.newCourse.title,
-                owner:"Professor",
+                //owner:this.state.newCourse.owner,
+                owner:"Me",
                 created:newDate,
                 modified:newDate};
 
@@ -71,12 +81,23 @@ export default class CourseList extends React.Component {
         }
     };
 
+
     deleteCourse = (courseId) => {
         this.courseService.deleteCourse(courseId)
             .then(() => this.courseService.findAllCourses())
             .then(courses => this.setState({courses: courses}))
     };
 
+    /*
+    loadModuleList = (courseId) => {
+        <div>
+            <h3>Course {this.state.courseId}
+            </h3>
+            <ModuleList
+                courseId={this.state.courseId}/>
+        </div>
+    };
+*/
     /*
     renderCourseRows = () => {
 
@@ -103,9 +124,16 @@ export default class CourseList extends React.Component {
                 <table className = "table">
                     <thead>
                     <tr>
-                        <th colspan="4">
+                        <th/>
+                        <th>
                             <input className="form-control"
+                                   placeholder="Title"
                                    onChange={this.titleChanged}/>
+                        </th>
+                        <th>
+                            <input className="form-control"
+                                   placeholder="Owner"
+                                   onChange={this.ownerChanged}/>
                         </th>
                         <th>
                             <button className="btn btn-success"
@@ -113,11 +141,14 @@ export default class CourseList extends React.Component {
                                 Add
                             </button>
                         </th>
+                        <th/>
+                        <th/>
                     </tr>
                     <tr className="spacer">
-                        <td></td>
+                        <td/>
                     </tr>
                     <tr>
+                        <th/>
                         <th>Title</th>
                         <th>Owner</th>
                         <th>Created At</th>
@@ -129,7 +160,10 @@ export default class CourseList extends React.Component {
                         {this.state.courses.map((course, index) =>
                             <tr>
                                 <td>
-                                    <Link to="/course/${course.id}">
+                                    <i className="fa fa-angle-double-right"/>
+                                </td>
+                                <td>
+                                    <Link to="/course/${course.id}/edit">
                                         {course.title}
                                     </Link>
                                 </td>
@@ -139,11 +173,11 @@ export default class CourseList extends React.Component {
                                 </td>
 
                                 <td>
-                                    {course.created}
+                                    {new Date(course.created).toLocaleString()}
                                 </td>
 
                                 <td>
-                                    {course.modified}
+                                    {new Date(course.modified).toLocaleString()}
                                 </td>
 
                                 <td>

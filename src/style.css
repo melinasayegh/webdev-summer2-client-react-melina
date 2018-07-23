@@ -10,3 +10,8 @@ tr#spacingUnder {
     border-collapse:separate;
     border-spacing:0 50px;
 }
+
+.navbar {
+    margin-left: -15px;
+    margin-right: -15px;
+}

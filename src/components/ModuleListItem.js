@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 
-
-
 // make this stateless
 const ModuleListItemStateless = ({title}) =>
     <li className="list-group-item">
@@ -14,8 +12,6 @@ const ModuleListItemStateless = ({title}) =>
 
     </li>
 ;
-
-
 
 
 export default class ModuleListItem extends Component {

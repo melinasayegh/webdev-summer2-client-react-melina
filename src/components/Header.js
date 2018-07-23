@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
+import '../style.css';
 
 export default class Header extends Component {
     render() {

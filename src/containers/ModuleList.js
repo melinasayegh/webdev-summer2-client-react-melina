@@ -18,6 +18,18 @@ export default class ModuleList extends Component {
     };
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+
+        this.moduleService = ModuleService.instance;
+    }
+
+    componentDidMount() {
+        this.setCourseId(this.props.courseId);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setCourseId(newProps.courseId);
+        this.findAllModulesForCourse(newProps.courseId)
     }
 
     titleChanged(event) {

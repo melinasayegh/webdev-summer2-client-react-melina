@@ -1,10 +1,16 @@
 import React, {Component} from "react";
+import { Link } from 'react-router-dom';
+
+import "../css/style.css";
 
 export default class ModuleListItem extends Component {
     render() {
         return (
-            <li className="list-group-item">
-                {this.props.module.title}
+            <li className={'list-group-item ' + this.props.isSelected}>
+
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                    {this.props.module.title}
+                </Link>
 
                 <span className="pull-right">
 

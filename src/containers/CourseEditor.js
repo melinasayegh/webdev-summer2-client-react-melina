@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ModuleEditor from './ModuleEditor.js';
 import ModuleList from './ModuleList.js';
 import CourseService from "../services/CourseService";
 
@@ -48,12 +47,6 @@ export default class CourseEditor extends Component {
                     <div className="col-4">
                         <h2>Modules</h2>
                         <ModuleList courseId={this.state.courseId}/>
-                    </div>
-
-                    <div className="col-8">
-                        <h2>Lessons</h2>
-                        <ModuleEditor courseId={this.state.courseId}
-                                      moduleId={this.state.moduleId}/>
                     </div>
                 </div>
             </div>

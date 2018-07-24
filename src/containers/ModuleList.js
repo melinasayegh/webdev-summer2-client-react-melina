@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
 import CourseService from '../services/CourseService';
+import ModuleEditor from './ModuleEditor.js';
+import {BrowserRouter as Router} from 'react-router-dom'
+
 
 export default class ModuleList extends Component {
     constructor(props) {
@@ -56,8 +59,7 @@ export default class ModuleList extends Component {
     };
 
     findModuleById = (moduleId) => {
-        return this.moduleService
-            .findModuleById(moduleId)
+        return this.moduleService.findModuleById(moduleId)
     };
 
     renderListOfModules = () => {
@@ -66,7 +68,8 @@ export default class ModuleList extends Component {
 
         if(this.state) {
             modules = this.state.modules.map((module) =>
-                <ModuleListItem clicked={this.handleClick()}
+                <ModuleListItem isSelected={this.isSelected}
+                                courseId={this.state.courseId}
                                 module={module}
                                 key={module.id}
                                 editModule={this.editModule}
@@ -76,7 +79,13 @@ export default class ModuleList extends Component {
         return modules;
     };
 
-    handleClick = (event) => {
+    isSelected = () => {
+        console.log("selected?")
+        if (this.state.selectedModule === this.state.module)  {
+            return("bg-primary");
+        } else {
+            return("bg-secondary");
+        }
     };
 
     createModule = () => {
@@ -102,8 +111,9 @@ export default class ModuleList extends Component {
 
     editModule = (moduleId) => {
         // selected module
-        let module = this.findModuleById(moduleId);
-        this.setState({selectedModule: module})
+        this.findModuleById(moduleId)
+            .then((module) => this.setState({selectedModule: module}))
+            .then(() => this.isSelected());
     };
 
     deleteModule = (moduleId) => {
@@ -114,24 +124,33 @@ export default class ModuleList extends Component {
 
     render() {
         return (
-            <div>
+            <Router>
+                <div className="row">
+                    <div className="col-4">
+                        <div>
+                            <input className="form-control"
+                                   onChange={this.titleChanged}
+                                   placeholder="title"/>
 
-                <div>
-                    <input className="form-control"
-                           onChange={this.titleChanged}
-                           placeholder="title"/>
+                            <button className="btn btn-success btn-block fa fa-plus"
+                                    onClick={this.createModule}>
+                            </button>
+                        </div>
 
-                    <button className="btn btn-success btn-block fa fa-plus"
-                            onClick={this.createModule}>
-                    </button>
+                        <br/>
+
+                        <ul className="list-group">
+                            {this.renderListOfModules()}
+                        </ul>
+                    </div>
+
+                    <div className="col-8">
+                        <h2>Lessons</h2>
+                        <ModuleEditor courseId={this.state.courseId}
+                                      moduleId={this.state.moduleId}/>
+                    </div>
                 </div>
-
-                <br/>
-
-                <ul className="list-group">
-                    {this.renderListOfModules()}
-                </ul>
-            </div>
+            </Router>
         );
     }
 }

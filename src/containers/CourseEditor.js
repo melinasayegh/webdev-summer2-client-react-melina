@@ -29,9 +29,6 @@ export default class CourseEditor extends Component {
 
     selectCourse = (courseId) => {
         this.setState({courseId: courseId})
-            //.then(() => this.findCourseTitle(courseId));
-
-        //console.log("id:"+this.state.courseId);
     };
 
     findCourseTitle = (courseId) => {

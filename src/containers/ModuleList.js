@@ -126,6 +126,7 @@ export default class ModuleList extends Component {
     };
 
     render() {
+        console.log("selectedmodule?" +this.state.selectedModuleId)
         return (
             <Router>
                 <div className="container">
@@ -154,7 +155,7 @@ export default class ModuleList extends Component {
                         <br/>
                         <h2>Lessons</h2>
                         <ModuleEditor courseId={this.state.courseId}
-                                      moduleId={this.state.moduleId}/>
+                                      moduleId={this.state.selectedModuleId}/>
                     </div>
                     </div>
                 </div>

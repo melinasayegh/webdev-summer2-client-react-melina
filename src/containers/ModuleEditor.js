@@ -8,39 +8,30 @@ export default class ModuleEditor extends Component {
 
     constructor(props) {
         super(props);
-        this.moduleService = ModuleService.instance;
 
         this.state = {
             courseId: '',
             moduleId: '',
-            moduleTitle: ''};
+            moduleTitle: 'New Module'};
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.courseId);
-        this.selectModule(this.props.moduleId);
-        console.log(this.state.courseId);
+        this.setCourseId(this.props.courseId);
+        this.setModuleId(this.props.moduleId);
     }
 
     componentWillReceiveProps(newProps){
-        this.selectCourse(newProps.courseId);
+        this.setCourseId(newProps.courseId);
+        this.setModuleId(newProps.moduleId);
     }
 
-    selectCourse = (courseId) => {
+    setCourseId = (courseId) => {
         this.setState({courseId: courseId})
     };
 
-    selectModule = (moduleId) => {
+    setModuleId = (moduleId) => {
         this.setState({moduleId: moduleId})
     };
-
-    findModuleTitle = (moduleId) => {
-        this.courseService.findModuleById(this.state.moduleId)
-            .then(module => {
-                this.setState({moduleTitle: module.title});
-            });
-    };
-
 
     render() {
         return(

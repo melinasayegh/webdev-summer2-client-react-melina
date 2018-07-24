@@ -54,7 +54,6 @@ export default class LessonList extends Component {
     }
 
     titleChanged = (event) => {
-        console.log(event.target.value);
         this.setState({lesson: {title:event.target.value}});
     };
 

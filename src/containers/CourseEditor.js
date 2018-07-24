@@ -41,13 +41,8 @@ export default class CourseEditor extends Component {
     render() {
         return(
             <div>
-                <h2>Course Editor</h2>
-                <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
-                <br/>
-
                 <div className="course-editor-div">
                     <div className="col-12">
-                        <h2 className="module-heading">Modules</h2>
                         <ModuleList courseId={this.state.courseId}/>
                     </div>
                 </div>

@@ -8,22 +8,17 @@ export default class ModuleListItem extends Component {
         return (
             <li className={'list-group-item ' + this.props.isSelected}>
 
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}
+                      onClick={() =>  this.props.editModule(this.props.module.id)}>
                     {this.props.module.title}
                 </Link>
-
                 <span className="pull-right">
-
-                    <button className="btn btn-primary btn-sm col-xs-1 btn-group"
-                            onClick={() =>  this.props.editModule(this.props.module.id)}>
-                        Edit
-                    </button>
                     <button className="btn btn-danger  btn-sm col-xs-1 btn-group"
                             onClick={() => {
                                 if (window.confirm('Are you sure you wish to delete this module?')) {
                                     this.props.deleteModule(this.props.module.id)
                                 }}}>
-                        Delete
+                        x
                     </button>
                 </span>
             </li>

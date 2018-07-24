@@ -16,6 +16,7 @@ export default class ModuleList extends Component {
             course: {title: ''},
             module: {title: 'New Module'},
             modules: [],
+            selectedCourseTitle: 'Error',
             selectedModuleId: '',
             selectedModuleTitle: 'No Module Selected'
     };
@@ -32,7 +33,7 @@ export default class ModuleList extends Component {
     };
 
     setCourse = (course) => {
-        this.setState({course: course});
+        this.setState({course: course, selectedCourseTitle: course.title});
     };
 
     componentDidMount() {
@@ -42,6 +43,7 @@ export default class ModuleList extends Component {
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
+        this.findCourseById(newProps.courseId)
         this.findAllModulesForCourse(newProps.courseId)
     }
 
@@ -129,18 +131,19 @@ export default class ModuleList extends Component {
         console.log("selectedmodule?" +this.state.selectedModuleId)
         return (
             <Router>
-                <div className="container">
-                    <div className="row editor-row">
+                <div className="row">
                     <div className="col-sm-12 col-md-4 col-lg-4">
-                        <div>
-                            <input className="form-control"
-                                   onChange={this.titleChanged}
-                                   placeholder="title"/>
+                        <h2>Course Editor</h2>
+                        <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
+                        <h3 className="module-heading">Modules</h3>
 
-                            <button className="btn btn-success btn-block fa fa-plus"
-                                    onClick={this.createModule}>
-                            </button>
-                        </div>
+                        <input className="form-control"
+                               onChange={this.titleChanged}
+                               placeholder="title"/>
+
+                        <button className="btn btn-success btn-block fa fa-plus"
+                                onClick={this.createModule}>
+                        </button>
 
                         <br/>
 
@@ -149,14 +152,13 @@ export default class ModuleList extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-sm-12 col-md-8 col-lg-8 module-editor-div">
+                    <div className="col-sm-12 col-md-8 col-lg-8">
                         <h2>Module Editor</h2>
                         <p className="pEdit">Editing Module: {this.state.selectedModuleTitle}</p>
-                        <br/>
-                        <h2>Lessons</h2>
+                        <h3 className="module-heading">Lessons</h3>
+
                         <ModuleEditor courseId={this.state.courseId}
                                       moduleId={this.state.selectedModuleId}/>
-                    </div>
                     </div>
                 </div>
             </Router>

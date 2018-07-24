@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import LessonList from "./LessonList"
 
 import '../css/style.css'
-import ModuleService from "../services/ModuleService";
 
 export default class ModuleEditor extends Component {
 
@@ -35,12 +34,10 @@ export default class ModuleEditor extends Component {
 
     render() {
         return(
-
             <div>
                 <LessonList moduleId={this.state.moduleId}
                             courseId={this.state.courseId}/>
             </div>
-
         );
     }
 }

@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import CourseEditor from './CourseEditor'
 import CourseList from "./CourseList";
+import ModuleList from "./ModuleList";
 import Header from "../components/Header";
 
 
@@ -24,8 +25,12 @@ export default class CourseManager extends Component {
                                    component={CourseList}>
                             </Route>
 
-                            <Route path="/course/:courseId/edit"
+                            <Route path="/course/:courseId"
                                    component={CourseEditor}>
+                            </Route>
+
+                            <Route path="/course/:courseId/module/:moduleId/"
+                                   component={ModuleList}>
                             </Route>
                         </Switch>
                     </div>

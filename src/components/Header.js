@@ -19,22 +19,6 @@ export default class Header extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="/course">Courses</a>
                             </li>
-
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Courses
-                                </a>
-
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="/module">Courses</a>
-                                    <a className="dropdown-item" href="/module">Modules</a>
-                                    <a className="dropdown-item" href="/lesson">Lessons</a>
-                                    <div className="dropdown-divider">
-
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                         <input className="form-control col-sm-3"
                                type="search"

@@ -57,7 +57,7 @@ export default class LessonService {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
-            return response.json(); })
+            return response; })
     }
 
     updateLesson(lesson, lessonId) {

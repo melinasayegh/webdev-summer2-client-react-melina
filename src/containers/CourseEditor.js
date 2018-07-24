@@ -13,30 +13,28 @@ export default class CourseEditor extends Component {
             courseId: '',
             courseTitle: ''};
 
-        this.selectCourse = this.selectCourse.bind(this);
     }
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
-
-        this.courseService.findCourseById(this.state.courseId)
-            .then(course => {
-                this.setState({courseTitle: course.title});
-            });
     }
 
     componentWillReceiveProps(newProps){
         this.selectCourse(newProps.match.params.courseId);
     }
 
-    selectCourse(courseId) {
-        this.setState({courseId: courseId});
-    }
+    selectCourse = (courseId) => {
+        this.setState({courseId: courseId})
+           // .then(() => this.findCourseTitle(courseId));
 
-    findCourseById = (courseId) => {
-        let course = this.courseService.findCourseById(courseId);
-        console.log(course);
-        return course;
+        //console.log("id:"+this.state.courseId);
+    };
+
+    findCourseTitle = (courseId) => {
+        this.courseService.findCourseById(this.state.courseId)
+            .then(course => {
+                this.setState({courseTitle: course.title});
+            });
     };
 
 
@@ -44,7 +42,7 @@ export default class CourseEditor extends Component {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <p>Editing course: {this.state.courseId}, {this.state.courseTitle}</p>
+                <p>Editing Course {this.state.courseId}</p>
                 <br/>
 
                 <div className="row">

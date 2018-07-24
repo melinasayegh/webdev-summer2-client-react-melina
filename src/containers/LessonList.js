@@ -49,8 +49,8 @@ export default class LessonList extends Component {
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
-        this.findModuleById(this.props.moduleId);
-        this.findAllLessonsForModule(newProps.moduleId)
+        this.findModuleById(newProps.moduleId);
+        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId)
     }
 
     titleChanged = (event) => {
@@ -80,7 +80,7 @@ export default class LessonList extends Component {
         var lesson = {title: this.state.title, module: this.state.module};
         this.state.lessons.push(lesson);
 
-        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
+        this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
             .then(modules => this.setState({modules: modules}))
     };

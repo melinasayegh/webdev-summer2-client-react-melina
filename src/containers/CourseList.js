@@ -115,7 +115,9 @@ export default class CourseList extends React.Component {
                             <input id="titleInput"
                                    className="form-control"
                                    placeholder="Title"
-                                   onChange={this.titleChanged}/>
+                                   onChange={this.titleChanged}
+                                   value = {this.state.newCourse.title}
+                            />
                         </th>
                         <th>
                             <div>

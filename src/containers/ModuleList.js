@@ -131,7 +131,7 @@ export default class ModuleList extends Component {
             <Router>
                 <div className="container">
                     <div className="row editor-row">
-                    <div className="col-4">
+                    <div className="col-sm-12 col-md-4 col-lg-4">
                         <div>
                             <input className="form-control"
                                    onChange={this.titleChanged}
@@ -149,7 +149,7 @@ export default class ModuleList extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-8 module-editor-div">
+                    <div className="col-sm-12 col-md-8 col-lg-8 module-editor-div">
                         <h2>Module Editor</h2>
                         <p className="pEdit">Editing Module: {this.state.selectedModuleTitle}</p>
                         <br/>

@@ -18,10 +18,26 @@ tr#spacingUnder {
     margin-right: -15px;
 }
 
+.editor-row {
+    width: 100%;
+}
+
 .editor-row-left {
     width: 33.33%;
 }
 
 .editor-row-right {
     width: 66.66%;
+}
+
+.module-heading {
+    padding-left: 75px;
+}
+
+.course-editor-div {
+    margin-left: -50px;
+}
+
+.module-editor-div {
+    margin-left: -80px;
 }

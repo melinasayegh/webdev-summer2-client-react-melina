@@ -75,7 +75,7 @@ export default class LessonList extends Component {
     createLesson = () => {
 
         if (this.state.moduleId === "") {
-
+            (window.alert('You have not selected a module.'))
         }
 
         var lesson = {title: this.state.title, module: this.state.module};

@@ -86,11 +86,6 @@ export default class LessonList extends Component {
             .then(modules => this.setState({modules: modules}))
     };
 
-    editModule = (lessonId) => {
-
-
-    };
-
     deleteLesson = (lessonId) => {
         this.lessonService.deleteLesson(lessonId)
             .then(() =>

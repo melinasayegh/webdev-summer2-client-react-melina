@@ -30,7 +30,6 @@ export default class CourseList extends React.Component {
         this.courseService.findAllCourses()
             .then(courses => {
                 this.setState({courses: courses});
-                console.log(courses);
             });
 
     }
@@ -93,10 +92,6 @@ export default class CourseList extends React.Component {
     renderCourseRows = () => {
 
         let courses = null;
-
-        console.log("render course rows");
-        console.log(this.state.courses);
-
 
         if(this.state) {
             courses = this.state.courses.map((course) =>

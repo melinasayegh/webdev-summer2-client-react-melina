@@ -1,15 +1,18 @@
 import React, {Component} from "react";
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
+import CourseService from '../services/CourseService';
 
 export default class ModuleList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             courseId: '',
+            course: null,
             module: {title: ''},
             modules: []
     };
+        this.courseService = CourseService.instance;
         this.moduleService = ModuleService.instance;
     }
 
@@ -21,10 +24,14 @@ export default class ModuleList extends Component {
         this.setState({courseId: courseId});
     };
 
+    setCourse = (course) => {
+        this.setState({course: course});
+    };
+
     componentDidMount() {
         this.setCourseId(this.props.courseId);
+        this.findCourseById(this.props.courseId);
     }
-
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
@@ -40,6 +47,12 @@ export default class ModuleList extends Component {
         this.moduleService
             .findAllModulesForCourse(courseId)
             .then((modules) => {this.setModules(modules)});
+    };
+
+    findCourseById = (courseId) => {
+        this.courseService
+            .findCourseById(courseId)
+            .then((course) => {this.setCourse(course)});
     };
 
     renderListOfModules = () => {
@@ -60,7 +73,7 @@ export default class ModuleList extends Component {
         console.log(this.state.title);
         console.log(this.state.modules);
 
-        var module = {title: this.state.title};
+        var module = {title: this.state.title, course: this.state.course};
         this.state.modules.push(module);
 
         this.moduleService.createModule(this.props.courseId, this.state.module)
@@ -95,8 +108,6 @@ export default class ModuleList extends Component {
                 </div>
 
                 <br/>
-
-                <p>{this.state.title}</p>
 
                 <ul className="list-group">
                     {this.renderListOfModules()}

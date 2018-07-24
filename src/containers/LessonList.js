@@ -7,28 +7,35 @@ export default class LessonList extends Component {
         super(props);
         this.state = {
             courseId: '',
-            module: {title: ''},
-            modules: []
+            moduleId: '',
+            lesson: {title: ''},
+            lessons: []
         };
         this.lessonService = LessonService.instance;
     }
 
-    setModules(modules) {
-        this.setState({modules: modules})
+    setLessons(lessons) {
+        this.setState({lessons: lessons})
     }
 
     setCourseId = (courseId) => {
         this.setState({courseId: courseId});
     };
 
+    setModuleId = (moduleId) => {
+        this.setState({moduleId: moduleId});
+    };
+
     componentDidMount() {
         this.setCourseId(this.props.courseId);
+        this.setModuleId(this.props.moduleId);
     }
 
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
-        this.findAllModulesForCourse(newProps.courseId)
+        this.setModuleId(newProps.moduleId);
+        this.findAllLessonsForModule(newProps.moduleId)
     }
 
     titleChanged = (event) => {
@@ -36,47 +43,47 @@ export default class LessonList extends Component {
         this.setState({module: {title:event.target.value}});
     };
 
-    findAllModulesForCourse = (courseId) => {
-        this.moduleService
-            .findAllModulesForCourse(courseId)
-            .then((modules) => {this.setModules(modules)});
+    findAllLessonsForModule = (courseId, moduleId) => {
+        this.lessonService
+            .findAllLessonsForModule(courseId, moduleId)
+            .then((lessons) => {this.setLessons(lessons)});
     };
 
-    renderListOfModules = () => {
+    renderListOfLessons = () => {
 
-        let modules = null;
+        let lessons = null;
 
         if(this.state) {
-            modules = this.state.modules.map((module) =>
-                <ModuleListItem module={module}
-                                key={module.id}
-                                deleteModule={this.deleteModule}/>
+            lessons = this.state.lessons.map((lesson) =>
+                <LessonPill lesson={lesson}
+                            key={lesson.id}
+                            deleteLesson={this.deleteLesson}/>
             );
         }
         return modules;
     };
 
-    createModule = () => {
-        console.log(this.state.title);
-        console.log(this.state.modules);
+    createLesson = () => {
 
-        var module = {title: this.state.title};
-        this.state.modules.push(module);
+        var lesson = {title: this.state.title,
+        module: this.state.module};
+        this.state.lessons.push(lesson);
 
-        this.moduleService.createModule(this.props.courseId, this.state.module)
+        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
             .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
             .then(modules => this.setState({modules: modules}))
     };
 
-    editModule = (moduleId) => {
+    editModule = (lessonId) => {
 
 
     };
 
-    deleteModule = (moduleId) => {
-        this.moduleService.deleteModule(moduleId)
-            .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-            .then(modules => this.setState({modules: modules}))
+    deleteLesson = (lessonId) => {
+        this.lessonService.deleteLesson(lessonId)
+            .then(() =>
+                this.lessonService.findAllLessonsForModule(this.state.courseId, this.state.moduleId))
+            .then(lessons => this.setState({lessons: lessons}))
     };
 
     render() {
@@ -86,20 +93,18 @@ export default class LessonList extends Component {
                 <div>
                     <input className="form-control"
                            onChange={this.titleChanged}
-                           value={this.state.module.title}
+                           value={this.state.lesson.title}
                            placeholder="title"/>
 
                     <button className="btn btn-success btn-block fa fa-plus"
-                            onClick={this.createModule}>
+                            onClick={this.createLesson}>
                     </button>
                 </div>
 
                 <br/>
 
-                <p>{this.state.title}</p>
-
                 <ul className="list-group">
-                    {this.renderListOfModules()}
+                    {this.renderListOfLessons()}
                 </ul>
             </div>
         );

@@ -53,7 +53,7 @@ export default class LessonService {
     }
 
     deleteLesson(lessonId) {
-        return fetch(LESSON_API_URL + '/' + moduleId, {
+        return fetch(LESSON_API_URL + '/' + lessonId, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {

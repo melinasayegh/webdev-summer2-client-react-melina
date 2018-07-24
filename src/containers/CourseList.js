@@ -75,7 +75,7 @@ export default class CourseList extends React.Component {
 
     editCourse = (courseId) => {
         this.setState({selectedCourse: this.courseService.findCourseById(courseId)});
-        this.titleInput.val(this.state.selectedCourse.title);
+        //this.titleInput.val(this.state.selectedCourse.title);
     };
 
     updateCourse = (courseId) => {

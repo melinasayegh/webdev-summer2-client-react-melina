@@ -8,16 +8,21 @@ export default class ModuleList extends Component {
         super(props);
         this.state = {
             courseId: '',
-            course: null,
-            module: {title: ''},
-            modules: []
+            course: {title: ''},
+            module: {title: 'New Module'},
+            modules: [],
+            selectedModule: null
     };
         this.courseService = CourseService.instance;
         this.moduleService = ModuleService.instance;
     }
 
-    setModules(modules) {
+    setModules = (modules) => {
         this.setState({modules: modules})
+    }
+
+    selectModule = (moduleId) => {
+        this.state.selectModule = moduleId;
     }
 
     setCourseId = (courseId) => {
@@ -55,35 +60,60 @@ export default class ModuleList extends Component {
             .then((course) => {this.setCourse(course)});
     };
 
+    findModuleById = (moduleId) => {
+        return this.moduleService
+            .findModuleById(moduleId)
+    };
+
     renderListOfModules = () => {
 
         let modules = null;
 
         if(this.state) {
             modules = this.state.modules.map((module) =>
-                <ModuleListItem module={module}
-                                        key={module.id}
-                                        deleteModule={this.deleteModule}/>
+                <ModuleListItem clicked={this.handleClick()}
+                                module={module}
+                                key={module.id}
+                                editModule={this.editModule}
+                                deleteModule={this.deleteModule}/>
             );
         }
         return modules;
+    };
+
+    handleClick = (event) => {
+        console.log("change color");
     };
 
     createModule = () => {
         console.log(this.state.title);
         console.log(this.state.modules);
 
-        var module = {title: this.state.title, course: this.state.course};
-        this.state.modules.push(module);
 
-        this.moduleService.createModule(this.props.courseId, this.state.module)
-            .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-            .then(modules => this.setState({modules: modules}))
+        const tempModule = {title: "New Module", course: this.state.course};
+
+        if (this.state.module.title === "") {
+
+            this.moduleService.createModule(tempModule)
+                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
+                .then(modules => this.setState({modules: modules}))
+
+        } else {
+            var module = {title: this.state.title, course: this.state.course};
+            this.state.modules.push(module);
+
+            this.moduleService.createModule(this.props.courseId, this.state.module)
+                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
+                .then(modules => this.setState({modules: modules}))
+        }
+
     };
 
     editModule = (moduleId) => {
-
-
+        // selected module
+        let module = this.findModuleById(moduleId);
+        this.setState({selectedModule: module})
+        console.log("selected module: " + this.state.selectedModule.title)
     };
 
     deleteModule = (moduleId) => {
@@ -99,7 +129,6 @@ export default class ModuleList extends Component {
                 <div>
                     <input className="form-control"
                            onChange={this.titleChanged}
-                           value={this.state.module.title}
                            placeholder="title"/>
 
                     <button className="btn btn-success btn-block fa fa-plus"

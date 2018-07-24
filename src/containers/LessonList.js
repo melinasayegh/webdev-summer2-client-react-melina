@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import LessonPill from '../components/LessonPill';
 import LessonService from '../services/LessonService';
+import ModuleService from '../services/ModuleService'
 
 export default class LessonList extends Component {
     constructor(props) {
@@ -8,9 +9,11 @@ export default class LessonList extends Component {
         this.state = {
             courseId: '',
             moduleId: '',
+            module: {title: ''},
             lesson: {title: ''},
             lessons: []
         };
+        this.moduleService = ModuleService.instance;
         this.lessonService = LessonService.instance;
     }
 
@@ -26,21 +29,33 @@ export default class LessonList extends Component {
         this.setState({moduleId: moduleId});
     };
 
+    setModule = (module) => {
+        this.setState({module: module});
+    };
+
+    findModuleById = (moduleId) => {
+        this.moduleService
+            .findModuleById(moduleId)
+            .then((module) => {this.setModule(module)});
+    };
+
     componentDidMount() {
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
-    }
+        this.findModuleById(this.props.moduleId);
 
+    }
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
+        this.findModuleById(this.props.moduleId);
         this.findAllLessonsForModule(newProps.moduleId)
     }
 
     titleChanged = (event) => {
         console.log(event.target.value);
-        this.setState({module: {title:event.target.value}});
+        this.setState({lesson: {title:event.target.value}});
     };
 
     findAllLessonsForModule = (courseId, moduleId) => {
@@ -50,9 +65,7 @@ export default class LessonList extends Component {
     };
 
     renderListOfLessons = () => {
-
         let lessons = null;
-
         if(this.state) {
             lessons = this.state.lessons.map((lesson) =>
                 <LessonPill lesson={lesson}
@@ -60,13 +73,12 @@ export default class LessonList extends Component {
                             deleteLesson={this.deleteLesson}/>
             );
         }
-        return modules;
+        return lessons;
     };
 
     createLesson = () => {
 
-        var lesson = {title: this.state.title,
-        module: this.state.module};
+        var lesson = {title: this.state.title, module: this.state.module};
         this.state.lessons.push(lesson);
 
         this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)

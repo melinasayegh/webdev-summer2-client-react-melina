@@ -1,6 +1,15 @@
 import React, {Component} from "react";
 
 export default class ModuleListItem extends Component {
+
+    getInitialState = () => {
+        return {highlight:false};
+    };
+
+    onClick = (event) => {
+        this.setState({highlight:true});
+    };
+
     render() {
         return (
             <li className="list-group-item">

@@ -12,7 +12,6 @@ export default class CourseEditor extends Component {
         this.state = {
             courseId: '',
             courseTitle: ''};
-
     }
 
     componentDidMount() {
@@ -38,7 +37,6 @@ export default class CourseEditor extends Component {
             });
     };
 
-
     render() {
         return(
             <div>
@@ -54,7 +52,8 @@ export default class CourseEditor extends Component {
 
                     <div className="col-8">
                         <h2>Lessons</h2>
-                        <ModuleEditor/>
+                        <ModuleEditor courseId={this.state.courseId}
+                                      moduleId={this.state.moduleId}/>
                     </div>
                 </div>
             </div>

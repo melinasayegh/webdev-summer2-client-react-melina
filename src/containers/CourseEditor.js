@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import LessonTabs from './LessonTabs.js';
+import ModuleEditor from './ModuleEditor.js';
 import ModuleList from './ModuleList.js';
 import CourseService from "../services/CourseService";
 
@@ -55,7 +55,7 @@ export default class CourseEditor extends Component {
 
                     <div className="col-8">
                         <h2>Lessons</h2>
-                        <LessonTabs/>
+                        <ModuleEditor/>
                     </div>
                 </div>
             </div>

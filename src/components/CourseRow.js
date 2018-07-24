@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default class CourseRow extends React.Component {
-
     render() {
         return (
 
@@ -35,7 +34,10 @@ export default class CourseRow extends React.Component {
                             Edit
                         </button>
                         <button className="btn btn-danger  btn-sm col-xs-2 btn-group"
-                                onClick={() => this.props.deleteCourse(this.props.course.id)}>
+                                onClick={() => {
+                                    if (window.confirm('Are you sure you wish to delete this course?')) {
+                                        this.props.deleteCourse(this.props.course.id)
+                                    }}}>
                             Delete
                         </button>
                     </div>

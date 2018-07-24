@@ -83,7 +83,6 @@ export default class ModuleList extends Component {
     };
 
     isSelected = () => {
-        console.log("selected?")
         if (this.state.selectedModuleId === this.state.module.id)  {
             return("bg-primary");
         } else {

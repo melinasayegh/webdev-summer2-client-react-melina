@@ -17,7 +17,7 @@ export default class LessonList extends Component {
         this.lessonService = LessonService.instance;
     }
 
-    setLessons(lessons) {
+    setLessons = (lessons) => {
         this.setState({lessons: lessons})
     }
 
@@ -43,6 +43,7 @@ export default class LessonList extends Component {
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
         this.findModuleById(this.props.moduleId);
+        this.findAllLessonsForModule(this.props.moduleId)
 
     }
 
@@ -64,8 +65,10 @@ export default class LessonList extends Component {
     };
 
     renderListOfLessons = () => {
+
         let lessons = null;
-        if(this.state) {
+
+        if(this.state.lessons) {
             lessons = this.state.lessons.map((lesson) =>
                 <LessonPill lesson={lesson}
                             key={lesson.id}
@@ -77,12 +80,12 @@ export default class LessonList extends Component {
 
     createLesson = () => {
 
-        var lesson = {title: this.state.title, module: this.state.module};
-        this.state.lessons.push(lesson);
+        var lesson = {title: this.state.title,
+                      module: this.state.module};
 
-        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
-            .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-            .then(modules => this.setState({modules: modules}))
+        this.lessonService.createLesson(this.state.courseId, this.state.moduleId, lesson)
+            .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId))
+            .then(lessons => this.setState({lessons: lessons}))
     };
 
     deleteLesson = (lessonId) => {

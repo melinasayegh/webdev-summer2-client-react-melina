@@ -21,3 +21,7 @@ tr#spacingUnder {
 .pEdit {
     font-style: italic;
 }
+
+.btn-delete-lesson {
+    padding-left: 10px;
+}

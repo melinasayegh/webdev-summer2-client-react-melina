@@ -8,8 +8,8 @@ export default class LessonPill extends Component {
 
             <h3>
                 <span className="badge badge-primary">
-                    {this.props.lesson.title}
-                    <button className="btn  btn-light btn-sm col-xs-1 btn-group"
+                    {this.props.lesson.title} &nbsp;
+                    <button className="btn  btn-light btn-sm col-xs-1 btn-group btn-delete-lesson"
                             onClick={() => {
                                 if (window.confirm('Are you sure you wish to delete this lesson?')) {
                                     this.props.deleteLesson(this.props.lesson.id)
@@ -17,9 +17,7 @@ export default class LessonPill extends Component {
                         x
                     </button>
                 </span>
-
             </h3>
-
         );
     }
 }

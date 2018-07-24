@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ModuleEditor from './ModuleEditor.js';
 import ModuleList from './ModuleList.js';
 import CourseService from "../services/CourseService";
 

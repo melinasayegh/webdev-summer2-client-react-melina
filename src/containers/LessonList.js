@@ -17,7 +17,7 @@ export default class LessonList extends Component {
         this.lessonService = LessonService.instance;
     }
 
-    setLessons(lessons) {
+    setLessons = (lessons) => {
         this.setState({lessons: lessons})
     }
 
@@ -41,6 +41,13 @@ export default class LessonList extends Component {
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
+<<<<<<< HEAD
+=======
+        this.setModuleId(this.props.moduleId);
+        this.findModuleById(this.props.moduleId);
+        this.findAllLessonsForModule(this.props.moduleId)
+
+>>>>>>> 52c5b9c442a81a34f76ffa659e0f3131adaae907
     }
 
     componentWillReceiveProps(newProps){
@@ -61,8 +68,10 @@ export default class LessonList extends Component {
     };
 
     renderListOfLessons = () => {
+
         let lessons = null;
-        if(this.state) {
+
+        if(this.state.lessons) {
             lessons = this.state.lessons.map((lesson) =>
                 <LessonPill lesson={lesson}
                             key={lesson.id}
@@ -74,6 +83,7 @@ export default class LessonList extends Component {
 
     createLesson = () => {
 
+<<<<<<< HEAD
         if (this.state.moduleId === "") {
             (window.alert('You have not selected a module.'))
         }
@@ -83,6 +93,13 @@ export default class LessonList extends Component {
 
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId, this.state.moduleId))
+=======
+        var lesson = {title: this.state.title,
+                      module: this.state.module};
+
+        this.lessonService.createLesson(this.state.courseId, this.state.moduleId, lesson)
+            .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId))
+>>>>>>> 52c5b9c442a81a34f76ffa659e0f3131adaae907
             .then(lessons => this.setState({lessons: lessons}))
     };
 

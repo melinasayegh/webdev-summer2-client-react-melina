@@ -44,7 +44,7 @@ export default class CourseEditor extends Component {
                 <br/>
 
                 <div className="row">
-                    <div className="col-4">
+                    <div>
                         <h2>Modules</h2>
                         <ModuleList courseId={this.state.courseId}/>
                     </div>

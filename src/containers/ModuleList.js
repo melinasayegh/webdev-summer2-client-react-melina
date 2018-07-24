@@ -5,6 +5,8 @@ import CourseService from '../services/CourseService';
 import ModuleEditor from './ModuleEditor.js';
 import {BrowserRouter as Router} from 'react-router-dom'
 
+import '../css/style.css'
+
 
 export default class ModuleList extends Component {
     constructor(props) {
@@ -125,8 +127,9 @@ export default class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div className="row">
-                    <div className="col-4">
+                <div className="container">
+                    <div className="row editor-row">
+                    <div >
                         <div>
                             <input className="form-control"
                                    onChange={this.titleChanged}
@@ -144,10 +147,11 @@ export default class ModuleList extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-8">
+                    <div >
                         <h2>Lessons</h2>
                         <ModuleEditor courseId={this.state.courseId}
                                       moduleId={this.state.moduleId}/>
+                    </div>
                     </div>
                 </div>
             </Router>

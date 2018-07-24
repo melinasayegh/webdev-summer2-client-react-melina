@@ -17,3 +17,11 @@ tr#spacingUnder {
     margin-left: -15px;
     margin-right: -15px;
 }
+
+.editor-row-left {
+    width: 33.33%;
+}
+
+.editor-row-right {
+    width: 66.66%;
+}

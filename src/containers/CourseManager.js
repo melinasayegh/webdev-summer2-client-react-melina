@@ -16,21 +16,18 @@ export default class CourseManager extends Component {
             <Router>
                     <div className="container-fluid">
 
-                      <h1>Course Manager</h1>
+                        <h1>Course Manager</h1>
 
-                    <Switch>
-                        <Route id="courseList"
-                               exact path="/course"
-                               component={CourseList}>
-                        </Route>
+                        <Switch>
+                            <Route id="courseList"
+                                   exact path="/course"
+                                   component={CourseList}>
+                            </Route>
 
-                        <Route path="/course/:courseId/edit"
-                               component={CourseEditor}>
-                        </Route>
-
-                    </Switch>
-
-
+                            <Route path="/course/:courseId/edit"
+                                   component={CourseEditor}>
+                            </Route>
+                        </Switch>
                     </div>
             </Router>
         </div>

@@ -17,6 +17,7 @@ export default class CourseEditor extends Component {
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
+        console.log(this.state.courseId);
     }
 
     componentWillReceiveProps(newProps){

@@ -16,7 +16,8 @@ export default class ModuleList extends Component {
             course: {title: ''},
             module: {title: 'New Module'},
             modules: [],
-            selectedModule: null
+            selectedModuleId: '',
+            selectedModuleTitle: ''
     };
         this.courseService = CourseService.instance;
         this.moduleService = ModuleService.instance;
@@ -83,7 +84,7 @@ export default class ModuleList extends Component {
 
     isSelected = () => {
         console.log("selected?")
-        if (this.state.selectedModule === this.state.module)  {
+        if (this.state.selectedModuleId === this.state.module.id)  {
             return("bg-primary");
         } else {
             return("bg-secondary");
@@ -114,7 +115,7 @@ export default class ModuleList extends Component {
     editModule = (moduleId) => {
         // selected module
         this.findModuleById(moduleId)
-            .then((module) => this.setState({selectedModule: module}))
+            .then((module) => this.setState({selectedModuleId: module.id, selectedModuleTitle: module.title}))
             .then(() => this.isSelected());
     };
 
@@ -147,7 +148,10 @@ export default class ModuleList extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 module-editor-div">
+                        <h2>Module Editor</h2>
+                        <p className="pEdit">Editing Module {this.state.selectedModuleTitle}</p>
+                        <br/>
                         <h2>Lessons</h2>
                         <ModuleEditor courseId={this.state.courseId}
                                       moduleId={this.state.moduleId}/>

@@ -43,10 +43,10 @@ export default class CourseEditor extends Component {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <p>Editing Course {this.state.courseId}</p>
+                <p className="pEdit">Editing Course {this.state.courseId}</p>
                 <br/>
 
-                <div className="module-editor-div">
+                <div className="course-editor-div">
                     <div className="col-12">
                         <h2 className="module-heading">Modules</h2>
                         <ModuleList courseId={this.state.courseId}/>

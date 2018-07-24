@@ -46,11 +46,8 @@ export default class ModuleEditor extends Component {
         return(
 
             <div>
-                <h1>Module Editor</h1>
-
                 <LessonList moduleId={this.state.moduleId}
                             courseId={this.state.courseId}/>
-
             </div>
 
         );

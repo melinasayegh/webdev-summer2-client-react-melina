@@ -19,11 +19,7 @@ export default class ModuleList extends Component {
 
     setModules = (modules) => {
         this.setState({modules: modules})
-    }
-
-    selectModule = (moduleId) => {
-        this.state.selectModule = moduleId;
-    }
+    };
 
     setCourseId = (courseId) => {
         this.setState({courseId: courseId});
@@ -44,7 +40,6 @@ export default class ModuleList extends Component {
     }
 
     titleChanged = (event) => {
-        console.log(event.target.value);
         this.setState({module: {title:event.target.value}});
     };
 
@@ -82,13 +77,9 @@ export default class ModuleList extends Component {
     };
 
     handleClick = (event) => {
-        console.log("change color");
     };
 
     createModule = () => {
-        console.log(this.state.title);
-        console.log(this.state.modules);
-
 
         const tempModule = {title: "New Module", course: this.state.course};
 
@@ -113,7 +104,6 @@ export default class ModuleList extends Component {
         // selected module
         let module = this.findModuleById(moduleId);
         this.setState({selectedModule: module})
-        console.log("selected module: " + this.state.selectedModule.title)
     };
 
     deleteModule = (moduleId) => {

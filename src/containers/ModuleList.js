@@ -47,11 +47,11 @@ export default class ModuleList extends Component {
         let modules = null;
 
         if(this.state) {
-            let modules = this.state.modules.map(function (module) {
-                return (<ModuleListItem module={module}
+            modules = this.state.modules.map((module) =>
+                <ModuleListItem module={module}
                                         key={module.id}
-                                        deleteModule={this.deleteModule}/>)
-            });
+                                        deleteModule={this.deleteModule}/>
+            );
         }
         return modules;
     };
@@ -75,7 +75,7 @@ export default class ModuleList extends Component {
 
     deleteModule = (moduleId) => {
         this.moduleService.deleteModule(moduleId)
-            .then(() => this.moduleService.findAllModulesForCourse(moduleId))
+            .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
             .then(modules => this.setState({modules: modules}))
     };
 

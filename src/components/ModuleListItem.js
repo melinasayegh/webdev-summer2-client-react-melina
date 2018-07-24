@@ -13,7 +13,7 @@ export default class ModuleListItem extends Component {
                         Edit
                     </button>
                     <button className="btn btn-danger  btn-sm col-xs-1 btn-group"
-                            onClick={() => this.props.delete(this.props.module.id)}>
+                            onClick={() => this.props.deleteModule(this.props.module.id)}>
                         Delete
                     </button>
                 </span>

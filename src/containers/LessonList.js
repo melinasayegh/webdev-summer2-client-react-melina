@@ -64,6 +64,7 @@ export default class LessonList extends Component {
     };
 
     renderListOfLessons = () => {
+
         let lessons = null;
         if(this.state) {
             lessons = this.state.lessons.map((lesson) =>
@@ -77,12 +78,13 @@ export default class LessonList extends Component {
 
     createLesson = () => {
 
-        var lesson = {title: this.state.title, module: this.state.module};
-        this.state.lessons.push(lesson);
+        var lesson = {title: this.state.title,
+                      module: this.state.module};
 
-        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
-            .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-            .then(modules => this.setState({modules: modules}))
+        console.log("clicked")
+        this.lessonService.createLesson(this.state.courseId, this.state.moduleId, lesson)
+            .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId))
+            .then(lessons => this.setState({lessons: lessons}))
     };
 
     deleteLesson = (lessonId) => {

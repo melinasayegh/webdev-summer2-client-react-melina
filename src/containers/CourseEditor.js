@@ -13,12 +13,14 @@ export default class CourseEditor extends Component {
 
         this.state = {
             courseId: '',
-            courseTitle: ''};
+            courseTitle: '',
+            selectedCourseTitle: ''
+        };
     }
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
-        console.log(this.state.courseId);
+        this.findCourseTitle(this.props.match.params.courseId);
     }
 
     componentWillReceiveProps(newProps){
@@ -27,7 +29,7 @@ export default class CourseEditor extends Component {
 
     selectCourse = (courseId) => {
         this.setState({courseId: courseId})
-           // .then(() => this.findCourseTitle(courseId));
+            //.then(() => this.findCourseTitle(courseId));
 
         //console.log("id:"+this.state.courseId);
     };
@@ -35,7 +37,7 @@ export default class CourseEditor extends Component {
     findCourseTitle = (courseId) => {
         this.courseService.findCourseById(this.state.courseId)
             .then(course => {
-                this.setState({courseTitle: course.title});
+                this.setState({selectedCourseTitle: course.title});
             });
     };
 
@@ -43,7 +45,7 @@ export default class CourseEditor extends Component {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <p className="pEdit">Editing Course {this.state.courseId}</p>
+                <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
                 <br/>
 
                 <div className="course-editor-div">

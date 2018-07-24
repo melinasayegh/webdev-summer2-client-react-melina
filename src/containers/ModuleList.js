@@ -17,7 +17,7 @@ export default class ModuleList extends Component {
             module: {title: 'New Module'},
             modules: [],
             selectedModuleId: '',
-            selectedModuleTitle: ''
+            selectedModuleTitle: 'No Module Selected'
     };
         this.courseService = CourseService.instance;
         this.moduleService = ModuleService.instance;
@@ -150,7 +150,7 @@ export default class ModuleList extends Component {
 
                     <div className="col-8 module-editor-div">
                         <h2>Module Editor</h2>
-                        <p className="pEdit">Editing Module {this.state.selectedModuleTitle}</p>
+                        <p className="pEdit">Editing Module: {this.state.selectedModuleTitle}</p>
                         <br/>
                         <h2>Lessons</h2>
                         <ModuleEditor courseId={this.state.courseId}

@@ -41,9 +41,6 @@ export default class LessonList extends Component {
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
-        this.setModuleId(this.props.moduleId);
-        this.findModuleById(this.props.moduleId);
-
     }
 
     componentWillReceiveProps(newProps){
@@ -85,7 +82,7 @@ export default class LessonList extends Component {
         this.state.lessons.push(lesson);
 
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
-            .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId))
+            .then(() => this.lessonService.findAllLessonsForModule(this.state.moduleId, this.state.moduleId))
             .then(lessons => this.setState({lessons: lessons}))
     };
 

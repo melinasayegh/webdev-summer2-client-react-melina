@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import LessonTabs from './LessonTabs.js';
+import ModuleEditor from './ModuleEditor.js';
 import ModuleList from './ModuleList.js';
 import CourseService from "../services/CourseService";
+
+import '../css/style.css';
 
 export default class CourseEditor extends Component {
 
@@ -11,51 +13,42 @@ export default class CourseEditor extends Component {
 
         this.state = {
             courseId: '',
-            courseTitle: ''};
-
-        this.selectCourse = this.selectCourse.bind(this);
+            courseTitle: '',
+            selectedCourseTitle: ''
+        };
     }
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
-
-        this.courseService.findCourseById(this.state.courseId)
-            .then(course => {
-                this.setState({courseTitle: course.title});
-            });
+        this.findCourseTitle(this.props.match.params.courseId);
     }
 
     componentWillReceiveProps(newProps){
         this.selectCourse(newProps.match.params.courseId);
     }
 
-    selectCourse(courseId) {
-        this.setState({courseId: courseId});
-    }
-
-    findCourseById = (courseId) => {
-        let course = this.courseService.findCourseById(courseId);
-        console.log(course);
-        return course;
+    selectCourse = (courseId) => {
+        this.setState({courseId: courseId})
     };
 
+    findCourseTitle = (courseId) => {
+        this.courseService.findCourseById(this.state.courseId)
+            .then(course => {
+                this.setState({selectedCourseTitle: course.title});
+            });
+    };
 
     render() {
         return(
             <div>
                 <h2>Course Editor</h2>
-                <p>Editing course: {this.state.courseId}, {this.state.courseTitle}</p>
+                <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
                 <br/>
 
-                <div className="row">
-                    <div className="col-4">
-                        <h2>Modules</h2>
+                <div className="course-editor-div">
+                    <div className="col-12">
+                        <h2 className="module-heading">Modules</h2>
                         <ModuleList courseId={this.state.courseId}/>
-                    </div>
-
-                    <div className="col-8">
-                        <h2>Lessons</h2>
-                        <LessonTabs/>
                     </div>
                 </div>
             </div>

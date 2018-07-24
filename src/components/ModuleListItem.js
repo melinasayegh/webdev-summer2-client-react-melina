@@ -1,10 +1,16 @@
 import React, {Component} from "react";
+import { Link } from 'react-router-dom';
+
+import "../css/style.css";
 
 export default class ModuleListItem extends Component {
     render() {
         return (
-            <li className="list-group-item">
-                {this.props.module.title}
+            <li className={'list-group-item ' + this.props.isSelected}>
+
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                    {this.props.module.title}
+                </Link>
 
                 <span className="pull-right">
 
@@ -13,11 +19,13 @@ export default class ModuleListItem extends Component {
                         Edit
                     </button>
                     <button className="btn btn-danger  btn-sm col-xs-1 btn-group"
-                            onClick={() => this.props.delete(this.props.module.id)}>
+                            onClick={() => {
+                                if (window.confirm('Are you sure you wish to delete this module?')) {
+                                    this.props.deleteModule(this.props.module.id)
+                                }}}>
                         Delete
                     </button>
                 </span>
-
             </li>
         );
     }

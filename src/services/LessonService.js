@@ -43,17 +43,17 @@ export default class LessonService {
         })
     }
 
-    createLesson(courseId, moduleId) {
+    createLesson(courseId, moduleId, lesson) {
         return fetch(C_M_L_API_URL.replace('CID', courseId).replace('MID', moduleId), {
             method: 'POST',
-            body: JSON.stringify(module),
+            body: JSON.stringify(lesson),
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
             return response.json(); })
     }
 
     deleteLesson(lessonId) {
-        return fetch(LESSON_API_URL + '/' + moduleId, {
+        return fetch(LESSON_API_URL + '/' + lessonId, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
@@ -63,7 +63,7 @@ export default class LessonService {
     updateLesson(lesson, lessonId) {
         return fetch(LESSON_API_URL + '/' + lessonId, {
             method: 'PUT',
-            body: JSON.stringify(module),
+            body: JSON.stringify(lesson),
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
             return response.json(); })

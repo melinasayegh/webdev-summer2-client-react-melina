@@ -127,7 +127,6 @@ export default class ModuleList extends Component {
     };
 
     render() {
-        console.log("selectedmodule?" +this.state.selectedModuleId)
         return (
             <Router>
                 <div className="row">

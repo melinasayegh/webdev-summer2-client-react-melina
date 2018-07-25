@@ -89,6 +89,7 @@ export default class LessonList extends Component {
 
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => this.lessonService.findAllLessonsForModule(this.state.courseId, this.state.moduleId))
+            .then(lessons => this.setState({lessons: lessons}))
     };
 
     deleteLesson = (lessonId) => {

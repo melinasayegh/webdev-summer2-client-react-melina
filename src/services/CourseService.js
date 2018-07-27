@@ -1,7 +1,7 @@
 let _singleton = Symbol();
 //const COURSE_API_URL = 'http://localhost:8080/api/course';
 
-const COURSE_API_URL = 'https://webdev-server-java-melina.herokuapp.com/'
+const COURSE_API_URL = 'https://webdev-server-java-melina.herokuapp.com/api/course';
 export default class CourseService {
 
     constructor(singletonToken) {
@@ -14,8 +14,6 @@ export default class CourseService {
             this[_singleton] = new CourseService(_singleton);
         return this[_singleton];
     }
-
-    //COURSE_API_URL = 'http://localhost:8080/api/course';
 
     // find all courses
     findAllCourses() {

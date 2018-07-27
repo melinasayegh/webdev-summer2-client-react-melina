@@ -19,7 +19,7 @@ export default class LessonList extends Component {
 
     setLessons = (lessons) => {
         this.setState({lessons: lessons})
-    }
+    };
 
     setCourseId = (courseId) => {
         this.setState({courseId: courseId});

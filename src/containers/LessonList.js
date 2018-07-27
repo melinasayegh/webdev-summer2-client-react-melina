@@ -84,7 +84,7 @@ export default class LessonList extends Component {
             (window.alert('You have not selected a module.'))
         }
 
-        var lesson = {title: this.state.title, module: this.state.module};
+        var lesson = {title: this.state.lesson.title, module: this.state.module};
         this.state.lessons.push(lesson);
 
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)

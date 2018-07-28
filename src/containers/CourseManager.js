@@ -7,7 +7,7 @@ import CourseEditor from './courses/CourseEditor'
 import CourseList from "./courses/CourseList";
 import ModuleList from "./modules/ModuleList";
 import Header from "../components/Header";
-import WidgetListComponent from "./widgets/WidgetListComponent";
+import WidgetListContainer from "./widgets/WidgetListContainer";
 import {widgetReducer} from "../reducers/WidgetReducer";
 
 let store = createStore(widgetReducer);
@@ -42,7 +42,7 @@ export default class CourseManager extends Component {
 
                                 <Route id="widgets"
                                        exact path="/widgets"
-                                       component={WidgetListComponent}>
+                                       component={WidgetListContainer}>
                                 </Route>
                             </Switch>
                         </div>

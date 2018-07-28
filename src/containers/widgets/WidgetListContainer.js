@@ -8,6 +8,18 @@ const stateToPropertyMapper = state => (
     }
 );
 
-const WidgetListContainer = connect(stateToPropertyMapper)(WidgetListComponent);
+const dispatcherToPropertyMapper = dispatch => (
+    {
+        deleteWidget: (wid) => dispatch({
+            type: 'DELETE_WIDGET',
+            widgetId: wid
+        })
+    }
+);
+
+const WidgetListContainer =
+    connect(stateToPropertyMapper,
+        dispatcherToPropertyMapper)
+    (WidgetListComponent);
 
 export default WidgetListContainer;

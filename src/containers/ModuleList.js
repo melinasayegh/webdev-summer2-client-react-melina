@@ -18,7 +18,8 @@ export default class ModuleList extends Component {
             modules: [],
             selectedCourseTitle: 'Error',
             selectedModuleId: '',
-            selectedModuleTitle: 'No Module Selected'
+            selectedModuleTitle: 'No Module Selected',
+            isHidden: true
     };
         this.courseService = CourseService.instance;
         this.moduleService = ModuleService.instance;
@@ -43,7 +44,7 @@ export default class ModuleList extends Component {
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
-        this.findCourseById(newProps.courseId)
+        this.findCourseById(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId)
     }
 
@@ -84,14 +85,6 @@ export default class ModuleList extends Component {
         return modules;
     };
 
-    isSelected = () => {
-        if (this.state.selectedModuleId === this.state.module.id)  {
-            return("bg-primary");
-        } else {
-            return("bg-secondary");
-        }
-    };
-
     createModule = () => {
 
         const tempModule = {title: "New Module", course: this.state.course};
@@ -117,13 +110,17 @@ export default class ModuleList extends Component {
         // selected module
         this.findModuleById(moduleId)
             .then((module) => this.setState({selectedModuleId: module.id, selectedModuleTitle: module.title}))
-            .then(() => this.isSelected());
+            .then(() => this.toggleHidden());
     };
 
     deleteModule = (moduleId) => {
         this.moduleService.deleteModule(moduleId)
             .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
             .then(modules => this.setState({modules: modules}))
+    };
+
+    toggleHidden = () => {
+        this.setState({isHidden: !this.state.isHidden})
     };
 
     render() {
@@ -150,14 +147,11 @@ export default class ModuleList extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-sm-12 col-md-8 col-lg-8">
-                        <h2>Module Editor</h2>
-                        <p className="pEdit">Editing Module: {this.state.selectedModuleTitle}</p>
-                        <h3 className="module-heading">Lessons</h3>
+                    {!this.state.isHidden &&
+                    <ModuleEditor courseId={this.state.courseId}
+                                  moduleId={this.state.selectedModuleId}
+                                  moduleTitle={this.state.selectedModuleTitle}/>}
 
-                        <ModuleEditor courseId={this.state.courseId}
-                                      moduleId={this.state.selectedModuleId}/>
-                    </div>
                 </div>
             </Router>
         );

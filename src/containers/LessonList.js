@@ -79,17 +79,46 @@ export default class LessonList extends Component {
     };
 
     createLesson = () => {
+/*
+        const tempModule = {title: "New Module", course: this.state.course};
+
+        if (this.state.module.title === "") {
+
+            this.moduleService.createModule(tempModule)
+                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
+                .then(modules => this.setState({modules: modules}))
+
+        } else {
+            var module = {title: this.state.title, course: this.state.course};
+            this.state.modules.push(module);
+
+            this.moduleService.createModule(this.props.courseId, this.state.module)
+                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
+                .then(modules => this.setState({modules: modules}))
+        }
+        */
 
         if (this.state.moduleId === "") {
             (window.alert('You have not selected a module.'))
         }
 
-        var lesson = {title: this.state.lesson.title, module: this.state.module};
-        this.state.lessons.push(lesson);
+        // if input field is empty
+        const tempLesson = {title: "New Lesson", module: this.state.module};
+        this.state.lessons.push(tempLesson);
 
-        this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
-            .then(() => this.lessonService.findAllLessonsForModule(this.state.courseId, this.state.moduleId))
-            .then(lessons => this.setState({lessons: lessons}))
+        if (this.state.lesson.title === "") {
+            this.lessonService.createLesson(this.state.courseId, this.state.moduleId, tempLesson)
+                .then(() => this.lessonService.findAllLessonsForModule(this.state.courseId, this.state.moduleId))
+                .then(lessons => this.setState({lessons: lessons}))
+
+        } else {
+            const lesson = {title: this.state.lesson.title, module: this.state.module};
+            this.state.lessons.push(lesson);
+
+            this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
+                .then(() => this.lessonService.findAllLessonsForModule(this.state.courseId, this.state.moduleId))
+                .then(lessons => this.setState({lessons: lessons}))
+        }
     };
 
     deleteLesson = (lessonId) => {

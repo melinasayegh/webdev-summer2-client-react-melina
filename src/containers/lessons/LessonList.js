@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import LessonPill from '../components/LessonPill';
-import LessonService from '../services/LessonService';
-import ModuleService from '../services/ModuleService'
+import LessonPill from '../../components/lessons/LessonPill';
+import LessonService from '../../services/LessonService';
+import ModuleService from '../../services/ModuleService'
 
 export default class LessonList extends Component {
     constructor(props) {

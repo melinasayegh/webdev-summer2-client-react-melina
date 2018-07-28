@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import '../css/style.css'
+import '../../css/style.css'
 
 export default class LessonPill extends Component {
     render() {

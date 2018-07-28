@@ -1,8 +1,8 @@
 import React from 'react';
-import CourseService from '../services/CourseService.js';
-import CourseRow from '../components/CourseRow';
+import CourseService from '../../services/CourseService.js';
+import CourseRow from '../../components/courses/CourseRow';
 
-import '../css/style.css';
+import '../../css/style.css';
 
 
 export default class CourseList extends React.Component {

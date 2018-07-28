@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import ModuleList from './ModuleList.js';
-import CourseService from "../services/CourseService";
+import ModuleList from '../modules/ModuleList.js';
+import CourseService from "../../services/CourseService";
 
-import '../css/style.css';
+import '../../css/style.css';
 
 export default class CourseEditor extends Component {
 

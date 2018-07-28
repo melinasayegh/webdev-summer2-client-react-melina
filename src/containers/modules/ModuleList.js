@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import ModuleListItem from '../components/ModuleListItem';
-import ModuleService from '../services/ModuleService';
-import CourseService from '../services/CourseService';
+import ModuleListItem from '../../components/modules/ModuleListItem';
+import ModuleService from '../../services/ModuleService';
+import CourseService from '../../services/CourseService';
 import ModuleEditor from './ModuleEditor.js';
 import {BrowserRouter as Router} from 'react-router-dom'
 
-import '../css/style.css'
+import '../../css/style.css'
 
 
 export default class ModuleList extends Component {

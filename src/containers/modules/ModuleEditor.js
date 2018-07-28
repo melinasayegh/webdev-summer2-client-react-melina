@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import LessonList from "./LessonList"
+import LessonList from "../lessons/LessonList"
 
-import '../css/style.css'
+import '../../css/style.css'
 
 export default class ModuleEditor extends Component {
 

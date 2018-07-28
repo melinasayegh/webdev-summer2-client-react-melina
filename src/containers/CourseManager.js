@@ -3,9 +3,9 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import CourseEditor from './CourseEditor'
-import CourseList from "./CourseList";
-import ModuleList from "./ModuleList";
+import CourseEditor from './courses/CourseEditor'
+import CourseList from "./courses/CourseList";
+import ModuleList from "./modules/ModuleList";
 import Header from "../components/Header";
 import WidgetListComponent from "./widgets/WidgetListComponent";
 import {widgetReducer} from "../reducers/WidgetReducer";

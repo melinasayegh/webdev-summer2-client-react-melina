@@ -12,11 +12,11 @@ const WidgetType1 = ({widget, updateWidget}) => {
                     ref={node => widgetType = node}
                     onChange={() => {
 
-                        let widget = {
+                        let w = {
                             id: widget.id,
                             widgetType: widgetType.value
                         };
-                        updateWidget(widget);
+                        updateWidget(w);
                     }}>
                 <option value="">Select Widget Type -- </option>
                 <option value="WT1">Widget Type 1 </option>

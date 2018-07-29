@@ -5,7 +5,7 @@ import WidgetType2 from './WidgetType2';
 import WidgetType3 from './WidgetType3';
 
 
-const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
+const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget}) => {
 
     let widgetTitle;
     let widgetType;
@@ -51,9 +51,9 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
                         </button>
 
                         <div>
-                            {widget.widgetType === 'WT1' && <WidgetType1 widget={widget}/>}
-                            {widget.widgetType === 'WT2' && <WidgetType2 widget={widget}/>}
-                            {widget.widgetType === 'WT3' && <WidgetType3 widget={widget}/>}
+                            {widget.widgetType === 'WT1' && <WidgetType1 widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'WT2' && <WidgetType2 widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'WT3' && <WidgetType3 widget={widget} updateWidget={updateWidget}/>}
                         </div>
                     </li>
                 )}

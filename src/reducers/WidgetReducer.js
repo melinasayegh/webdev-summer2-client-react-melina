@@ -30,6 +30,18 @@ export const widgetReducer = (state=initialState, action) => {
                 ]
             };
 
+        case 'UPDATE_WIDGET':
+            return {
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.widget.id) {
+                        widget.widgetType = action.widget.widgetType;
+                        return widget;
+                    } else {
+                        return widget;
+                    }
+                })
+            };
+
         default:
             return state
     }

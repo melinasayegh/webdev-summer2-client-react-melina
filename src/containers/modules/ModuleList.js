@@ -79,7 +79,8 @@ export default class ModuleList extends Component {
                                 selectedModuleId={this.state.selectedModuleId}
                                 key={module.id}
                                 editModule={this.editModule}
-                                deleteModule={this.deleteModule}/>
+                                deleteModule={this.deleteModule}
+                                isSelected={this.isSelected}/>
             );
         }
         return modules;
@@ -106,10 +107,6 @@ export default class ModuleList extends Component {
 
     };
 
-    unselectAllModules = () => {
-        this.setState({isHidden: true});
-    };
-
     editModule = (moduleId) => {
         this.findModuleById(moduleId)
             .then((module) => this.setState({selectedModuleId: module.id, selectedModuleTitle: module.title}))
@@ -125,6 +122,10 @@ export default class ModuleList extends Component {
 
     toggleHidden = () => {
         this.setState({isHidden: !this.state.isHidden})
+    };
+
+    isSelected = (moduleId) => {
+        return (!this.state.isHidden && (moduleId === this.state.selectedModuleId))
     };
 
     render() {
@@ -147,7 +148,7 @@ export default class ModuleList extends Component {
 
                             <br/>
 
-                            <ul className="list-group">
+                            <ul className="list-group moduleRow">
                                 {this.renderListOfModules()}
                             </ul>
                         </div>

@@ -1,0 +1,12 @@
+.list-group-item {
+    background-color: #F2F2F2;
+    color: #F2F2F2;
+    margin-bottom: 10px;
+}
+
+.list-group-item.active {
+    background-color: #FF3B3F;
+    color: #FF3B3F;
+    margin-bottom: 10px;
+}
+

@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
 
+import "../../css/modules.css";
 import "../../css/style.css";
 
 export default class ModuleListItem extends Component {
     render() {
 
         return (
-            <li className={'list-group-item ' + (this.props.selectedModuleId === this.props.module.id ? 'selectedCustom' : '')}>
+            <li className={(this.props.isSelected(this.props.module.id) ? 'list-group-item active' : 'list-group-item')}>
                 <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}
                       onClick={() =>  this.props.editModule(this.props.module.id)}>
                     {this.props.module.title}

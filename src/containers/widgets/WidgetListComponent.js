@@ -1,8 +1,14 @@
 import React from 'react';
 
+import WidgetType1 from './WidgetType1';
+import WidgetType2 from './WidgetType2';
+import WidgetType3 from './WidgetType3';
+
+
 const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
 
     let widgetTitle;
+    let widgetType;
 
     return (
         <div>
@@ -10,13 +16,23 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
             <ul className="list-group">
                 <li className="list-group-item">
                     <span>
-                        <input className="form-control col-10"
+                        <input className="form-control col-4"
                                 ref={(node) => {widgetTitle = node}}/>
+
+                        <select className="form-control col-4"
+                                ref={node => widgetType = node}>
+                            <option value="">Select Widget Type --</option>
+                            <option value="WT1">Widget Type 1</option>
+                            <option value="WT2">Widget Type 2</option>
+                            <option value="WT3">Widget Type 3</option>
+                        </select>
+
                         <button className="btn btn-success btn-sm col-xs-2 btn-group"
                                 onClick={() => {
                                     let widget = {
                                         title: widgetTitle.value,
-                                        id: (new Date()).getTime()
+                                        id: (new Date()).getTime(),
+                                        widgetType: widgetType.value
                                     };
                                     widgetTitle.value="";
                                     createWidget(widget)
@@ -33,6 +49,12 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
                                 onClick={() => deleteWidget(widget.id)}>
                             Delete
                         </button>
+
+                        <div>
+                            {widget.widgetType === 'WT1' && <WidgetType1 widget={widget}/>}
+                            {widget.widgetType === 'WT2' && <WidgetType2 widget={widget}/>}
+                            {widget.widgetType === 'WT3' && <WidgetType3 widget={widget}/>}
+                        </div>
                     </li>
                 )}
             </ul>

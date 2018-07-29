@@ -5,6 +5,7 @@ import CourseService from '../../services/CourseService';
 import ModuleEditor from './ModuleEditor.js';
 import {BrowserRouter as Router} from 'react-router-dom'
 
+import "../../css/modules.css";
 import '../../css/style.css'
 
 
@@ -134,23 +135,28 @@ export default class ModuleList extends Component {
                 <div className="row">
                     <div className="col-sm-12 col-md-4 col-lg-4 side-nav-bg">
                         <div className="side-nav">
-                            <h2>Course Editor</h2>
-                            <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
-                            <h3 className="module-heading">Modules</h3>
+                            <div>
+                                <h2>Course Editor</h2>
+                                <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
+                                <h3 className="module-heading">Modules</h3>
+                            </div>
 
-                            <input className="form-control"
-                                   onChange={this.titleChanged}
-                                   placeholder="title"/>
-
-                            <button className="btn btn-success btn-block fa fa-plus"
-                                    onClick={this.createModule}>
-                            </button>
-
-                            <br/>
-
-                            <ul className="list-group moduleRow">
+                            <ul className="list-group list-group-modules list-group-flush">
                                 {this.renderListOfModules()}
                             </ul>
+                            <br/>
+
+                            <div>
+                                <h3>New Module:</h3>
+                                <input className="form-control"
+                                       onChange={this.titleChanged}
+                                       placeholder="title"/>
+
+                                <button className="btn btn-success btn-block fa fa-plus"
+                                        onClick={this.createModule}>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
 

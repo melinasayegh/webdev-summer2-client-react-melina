@@ -14,7 +14,7 @@ export default class LessonPill extends Component {
                                 if (window.confirm('Are you sure you wish to delete this lesson?')) {
                                     this.props.deleteLesson(this.props.lesson.id)
                                 }}}>
-                        x
+                        <i className="fa fa-times"/>
                     </button>
                 </span>
             </h3>

@@ -8,11 +8,15 @@ const stateToPropertyMapper = state => (
     }
 );
 
-const dispatcherToPropertyMapper = dispatch => (
-    {
+const dispatcherToPropertyMapper = dispatch => ({
         deleteWidget: (wid) => dispatch({
             type: 'DELETE_WIDGET',
             widgetId: wid
+        }),
+
+        createWidget: (w) => dispatch ({
+            type: 'ADD_WIDGET',
+            widget: w
         })
     }
 );

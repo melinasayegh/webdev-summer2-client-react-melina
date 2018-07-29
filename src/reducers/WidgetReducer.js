@@ -9,6 +9,28 @@ let initialState = {
     ]
 };
 
-export const widgetReducer = (state=initialState) => {
-    return state
+export const widgetReducer = (state=initialState, action) => {
+
+    switch (action.type) {
+        case 'DELETE_WIDGET':
+            return {
+                // iterates over array and at true, current element is returned
+                widgets: state.widgets.filter(
+                    // return if id is not the one just deleted
+                    widget => widget.id !== action.widgetId
+                )
+            };
+
+        case 'ADD_WIDGET':
+            return {
+                widgets: [
+                    // take all the widgets that were already there
+                    ...state.widgets,
+                    action.widget
+                ]
+            };
+
+        default:
+            return state
+    }
 };

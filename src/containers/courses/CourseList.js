@@ -13,7 +13,7 @@ export default class CourseList extends React.Component {
         this.titleInput = document.getElementById('titleInput');
         this.courseService = CourseService.instance;
         this.state = {
-            newCourse: {title:"New Course"},
+            newCourse: {title:""},
             courses: [],
             selectedCourse: null
         };
@@ -106,7 +106,7 @@ export default class CourseList extends React.Component {
     render() {
         return (
             <div>
-                <h2>Course List</h2>
+                <h2 className="heading1">Course List</h2>
                 <table className="table">
                     <thead>
                     <tr>

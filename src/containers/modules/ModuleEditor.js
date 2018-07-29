@@ -11,7 +11,7 @@ export default class ModuleEditor extends Component {
         this.state = {
             courseId: '',
             moduleId: '',
-            moduleTitle: 'New Module'};
+            moduleTitle: ''};
     }
 
     componentDidMount() {

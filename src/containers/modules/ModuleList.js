@@ -127,7 +127,8 @@ export default class ModuleList extends Component {
         return (
             <Router>
                 <div className="row">
-                    <div className="col-sm-12 col-md-4 col-lg-4">
+
+                    <div className="col-sm-12 col-md-4 col-lg-4 side-nav">
                         <h2>Course Editor</h2>
                         <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
                         <h3 className="module-heading">Modules</h3>

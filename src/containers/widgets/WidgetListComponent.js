@@ -10,7 +10,7 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
             <ul className="list-group">
                 <li className="list-group-item">
                     <span>
-                        <input className="form-control"
+                        <input className="form-control col-10"
                                 ref={(node) => {widgetTitle = node}}/>
                         <button className="btn btn-success btn-sm col-xs-2 btn-group"
                                 onClick={() => {
@@ -18,6 +18,7 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
                                         title: widgetTitle.value,
                                         id: (new Date()).getTime()
                                     };
+                                    widgetTitle.value="";
                                     createWidget(widget)
                                 }}>
                             Add
@@ -27,7 +28,7 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget}) => {
 
                 {widgets.map((widget, index) =>
                     <li className="list-group-item" key={index}>
-                        {widget.title}: ({widget.id})
+                        {widget.title}: ({widget.id}) - type: {widget.widgetType}
                         <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
                                 onClick={() => deleteWidget(widget.id)}>
                             Delete

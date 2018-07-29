@@ -31,5 +31,15 @@ tr#spacingUnder {
 }
 
 .side-nav {
-    background-color: aliceblue;
+    margin-left: 25px;
+}
+
+.side-nav-bg {
+    background-color: #F5F5F5;
+    margin-left: -30px;
+    height: 100vh;
+}
+
+.selectedCustom {
+    background-color: #FF3B3F;
 }

@@ -5,9 +5,9 @@ import "../../css/style.css";
 
 export default class ModuleListItem extends Component {
     render() {
-        return (
-            <li className={'list-group-item ' + this.props.isSelected}>
 
+        return (
+            <li className={'list-group-item ' + (this.props.selectedModuleId === this.props.module.id ? 'selectedCustom' : '')}>
                 <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}
                       onClick={() =>  this.props.editModule(this.props.module.id)}>
                     {this.props.module.title}

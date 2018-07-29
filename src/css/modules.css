@@ -1,0 +1,38 @@
+.list-group-modules .list-group-item {
+    background-color: #F5F5F5;
+    height: 50px;
+}
+
+.list-group-modules .list-group-item.active {
+    background-color: #F81B84;
+    border-color: #F81B84;
+    margin-bottom: 10px;
+
+}
+
+.list-group-modules .list-group-item.hover {
+    background-color: #414141;
+    border-color: #414141;
+    margin-bottom: 10px;
+    height: 20px;
+}
+
+.module-text {
+    color: white;
+}
+
+.module-link {
+    color: gray;
+    vertical-align: center;
+}
+
+.module-link.active {
+    color: white;
+}
+
+.module-btn {
+    vertical-align: center;
+}
+
+
+

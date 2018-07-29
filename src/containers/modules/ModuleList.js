@@ -5,6 +5,7 @@ import CourseService from '../../services/CourseService';
 import ModuleEditor from './ModuleEditor.js';
 import {BrowserRouter as Router} from 'react-router-dom'
 
+import "../../css/modules.css";
 import '../../css/style.css'
 
 
@@ -74,12 +75,13 @@ export default class ModuleList extends Component {
 
         if(this.state) {
             modules = this.state.modules.map((module) =>
-                <ModuleListItem isSelected={this.isSelected}
-                                courseId={this.state.courseId}
+                <ModuleListItem courseId={this.state.courseId}
                                 module={module}
+                                selectedModuleId={this.state.selectedModuleId}
                                 key={module.id}
                                 editModule={this.editModule}
-                                deleteModule={this.deleteModule}/>
+                                deleteModule={this.deleteModule}
+                                isSelected={this.isSelected}/>
             );
         }
         return modules;
@@ -107,10 +109,10 @@ export default class ModuleList extends Component {
     };
 
     editModule = (moduleId) => {
-        // selected module
         this.findModuleById(moduleId)
             .then((module) => this.setState({selectedModuleId: module.id, selectedModuleTitle: module.title}))
-            .then(() => this.toggleHidden());
+            .then(() => this.toggleHidden())
+            .then(() => this.renderListOfModules())
     };
 
     deleteModule = (moduleId) => {
@@ -123,28 +125,39 @@ export default class ModuleList extends Component {
         this.setState({isHidden: !this.state.isHidden})
     };
 
+    isSelected = (moduleId) => {
+        return (!this.state.isHidden && (moduleId === this.state.selectedModuleId))
+    };
+
     render() {
         return (
             <Router>
                 <div className="row">
-                    <div className="col-sm-12 col-md-4 col-lg-4">
-                        <h2>Course Editor</h2>
-                        <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
-                        <h3 className="module-heading">Modules</h3>
+                    <div className="col-sm-12 col-md-4 col-lg-4 side-nav-bg">
+                        <div className="side-nav">
+                            <div>
+                                <h2>Course Editor</h2>
+                                <p className="pEdit">Editing Course: {this.state.selectedCourseTitle}</p>
+                                <h3 className="module-heading">Modules</h3>
+                            </div>
 
-                        <input className="form-control"
-                               onChange={this.titleChanged}
-                               placeholder="title"/>
+                            <ul className="list-group list-group-modules list-group-flush">
+                                {this.renderListOfModules()}
+                            </ul>
+                            <br/>
 
-                        <button className="btn btn-success btn-block fa fa-plus"
-                                onClick={this.createModule}>
-                        </button>
+                            <div>
+                                <h3>New Module:</h3>
+                                <input className="form-control"
+                                       onChange={this.titleChanged}
+                                       placeholder="title"/>
 
-                        <br/>
+                                <button className="btn btn-success btn-block fa fa-plus"
+                                        onClick={this.createModule}>
+                                </button>
+                            </div>
 
-                        <ul className="list-group">
-                            {this.renderListOfModules()}
-                        </ul>
+                        </div>
                     </div>
 
                     {!this.state.isHidden &&

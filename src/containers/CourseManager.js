@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
@@ -23,12 +23,21 @@ export default class CourseManager extends Component {
             <Provider store={store}>
                 <Router>
                         <div className="container-fluid">
-
-                            <h1>Course Manager</h1>
-
                             <Switch>
+
+
                                 <Route id="courseList"
-                                       exact path="/course"
+                                       exact path="/">
+                                    <div>
+                                        <h1 className="heading1">Course Manager</h1>
+                                        <p> Welcome to the Course Manager</p>
+
+                                        <Link to="/courses">View Courses</Link>
+                                    </div>
+                                </Route>
+
+                                <Route id="courseList"
+                                       exact path="/courses"
                                        component={CourseList}>
                                 </Route>
 

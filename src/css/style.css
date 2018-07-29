@@ -2,6 +2,10 @@ i {
     margin-right: 5px;
 }
 
+.heading1 {
+    padding-top: 15px;
+}
+
 .btn-group {
     padding: 10px;
     margin-right: 5px;
@@ -24,4 +28,14 @@ tr#spacingUnder {
 
 .btn-delete-lesson {
     padding-left: 10px;
+}
+
+.side-nav {
+    margin-left: 15px;
+}
+
+.side-nav-bg {
+    background-color: #F5F5F5;
+    margin-left: -30px;
+    height: 100vh;
 }

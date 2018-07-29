@@ -17,7 +17,7 @@ export default class Header extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="/course">Courses</a>
+                                <a className="nav-link" href="/courses">Courses</a>
                             </li>
                         </ul>
                         <input className="form-control col-sm-3"

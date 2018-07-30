@@ -19,7 +19,6 @@ export const ListWidget = ({widget, updateWidget}) => {
                       value={widget.listItems}>
             </textarea>
 
-
             <label htmlFor="ordered">Type of List</label>
             <select ref={node => ordered = node}
                     className="form-control" id="ordered"
@@ -31,8 +30,6 @@ export const ListWidget = ({widget, updateWidget}) => {
                 <option value="true">Ordered</option>
                 <option value="">Unordered</option>
             </select>
-
-
 
             <h4>Preview</h4>
             {!widget.ordered &&
@@ -49,7 +46,6 @@ export const ListWidget = ({widget, updateWidget}) => {
                 ))}
             </ol>
             }
-
         </div>
     )
 };

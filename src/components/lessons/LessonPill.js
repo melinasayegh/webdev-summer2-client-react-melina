@@ -1,23 +1,23 @@
 import React, {Component} from "react";
 
 import '../../css/style.css'
+//import '../../css/lessons.css'
 
 export default class LessonPill extends Component {
     render() {
         return(
-
-            <h3>
-                <span className="badge badge-primary">
+            <li className="nav-item row">
+                <a className="nav-link" href="#">
                     {this.props.lesson.title} &nbsp;
-                    <button className="btn  btn-light btn-sm col-xs-1 btn-group btn-delete-lesson"
-                            onClick={() => {
-                                if (window.confirm('Are you sure you wish to delete this lesson?')) {
-                                    this.props.deleteLesson(this.props.lesson.id)
-                                }}}>
-                        <i className="fa fa-times"/>
-                    </button>
-                </span>
-            </h3>
+                </a>
+                <button className="btn btn-delete-lesson"
+                        onClick={() => {
+                            if (window.confirm('Are you sure you want to delete this lesson?')) {
+                                this.props.deleteLesson(this.props.lesson.id)
+                            }}}>
+                    <i className="fa fa-times"/>
+                </button>
+            </li>
         );
     }
 }

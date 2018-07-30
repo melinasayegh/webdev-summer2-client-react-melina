@@ -79,24 +79,6 @@ export default class LessonList extends Component {
     };
 
     createLesson = () => {
-/*
-        const tempModule = {title: "New Module", course: this.state.course};
-
-        if (this.state.module.title === "") {
-
-            this.moduleService.createModule(tempModule)
-                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-                .then(modules => this.setState({modules: modules}))
-
-        } else {
-            var module = {title: this.state.title, course: this.state.course};
-            this.state.modules.push(module);
-
-            this.moduleService.createModule(this.props.courseId, this.state.module)
-                .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
-                .then(modules => this.setState({modules: modules}))
-        }
-        */
 
         if (this.state.moduleId === "") {
             (window.alert('You have not selected a module.'))
@@ -132,20 +114,21 @@ export default class LessonList extends Component {
         return (
             <div>
 
-                <div>
-                    <input className="form-control"
+                <div className="row">
+                    <h3 className="module-heading col">Lessons</h3>
+                    <input className="form-control col"
                            onChange={this.titleChanged}
                            value={this.state.lesson.title}
                            placeholder="title"/>
 
-                    <button className="btn btn-success btn-block fa fa-plus"
+                    <button className="btn btn-success btn-block fa fa-plus col-1"
                             onClick={this.createLesson}>
                     </button>
                 </div>
 
                 <br/>
 
-                <ul className="list-group">
+                <ul className="nav nav-tabs">
                     {this.renderListOfLessons()}
                 </ul>
             </div>

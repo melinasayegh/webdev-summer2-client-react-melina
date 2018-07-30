@@ -6,15 +6,12 @@
 .list-group-modules .list-group-item.active {
     background-color: #F81B84;
     border-color: #F81B84;
-    margin-bottom: 10px;
 
 }
 
 .list-group-modules .list-group-item.hover {
-    background-color: #414141;
+    background-color: green;
     border-color: #414141;
-    margin-bottom: 10px;
-    height: 20px;
 }
 
 .module-text {
@@ -33,6 +30,26 @@
 .module-btn {
     vertical-align: center;
 }
+
+.delete-module {
+    background-color: #F5F5F5;
+}
+
+.delete-module.active {
+    background-color: #F81B84;
+    color: white;
+}
+
+.icon-delete {
+    color: black;
+}
+
+.icon-delete.active {
+    color: white;
+ }
+
+
+
 
 
 

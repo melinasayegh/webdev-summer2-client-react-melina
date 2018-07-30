@@ -1,7 +1,8 @@
 
-
 let initialState = {
     widgets: [
+        {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
+        {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
         {title: 'Widget 1', id: 123, widgetType: 'WT1'},
         {title: 'Widget 2', id: 234, widgetType: 'WT2'},
         {title: 'Widget 3', id: 345, widgetType: 'WT1'},
@@ -34,8 +35,7 @@ export const widgetReducer = (state=initialState, action) => {
             return {
                 widgets: state.widgets.map(widget => {
                     if(widget.id === action.widget.id) {
-                        widget.widgetType = action.widget.widgetType;
-                        return widget;
+                        return action.widget;
                     } else {
                         return widget;
                     }

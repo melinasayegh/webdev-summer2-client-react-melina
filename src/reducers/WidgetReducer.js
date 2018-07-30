@@ -43,6 +43,16 @@ export const widgetReducer = (state=initialState, action) => {
                 })
             };
 
+        case 'SAVE_WIDGETS':
+            fetch('http://localhost:8080/api/widget', {
+                method: 'post',
+                body: JSON.stringify(state.widgets),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            });
+            return state;
+
         default:
             return state
     }

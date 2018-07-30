@@ -8,13 +8,15 @@ import {ListWidget} from "../../components/widgets/ListWidget";
 import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";
 
 
-const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget}) => {
+const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget, saveWidgets}) => {
 
     let widgetTitle;
     let widgetType;
 
     return (
         <div>
+            <button onClick={saveWidgets}
+                    className="btn btn-primary float-right">Save</button>
             <h2>Widget List</h2>
             <ul className="list-group">
                 <li className="list-group-item">

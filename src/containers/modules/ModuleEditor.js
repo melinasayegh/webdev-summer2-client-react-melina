@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import LessonList from "../lessons/LessonList"
 
 import '../../css/style.css'
+import '../../css/modules.css'
 
 export default class ModuleEditor extends Component {
 
@@ -42,9 +43,9 @@ export default class ModuleEditor extends Component {
         return(
 
             <div className="col-sm-12 col-md-8 col-lg-8">
+
                 <h2>Module Editor</h2>
                 <p className="pEdit">Editing Module: {this.state.moduleTitle}</p>
-                <h3 className="module-heading">Lessons</h3>
 
                 <div>
                     <LessonList moduleId={this.state.moduleId}

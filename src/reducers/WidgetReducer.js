@@ -1,6 +1,7 @@
 
 let initialState = {
     widgets: [
+        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', ordered: false, link:"wA_whMl_psA"},
         {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
         {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
         {title: 'Widget 1', id: 123, widgetType: 'WT1'},

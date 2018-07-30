@@ -5,6 +5,7 @@ import WidgetType2 from './WidgetType2';
 import WidgetType3 from './WidgetType3';
 import HeadingWidget from '../../components/widgets/HeadingWidget';
 import {ListWidget} from "../../components/widgets/ListWidget";
+import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";
 
 
 const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget}) => {
@@ -26,6 +27,7 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget}
                             <option value="">Select Widget Type --</option>
                             <option value="HEADING">Heading</option>
                             <option value="LIST">List</option>
+                            <option value="YOUTUBE">YouTube</option>
                             <option value="WT1">Widget Type 1</option>
                             <option value="WT2">Widget Type 2</option>
                             <option value="WT3">Widget Type 3</option>
@@ -55,8 +57,9 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget}
                         </button>
 
                         <div>
-                            {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'WT1' && <WidgetType1 widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'WT2' && <WidgetType2 widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'WT3' && <WidgetType3 widget={widget} updateWidget={updateWidget}/>}

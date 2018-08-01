@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import LessonPill from '../../components/lessons/LessonPill';
 import LessonService from '../../services/LessonService';
 import ModuleService from '../../services/ModuleService'
+import WidgetListComponent from "../widgets/WidgetListComponent";
+import WidgetListContainer from "../widgets/WidgetListContainer";
 
 export default class LessonList extends Component {
     constructor(props) {
@@ -11,7 +13,9 @@ export default class LessonList extends Component {
             moduleId: '',
             module: {title: ''},
             lesson: {title: ''},
-            lessons: []
+            lessons: [],
+            selectedLessonId: '',
+            widgetsHidden: true
         };
         this.moduleService = ModuleService.instance;
         this.lessonService = LessonService.instance;
@@ -70,12 +74,24 @@ export default class LessonList extends Component {
 
         if(this.state.lessons) {
             lessons = this.state.lessons.map((lesson) =>
-                <LessonPill lesson={lesson}
+                <LessonPill courseId={this.state.courseId}
+                            moduleId={this.state.moduleId}
+                            lesson={lesson}
                             key={lesson.id}
-                            deleteLesson={this.deleteLesson}/>
+                            deleteLesson={this.deleteLesson}
+                            toggleHidden={this.toggleHidden}
+                            isSelected={this.isSelected}/>
             );
         }
         return lessons;
+    };
+
+    toggleHidden = () => {
+        this.setState({widgetsHidden: !this.state.widgetsHidden})
+    };
+
+    isSelected = (lessonId) => {
+        return (!this.state.widgetsHidden && (lessonId === this.state.selectedLessonId))
     };
 
     createLesson = () => {
@@ -131,6 +147,10 @@ export default class LessonList extends Component {
                 <ul className="nav nav-tabs">
                     {this.renderListOfLessons()}
                 </ul>
+
+                {!this.state.widgetsHidden &&
+                <WidgetListContainer lessonId={this.state.selectedLessonId}/>}
+
             </div>
         );
     }

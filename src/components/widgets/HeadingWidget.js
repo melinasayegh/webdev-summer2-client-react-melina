@@ -7,7 +7,6 @@ const HeadingWidget = ({widget, updateWidget}) => {
 
     return(
         <div>
-            <h3>Heading Widget</h3>
             <label htmlFor="text">Heading Text</label>
             <input onChange={() => {
                 widget.text = text.value;
@@ -35,6 +34,7 @@ const HeadingWidget = ({widget, updateWidget}) => {
                 <option value="4">Heading 4</option>
             </select>
 
+            <hr className="half-rule"/>
 
             <h4>Preview</h4>
             {widget.size === '1' && <h1>{widget.text}</h1>}

@@ -6,7 +6,6 @@ export const LinkWidget = ({widget, updateWidget}) => {
 
     return(
         <div>
-            <h3>Link Widget</h3>
             <label htmlFor="linkText">Link</label>
             <textarea id="linkText"
                       ref={node => text = node}
@@ -19,6 +18,7 @@ export const LinkWidget = ({widget, updateWidget}) => {
                       value={widget.text}>
             </textarea>
 
+            <br/>
 
             <label htmlFor="url">URL</label>
             <textarea ref={node => href = node}
@@ -30,6 +30,9 @@ export const LinkWidget = ({widget, updateWidget}) => {
                       }}
                       value={widget.href}>
             </textarea>
+
+
+            <hr className="half-rule"/>
 
             <h4>Preview</h4>
 

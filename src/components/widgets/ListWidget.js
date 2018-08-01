@@ -6,7 +6,6 @@ export const ListWidget = ({widget, updateWidget}) => {
 
     return(
         <div>
-            <h3>List Widget</h3>
             <label htmlFor="items">List Items</label>
             <textarea id="items"
                       ref={node => text = node}
@@ -19,6 +18,8 @@ export const ListWidget = ({widget, updateWidget}) => {
                       value={widget.listItems}>
             </textarea>
 
+            <br/>
+
             <label htmlFor="ordered">Type of List</label>
             <select ref={node => ordered = node}
                     className="form-control" id="ordered"
@@ -30,6 +31,8 @@ export const ListWidget = ({widget, updateWidget}) => {
                 <option value="true">Ordered</option>
                 <option value="">Unordered</option>
             </select>
+
+            <hr className="half-rule"/>
 
             <h4>Preview</h4>
             {!widget.ordered &&

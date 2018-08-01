@@ -2,13 +2,14 @@ import {connect} from 'react-redux';
 import WidgetListComponent from './WidgetListComponent';
 
 
-const stateToPropertyMapper = state => (
-    {
-        widgets: state.widgets
+const stateToPropertyMapper = state => ({
+        widgets: state.widgets,
+        lessonId: state.lessonId
     }
 );
 
 const dispatcherToPropertyMapper = dispatch => ({
+
         deleteWidget: (wid) => dispatch({
             type: 'DELETE_WIDGET',
             widgetId: wid
@@ -26,6 +27,24 @@ const dispatcherToPropertyMapper = dispatch => ({
 
         saveWidgets: () => dispatch({
             type: 'SAVE_WIDGETS'
+        }),
+
+        loadAllWidgetsForLesson: () => {
+            this.widgetService.findAllWidgetsForLesson()
+                .then(widgets => dispatch({
+                    type: 'FIND_ALL_WIDGETS',
+                    widgets: widgets
+                }))
+        },
+
+        up: (wid) => dispatch({
+            type: 'UP',
+            widgetId: wid
+        }),
+
+        down: (wid) => dispatch({
+            type: 'DOWN',
+            widgetId: wid
         })
     }
 );

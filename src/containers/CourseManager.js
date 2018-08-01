@@ -47,10 +47,18 @@ export default class CourseManager extends Component {
                                        component={ModuleList}>
                                 </Route>
 
-                                <Route id="widgets"
+                                {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                                       component={ModuleEditor}>
+                                </Route>
+
+                                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/widget/:widgetId"
+                                       component={WidgetListContainer}>
+                                </Route>*/}
+
+                                {/*<Route id="widgets"
                                        exact path="/widgets"
                                        component={WidgetListContainer}>
-                                </Route>
+                                </Route>*/}
                             </Switch>
                         </div>
                 </Router>

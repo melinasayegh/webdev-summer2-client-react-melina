@@ -13,7 +13,12 @@ export default class ModuleListItem extends Component {
         return (
             <li className={(this.props.isSelected(this.props.module.id)
                             ? 'list-group-item active' : 'list-group-item')}>
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}
+                <Link to={(this.props.isSelected(this.props.module.id)
+                          ? `/course/${this.props.courseId}/module/` :
+                            `/course/${this.props.courseId}/module/${this.props.module.id}/lesson`
+                          )}
+
+
                       onClick={() =>  this.props.editModule(this.props.module.id)}
                       className={(this.props.isSelected(this.props.module.id)
                             ? 'module-link active' : 'module-link')}>

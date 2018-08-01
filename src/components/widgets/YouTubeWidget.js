@@ -1,12 +1,13 @@
 import React from 'react';
 
+import '../../css/widgets.css';
+
 export const YouTubeWidget = ({widget, updateWidget}) => {
 
     let src;
 
     return (
         <div>
-            <h3>YouTube Widget</h3>
             <label htmlFor="UML">YouTube Link</label>
             <input id="URL"
                    ref={node => src = node}
@@ -18,17 +19,20 @@ export const YouTubeWidget = ({widget, updateWidget}) => {
                    }}
                    className="form-control"/>
 
+            <hr className="half-rule"/>
+
             <h4>Preview</h4>
             <label htmlFor="video">YouTube Video</label>
-            <iframe id="video"
-                    width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${widget.src}`}
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen>
-
-            </iframe>
+            <br/>
+            <div className="video-container">
+                <iframe id="video"
+                        width="560"
+                        src={`https://www.youtube.com/embed/${widget.src}`}
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen>
+                </iframe>
+            </div>
         </div>
 
     )

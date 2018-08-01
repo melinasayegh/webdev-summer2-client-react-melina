@@ -2,14 +2,13 @@ import WidgetService from "../services/WidgetService";
 
 let initialState = {
     widgets: [
-        {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
+        //{title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
 
-        //{title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
-        //{title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
-        //{title: 'Paragraph Widget 1', id: 1, widgetType: 'PARAGRAPH'},
-
+        {title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
+        {title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
+        {title: 'Paragraph Widget 1', id: 4, widgetType: 'PARAGRAPH'},
         {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
-        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', ordered: false, link:"wA_whMl_psA"}
+        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', link:"wA_whMl_psA"}
     ]
 };
 
@@ -17,7 +16,30 @@ export const widgetReducer = (state=initialState, action) => {
 
     this.widgetService = WidgetService.instance;
 
+    let fromIndex;
+    let toIndex;
+    let widgets = [];
+    let state2;
+
     switch (action.type) {
+
+        case 'UP':
+
+            fromIndex = state.widgets.findIndex(widget => widget.id === action.widgetId);
+            toIndex = fromIndex--;
+            state2 = JSON.parse(JSON.stringify(state));
+            // state2 = Object.assign(state);
+            state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
+            return state2;
+
+        case 'DOWN':
+
+            fromIndex = state.widgets.findIndex(widget => widget.id === action.widgetId);
+            toIndex = fromIndex++;
+            state2 = JSON.parse(JSON.stringify(state));
+            // state2 = Object.assign(state);
+            state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
+            return state2;
 
         case 'DELETE_WIDGET':
 
@@ -58,6 +80,11 @@ export const widgetReducer = (state=initialState, action) => {
         case 'SAVE_WIDGETS':
             this.widgetService.saveWidgets(state.widgets);
             return state;
+
+        case 'FIND_ALL_WIDGETS':
+            return {
+                widgets: action.widgets
+            };
 
         default:
             return state

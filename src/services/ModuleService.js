@@ -51,7 +51,8 @@ export default class ModuleService {
             body: JSON.stringify(module),
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
-            return response.json(); })
+            return response.json();
+        })
     }
 
     deleteModule(moduleId) {

@@ -1,4 +1,4 @@
-## cs4550-summer2-melina-java-server
+## webdev-summer2-client-react-melina
 
 Melina Sayegh<br>
 CS 4550 Web Development<br>

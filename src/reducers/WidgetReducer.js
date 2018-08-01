@@ -1,20 +1,31 @@
+import ModuleService from "../services/ModuleService";
+import WidgetService from "../services/WidgetService";
 
 let initialState = {
     widgets: [
-        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', ordered: false, link:"wA_whMl_psA"},
-        {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
         {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
-        {title: 'Widget 1', id: 123, widgetType: 'WT1'},
-        {title: 'Widget 2', id: 234, widgetType: 'WT2'},
-        {title: 'Widget 3', id: 345, widgetType: 'WT1'},
-        {title: 'Widget 4', id: 456, widgetType: 'WT3'}
+
+        //{title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
+        //{title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
+        //{title: 'Paragraph Widget 1', id: 1, widgetType: 'PARAGRAPH'},
+
+        {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
+        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', ordered: false, link:"wA_whMl_psA"}
     ]
 };
 
 export const widgetReducer = (state=initialState, action) => {
 
+    this.widgetService = WidgetService.instance;
+
     switch (action.type) {
+
         case 'DELETE_WIDGET':
+
+            if (window.confirm('Are you sure you want to delete this widget?')) {
+                widgetService.deleteWidget(action.widgetId);
+            }
+
             return {
                 // iterates over array and at true, current element is returned
                 widgets: state.widgets.filter(
@@ -44,13 +55,7 @@ export const widgetReducer = (state=initialState, action) => {
             };
 
         case 'SAVE_WIDGETS':
-            fetch('http://localhost:8080/api/widget', {
-                method: 'post',
-                body: JSON.stringify(state.widgets),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
+            widgetService.saveWidgets(state.widgets);
             return state;
 
         default:

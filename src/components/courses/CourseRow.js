@@ -35,7 +35,7 @@ export default class CourseRow extends React.Component {
                         </button>
                         <button className="btn btn-danger  btn-sm col-xs-2 btn-group"
                                 onClick={() => {
-                                    if (window.confirm('Are you sure you wish to delete this course?')) {
+                                    if (window.confirm('Are you sure you want to delete this course?')) {
                                         this.props.deleteCourse(this.props.course.id)
                                     }}}>
                             Delete

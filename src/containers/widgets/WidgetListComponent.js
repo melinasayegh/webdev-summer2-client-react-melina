@@ -1,8 +1,8 @@
 import React from 'react';
 
-import WidgetType1 from './WidgetType1';
-import WidgetType2 from './WidgetType2';
-import WidgetType3 from './WidgetType3';
+import WidgetType1 from '../../components/widgets/WidgetType1';
+import WidgetType2 from '../../components/widgets/WidgetType2';
+import WidgetType3 from '../../components/widgets/WidgetType3';
 import HeadingWidget from '../../components/widgets/HeadingWidget';
 import {ListWidget} from "../../components/widgets/ListWidget";
 import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";

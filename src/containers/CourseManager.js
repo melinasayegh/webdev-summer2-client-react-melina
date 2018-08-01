@@ -24,8 +24,6 @@ export default class CourseManager extends Component {
                 <Router>
                         <div className="container-fluid">
                             <Switch>
-
-
                                 <Route id="courseList"
                                        exact path="/">
                                     <div>
@@ -45,7 +43,7 @@ export default class CourseManager extends Component {
                                        component={CourseEditor}>
                                 </Route>
 
-                                <Route path="/course/:courseId/module/:moduleId/"
+                                <Route path="/course/:courseId/module/:moduleId"
                                        component={ModuleList}>
                                 </Route>
 

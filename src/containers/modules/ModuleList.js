@@ -26,17 +26,6 @@ export default class ModuleList extends Component {
         this.moduleService = ModuleService.instance;
     }
 
-    setModules = (modules) => {
-        this.setState({modules: modules})
-    };
-
-    setCourseId = (courseId) => {
-        this.setState({courseId: courseId});
-    };
-
-    setCourse = (course) => {
-        this.setState({course: course, selectedCourseTitle: course.title});
-    };
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
@@ -46,24 +35,35 @@ export default class ModuleList extends Component {
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
         this.findCourseById(newProps.courseId);
-        this.findAllModulesForCourse(newProps.courseId)
+        this.findAllModulesForCourse(newProps.courseId);
     }
+
+    setCourseId = (courseId) => {
+        this.setState({courseId: courseId});
+    };
+
+    setCourse = (course) => {
+        this.setState({course: course, selectedCourseTitle: course.title});
+    };
+
+    setModules = (modules) => {
+        this.setState({modules: modules})
+    };
 
     titleChanged = (event) => {
         this.setState({module: {title:event.target.value}});
     };
 
+    findCourseById = (courseId) => {
+        this.courseService.findCourseById(courseId)
+            .then((course) => {this.setCourse(course)});
+    };
+
     findAllModulesForCourse = (courseId) => {
-        this.moduleService
-            .findAllModulesForCourse(courseId)
+        this.moduleService.findAllModulesForCourse(courseId)
             .then((modules) => {this.setModules(modules)});
     };
 
-    findCourseById = (courseId) => {
-        this.courseService
-            .findCourseById(courseId)
-            .then((course) => {this.setCourse(course)});
-    };
 
     findModuleById = (moduleId) => {
         return this.moduleService.findModuleById(moduleId)
@@ -77,7 +77,6 @@ export default class ModuleList extends Component {
             modules = this.state.modules.map((module) =>
                 <ModuleListItem courseId={this.state.courseId}
                                 module={module}
-                                selectedModuleId={this.state.selectedModuleId}
                                 key={module.id}
                                 editModule={this.editModule}
                                 deleteModule={this.deleteModule}
@@ -93,15 +92,13 @@ export default class ModuleList extends Component {
 
         if (this.state.module.title === "") {
 
-            this.moduleService.createModule(tempModule)
+            this.moduleService.createModule(this.state.courseId, tempModule)
                 .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
                 .then(modules => this.setState({modules: modules}))
 
         } else {
-            var module = {title: this.state.title, course: this.state.course};
-            this.state.modules.push(module);
 
-            this.moduleService.createModule(this.props.courseId, this.state.module)
+            this.moduleService.createModule(this.state.courseId, this.state.module)
                 .then(() => this.moduleService.findAllModulesForCourse(this.state.courseId))
                 .then(modules => this.setState({modules: modules}))
         }

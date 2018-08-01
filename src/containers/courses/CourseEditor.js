@@ -11,15 +11,12 @@ export default class CourseEditor extends Component {
         this.courseService = CourseService.instance;
 
         this.state = {
-            courseId: '',
-            courseTitle: '',
-            selectedCourseTitle: ''
+            courseId: ''
         };
     }
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
-        this.findCourseTitle(this.props.match.params.courseId);
     }
 
     componentWillReceiveProps(newProps){
@@ -28,13 +25,6 @@ export default class CourseEditor extends Component {
 
     selectCourse = (courseId) => {
         this.setState({courseId: courseId})
-    };
-
-    findCourseTitle = (courseId) => {
-        this.courseService.findCourseById(this.state.courseId)
-            .then(course => {
-                this.setState({selectedCourseTitle: course.title});
-            });
     };
 
     render() {

@@ -8,6 +8,7 @@ import {ListWidget} from "../../components/widgets/ListWidget";
 import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";
 
 import '../../css/widgets.css';
+import {LinkWidget} from "../../components/widgets/LinkWidget";
 
 
 const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget, saveWidgets}) => {
@@ -18,11 +19,13 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget,
 
     return (
         <div className="widgetList">
+
             <button onClick={saveWidgets}
                     className="btn btn-primary float-right">Save</button>
 
 
             <h2>Widget List</h2>
+
             <ul className="list-group">
                 <li className="list-group-item">
                     <span>
@@ -56,20 +59,54 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget,
                 </li>
 
                 {widgets.map((widget, index) =>
+
                     <li className="list-group-item" key={index}>
                         {widget.title}: ({widget.id}) - type: {widget.widgetType}
-                        <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
-                                onClick={() => deleteWidget(widget.id)}>
-                            Delete
-                        </button>
+
+
+                        <div className={""}>
+                            <button className="btn btn-warning btn-sm btn-group"
+                                    onClick={() => deleteWidget(widget.id)}>
+                                <i className="fa fa-arrow-up" aria-hidden="true"/>
+                            </button>
+                            <button className="btn btn-warning btn-sm col-xs-1 btn-group"
+                                    onClick={() => deleteWidget(widget.id)}>
+                                <i className="fa fa-arrow-down" aria-hidden="true"/>
+                            </button>
+                            <select className="form-control col-2"
+                                    ref={node => widgetType = node}
+                                    onChange={() => {
+
+                                        let w = {
+                                            id: widget.id,
+                                            widgetType: widgetType.value
+                                        };
+                                        updateWidget(w);
+                                    }}>
+                                <option value="">Select Widget Type --</option>
+                                <option value="HEADING">Heading</option>
+                                <option value="LINK">Link</option>
+                                <option value="IMAGE">Image</option>
+                                <option value="PARAGRAPH">Paragraph</option>
+                                <option value="LIST">List</option>
+                                <option value="YOUTUBE">YouTube</option>
+                            </select>
+
+
+                            <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
+                                    onClick={() => deleteWidget(widget.id)}>
+                                <i className="fa fa-times" aria-hidden="true"/>
+                            </button>
+                        </div>
+
 
                         <div>
                             {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'IMAGE' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
+                            {widget.widgetType === 'PARAGRAPH' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
                             {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={updateWidget}/>}
-                            {widget.widgetType === 'WT1' && <WidgetType1 widget={widget} updateWidget={updateWidget}/>}
-                            {widget.widgetType === 'WT2' && <WidgetType2 widget={widget} updateWidget={updateWidget}/>}
-                            {widget.widgetType === 'WT3' && <WidgetType3 widget={widget} updateWidget={updateWidget}/>}
                         </div>
                     </li>
                 )}

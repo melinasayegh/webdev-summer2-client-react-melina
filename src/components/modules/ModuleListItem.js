@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import "../../css/modules.css";
 import "../../css/style.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
 export default class ModuleListItem extends Component {
     render() {
 
@@ -17,8 +14,6 @@ export default class ModuleListItem extends Component {
                           ? `/course/${this.props.courseId}/module/` :
                             `/course/${this.props.courseId}/module/${this.props.module.id}/lesson`
                           )}
-
-
                       onClick={() =>  this.props.editModule(this.props.module.id)}
                       className={(this.props.isSelected(this.props.module.id)
                             ? 'module-link active' : 'module-link')}>

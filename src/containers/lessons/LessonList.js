@@ -79,7 +79,7 @@ export default class LessonList extends Component {
                             lesson={lesson}
                             key={lesson.id}
                             deleteLesson={this.deleteLesson}
-                            toggleHidden={this.toggleHidden}
+                            selectLesson={this.selectLesson}
                             isSelected={this.isSelected}/>
             );
         }
@@ -88,6 +88,11 @@ export default class LessonList extends Component {
 
     toggleHidden = () => {
         this.setState({widgetsHidden: !this.state.widgetsHidden})
+    };
+
+    selectLesson = (lessonId) => {
+        this.setState({selectedLessonId: lessonId})
+        this.toggleHidden();
     };
 
     isSelected = (lessonId) => {

@@ -7,16 +7,21 @@ import HeadingWidget from '../../components/widgets/HeadingWidget';
 import {ListWidget} from "../../components/widgets/ListWidget";
 import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";
 
+import '../../css/widgets.css';
+
 
 const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget, saveWidgets}) => {
 
     let widgetTitle;
     let widgetType;
 
+
     return (
-        <div>
+        <div className="widgetList">
             <button onClick={saveWidgets}
                     className="btn btn-primary float-right">Save</button>
+
+
             <h2>Widget List</h2>
             <ul className="list-group">
                 <li className="list-group-item">
@@ -28,11 +33,11 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget, updateWidget,
                                 ref={node => widgetType = node}>
                             <option value="">Select Widget Type --</option>
                             <option value="HEADING">Heading</option>
+                            <option value="LINK">Link</option>
+                            <option value="IMAGE">Image</option>
+                            <option value="PARAGRAPH">Paragraph</option>
                             <option value="LIST">List</option>
                             <option value="YOUTUBE">YouTube</option>
-                            <option value="WT1">Widget Type 1</option>
-                            <option value="WT2">Widget Type 2</option>
-                            <option value="WT3">Widget Type 3</option>
                         </select>
 
                         <button className="btn btn-success btn-sm col-xs-2 btn-group"

@@ -1,4 +1,3 @@
-import ModuleService from "../services/ModuleService";
 import WidgetService from "../services/WidgetService";
 
 let initialState = {
@@ -23,16 +22,18 @@ export const widgetReducer = (state=initialState, action) => {
         case 'DELETE_WIDGET':
 
             if (window.confirm('Are you sure you want to delete this widget?')) {
-                widgetService.deleteWidget(action.widgetId);
-            }
+                this.widgetService.deleteWidget(action.widgetId);
 
-            return {
-                // iterates over array and at true, current element is returned
-                widgets: state.widgets.filter(
-                    // return if id is not the one just deleted
-                    widget => widget.id !== action.widgetId
-                )
-            };
+                return {
+                    // iterates over array and at true, current element is returned
+                    widgets: state.widgets.filter(
+                        // return if id is not the one just deleted
+                        widget => widget.id !== action.widgetId
+                    )
+                }
+            } else {
+                return state;
+            }
 
         case 'ADD_WIDGET':
             return {
@@ -55,7 +56,7 @@ export const widgetReducer = (state=initialState, action) => {
             };
 
         case 'SAVE_WIDGETS':
-            widgetService.saveWidgets(state.widgets);
+            this.widgetService.saveWidgets(state.widgets);
             return state;
 
         default:

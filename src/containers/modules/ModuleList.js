@@ -10,6 +10,7 @@ import '../../css/style.css'
 
 
 export default class ModuleList extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

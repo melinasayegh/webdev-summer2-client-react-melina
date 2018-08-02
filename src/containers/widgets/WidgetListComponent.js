@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import HeadingWidget from '../../components/widgets/HeadingWidget';
 import {ListWidget} from "../../components/widgets/ListWidget";
@@ -8,18 +8,47 @@ import {ParagraphWidget} from "../../components/widgets/ParagraphWidget";
 import {ImageWidget} from "../../components/widgets/ImageWidget";
 
 import '../../css/widgets.css';
+import CourseService from "../../services/CourseService";
+import ModuleService from "../../services/ModuleService";
+
+/*({lessonId, widgets, deleteWidget ,createWidget,
+     loadAllWidgetsForLesson,
+     updateWidget, saveWidgets, up, down}) => {
 
 
-const WidgetListComponent = ({lessonId, widgets, deleteWidget ,createWidget,
-                                 loadAllWidgetsForLesson,
-                                 updateWidget, saveWidgets, up, down}) => {
+     }
 
-    let widgetTitle;
-    let widgetType;
-    let lessonWidgets = loadAllWidgetsForLesson(lessonId);
+let widgetTitle;
+let widgetType;
+let lessonWidgets = loadAllWidgetsForLesson(lessonId);*/
 
-    return (
-        <div className="widgetList">
+class WidgetListComponent extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            lessonId: '',
+            widgets: [],
+            preview: false
+        };
+    }
+
+    componentDidMount() {
+        this.setLessonId(this.props.lessonId);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setLessonId(newProps.lessonId);
+    }
+
+    setLessonId = (lessonId) => {
+        this.setState({lessonId: lessonId});
+    };
+
+    render() {
+
+        return (
+            <div className="widgetList">
 
             <span className="row pull-right">
                 <div className="material-switch">
@@ -33,19 +62,19 @@ const WidgetListComponent = ({lessonId, widgets, deleteWidget ,createWidget,
             </span>
 
 
-            <h2>Widget List</h2>
+                <h2>Widget List</h2>
 
-            <h2>{this.props.lessonId}</h2>
-            <h2>{lessonId}</h2>
+                <h2>{this.props.lessonId}</h2>
+                <h2>{lessonId}</h2>
 
-            <ul className="list-group widgetist">
-                <div className="widgetDiv">
+                <ul className="list-group widgetist">
+                    <div className="widgetDiv">
 
-                    <li className="list-group-item">
+                        <li className="list-group-item">
 
-                        <h4>Create a New Widget</h4>
+                            <h4>Create a New Widget</h4>
 
-                        <span className="row add-new-widget">
+                            <span className="row add-new-widget">
 
                             <input className="form-control col-4"
                                    placeholder="Widget Title"
@@ -75,13 +104,13 @@ const WidgetListComponent = ({lessonId, widgets, deleteWidget ,createWidget,
                                 Add
                             </button>
                         </span>
-                    </li>
+                        </li>
 
-                    {widgets.map((widget, index) =>
+                        {widgets.map((widget, index) =>
 
-                        <li className="list-group-item" key={index}>
+                            <li className="list-group-item" key={index}>
 
-                            <div className="">
+                                <div className="">
 
                                 <span className="row float-right">
 
@@ -120,39 +149,40 @@ const WidgetListComponent = ({lessonId, widgets, deleteWidget ,createWidget,
                                 </span>
 
 
-                                <h5 className="widget-type">{widget.widgetType} WIDGET</h5>
+                                    <h5 className="widget-type">{widget.widgetType} WIDGET</h5>
+                                    <br/>
+
+                                    <div>
+                                        <label htmlFor="name">Widget Name</label>
+                                        <input onChange={() => {
+                                            widget.title = widgetTitle.value;
+                                            updateWidget(widget)
+                                        }}
+                                               ref={node => widgetTitle = node}
+                                               className="form-control" id="name"
+                                               placeholder="Widget Name"/>
+                                    </div>
+
+
+                                </div>
+
                                 <br/>
 
                                 <div>
-                                    <label htmlFor="name">Widget Name</label>
-                                    <input onChange={() => {
-                                        widget.title = widgetTitle.value;
-                                        updateWidget(widget)
-                                    }}
-                                           ref={node => widgetTitle = node}
-                                           className="form-control" id="name"
-                                           placeholder="Widget Name"/>
+                                    {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={updateWidget}/>}
                                 </div>
-
-
-                            </div>
-
-                            <br/>
-
-                            <div>
-                                {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
-                                {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={updateWidget}/>}
-                                {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={updateWidget}/>}
-                                {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={updateWidget}/>}
-                                {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
-                                {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={updateWidget}/>}
-                            </div>
-                        </li>
-                    )}
-                </div>
-            </ul>
-        </div>
-    )
-};
+                            </li>
+                        )}
+                    </div>
+                </ul>
+            </div>
+        )
+    }
+}
 
 export default WidgetListComponent;

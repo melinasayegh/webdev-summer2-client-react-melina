@@ -2,8 +2,9 @@ import WidgetService from "../services/WidgetService";
 
 let initialState = {
 
-    lessonId: this.props.lessonId,
-    widgets: this.loadAllWidgetsForLesson(this.props.lessonId)
+    lessonId: '',
+    widgets: [],
+    preview: false
 
        /* [
         //{title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import LessonPill from '../../components/lessons/LessonPill';
 import LessonService from '../../services/LessonService';
 import ModuleService from '../../services/ModuleService'
-import WidgetListComponent from "../widgets/WidgetListComponent";
 import WidgetListContainer from "../widgets/WidgetListContainer";
 
 export default class LessonList extends Component {

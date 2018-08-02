@@ -3,18 +3,20 @@ import React from 'react';
 import HeadingWidget from '../../components/widgets/HeadingWidget';
 import {ListWidget} from "../../components/widgets/ListWidget";
 import {YouTubeWidget} from "../../components/widgets/YouTubeWidget";
-
-import '../../css/widgets.css';
 import {LinkWidget} from "../../components/widgets/LinkWidget";
 import {ParagraphWidget} from "../../components/widgets/ParagraphWidget";
 import {ImageWidget} from "../../components/widgets/ImageWidget";
 
+import '../../css/widgets.css';
 
-const WidgetListComponent = ({widgets, deleteWidget ,createWidget,
+
+const WidgetListComponent = ({lessonId, widgets, deleteWidget ,createWidget,
+                                 loadAllWidgetsForLesson,
                                  updateWidget, saveWidgets, up, down}) => {
 
     let widgetTitle;
     let widgetType;
+    let lessonWidgets = loadAllWidgetsForLesson(lessonId);
 
     return (
         <div className="widgetList">
@@ -32,6 +34,9 @@ const WidgetListComponent = ({widgets, deleteWidget ,createWidget,
 
 
             <h2>Widget List</h2>
+
+            <h2>{this.props.lessonId}</h2>
+            <h2>{lessonId}</h2>
 
             <ul className="list-group widgetist">
                 <div className="widgetDiv">

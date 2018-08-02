@@ -1,15 +1,20 @@
 import WidgetService from "../services/WidgetService";
 
 let initialState = {
-    widgets: [
+
+    lessonId: this.props.lessonId,
+    widgets: this.loadAllWidgetsForLesson(this.props.lessonId)
+
+       /* [
         //{title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
+
 
         {title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
         {title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
         {title: 'Paragraph Widget 1', id: 4, widgetType: 'PARAGRAPH'},
         {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
         {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', link:"wA_whMl_psA"}
-    ]
+    ]*/
 };
 
 export const widgetReducer = (state=initialState, action) => {

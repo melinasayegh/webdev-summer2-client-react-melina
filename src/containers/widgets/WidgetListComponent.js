@@ -8,7 +8,7 @@ import {ParagraphWidget} from "../../components/widgets/ParagraphWidget";
 import {ImageWidget} from "../../components/widgets/ImageWidget";
 
 import '../../css/widgets.css';
-
+import WidgetService from "../../services/WidgetService";
 
 class WidgetListComponent extends Component {
 
@@ -19,10 +19,13 @@ class WidgetListComponent extends Component {
             widgets: [],
             preview: false
         };
+
+        this.widgetService = WidgetService.instance;
     }
 
     componentDidMount() {
         this.setLessonId(this.props.lessonId);
+        this.findWidgets(this.props.lessonId);
     }
 
     componentWillReceiveProps(newProps){
@@ -32,6 +35,16 @@ class WidgetListComponent extends Component {
     setLessonId = (lessonId) => {
         this.setState({lessonId: lessonId});
         this.props.saveLessonId(lessonId);
+    };
+
+    setWidgets = (widgets) => {
+        this.setState({widgets: widgets});
+    };
+
+    findWidgets = (lessonId) => {
+        this.widgetService.findAllWidgetsForLesson(lessonId)
+            .then(widgets => this.setWidgets(widgets))
+
     };
 
     render() {
@@ -72,7 +85,7 @@ class WidgetListComponent extends Component {
 
                             <select className="form-control create-widget-selector col-4"
                                     ref={node => widgetType = node}>
-                                <option value="">Select Widget Type --</option>
+                                <option value="HEADING">Select Widget Type --</option>
                                 <option value="HEADING">Heading</option>
                                 <option value="LINK">Link</option>
                                 <option value="IMAGE">Image</option>
@@ -97,7 +110,7 @@ class WidgetListComponent extends Component {
                         </li>
 
 
-                        {this.props.widgets.map((widget, index) =>
+                        {this.state.widgets.map((widget, index) =>
 
                             <li className="list-group-item" key={index}>
 
@@ -116,7 +129,7 @@ class WidgetListComponent extends Component {
 
                                     <select className="form-control col-4 col-sm-4 col-xs-4"
                                             ref={node => widgetType = node}
-                                            value={widget.type}
+                                            value={widget.widgetType}
                                             onChange={() => {
 
                                                 let w = {
@@ -145,7 +158,8 @@ class WidgetListComponent extends Component {
 
                                     <div>
                                         <label htmlFor="name">Widget Name</label>
-                                        <input onChange={() => {
+                                        <input value={widget.title}
+                                               onChange={() => {
                                             widget.title = widgetTitle.value;
                                             this.props.updateWidget(widget)
                                         }}
@@ -160,12 +174,29 @@ class WidgetListComponent extends Component {
                                 <br/>
 
                                 <div>
-                                    {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                    {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                    {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                    {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                    {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                    {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'HEADING'
+                                    && <HeadingWidget widget={widget}
+                                                      updateWidget={this.props.updateWidget}/>}
+
+                                    {widget.widgetType === 'LINK'
+                                    && <LinkWidget widget={widget}
+                                                   updateWidget={this.props.updateWidget}/>}
+
+                                    {widget.widgetType === 'IMAGE'
+                                    && <ImageWidget widget={widget}
+                                                    updateWidget={this.props.updateWidget}/>}
+
+                                    {widget.widgetType === 'PARAGRAPH'
+                                    && <ParagraphWidget widget={widget}
+                                                        updateWidget={this.props.updateWidget}/>}
+
+                                    {widget.widgetType === 'LIST'
+                                    && <ListWidget widget={widget}
+                                                   updateWidget={this.props.updateWidget}/>}
+
+                                    {widget.widgetType === 'YOUTUBE'
+                                    && <YouTubeWidget widget={widget}
+                                                      updateWidget={this.props.updateWidget}/>}
                                 </div>
                             </li>
                         )}

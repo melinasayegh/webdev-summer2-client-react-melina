@@ -8,7 +8,8 @@ const HeadingWidget = ({widget, updateWidget}) => {
     return(
         <div>
             <label htmlFor="text">Heading Text</label>
-            <input onChange={() => {
+            <input value={widget.text}
+                onChange={() => {
                 widget.text = text.value;
                 if (widget.size === null) {
                     widget.size = 1;
@@ -21,7 +22,8 @@ const HeadingWidget = ({widget, updateWidget}) => {
 
 
             <label htmlFor="size">Heading Size</label>
-            <select onChange={() => {
+            <select value={widget.size}
+                    onChange={() => {
                 widget.size = size.value;
                 updateWidget(widget)
             }}

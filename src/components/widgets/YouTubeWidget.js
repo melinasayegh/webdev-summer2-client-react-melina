@@ -12,6 +12,7 @@ export const YouTubeWidget = ({widget, updateWidget}) => {
             <input id="URL"
                    ref={node => src = node}
                    placeholder="https://youtu.be/wA_whMl_psA"
+                   value={widget.src}
                    onChange={() => {
 
                        widget.src = src.value.split('/')[3];

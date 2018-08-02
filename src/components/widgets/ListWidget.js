@@ -37,17 +37,19 @@ export const ListWidget = ({widget, updateWidget}) => {
             <h4>Preview</h4>
             {!widget.ordered &&
                 <ul>
-                    {widget.listItems.split('\n').map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
+                    {() => {
+                        if (widget.listItems !== "") {
+                        widget.listItems.split('\n').map((item, index) =>
+                            (<li key={index}>{item}</li>))}}}
                 </ul>
             }
             {widget.ordered &&
-            <ol>
-                {widget.listItems.split('\n').map((item, index) => (
-                    <li key={index}>{item}</li>
-                ))}
-            </ol>
+                <ol>
+                    {() => {
+                        if (widget.listItems !== "") {
+                            widget.listItems.split('\n').map((item, index) =>
+                                (<li key={index}>{item}</li>))}}}
+                </ol>
             }
         </div>
     )

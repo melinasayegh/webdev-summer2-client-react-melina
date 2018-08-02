@@ -12,6 +12,7 @@ export const ImageWidget = ({widget, updateWidget}) => {
             <input id="link"
                    ref={node => src = node}
                    placeholder="Enter Image Link"
+                   value={widget.src}
                    onChange={() => {
                        widget.src = src.value;
                        updateWidget(widget);

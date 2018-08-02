@@ -3,19 +3,15 @@ import WidgetService from "../services/WidgetService";
 let initialState = {
 
     lessonId: '',
-    widgets: [],
-    preview: false
-
-       /* [
-        //{title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
-
-
+    widgets: [
+        {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
         {title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
         {title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
         {title: 'Paragraph Widget 1', id: 4, widgetType: 'PARAGRAPH'},
         {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
         {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', link:"wA_whMl_psA"}
-    ]*/
+    ],
+    preview: false
 };
 
 export const widgetReducer = (state=initialState, action) => {
@@ -33,20 +29,34 @@ export const widgetReducer = (state=initialState, action) => {
         case 'UP':
 
             fromIndex = state.widgets.findIndex(widget => widget.id === action.widgetId);
-            toIndex = fromIndex--;
-            state2 = JSON.parse(JSON.stringify(state));
-            // state2 = Object.assign(state);
-            state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
-            return state2;
+
+            if (fromIndex > 1) {
+                toIndex = fromIndex--;
+                state2 = JSON.parse(JSON.stringify(state));
+                // state2 = Object.assign(state);
+                state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
+                return state2;
+            } else {
+                window.alert("This is already the first in the list");
+                return state;
+            }
 
         case 'DOWN':
 
             fromIndex = state.widgets.findIndex(widget => widget.id === action.widgetId);
-            toIndex = fromIndex++;
-            state2 = JSON.parse(JSON.stringify(state));
-            // state2 = Object.assign(state);
-            state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
-            return state2;
+
+            if (fromIndex < (state.widgets.length - 1)) {
+                toIndex = fromIndex++;
+                state2 = JSON.parse(JSON.stringify(state));
+                // state2 = Object.assign(state);g
+                state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
+                return state2;
+            } else {
+                window.alert("This is already the last in the list");
+                return state;
+            }
+
+
 
 
         case 'SAVE_LESSON_ID':

@@ -8,8 +8,8 @@ import {ParagraphWidget} from "../../components/widgets/ParagraphWidget";
 import {ImageWidget} from "../../components/widgets/ImageWidget";
 
 import '../../css/widgets.css';
-import CourseService from "../../services/CourseService";
-import ModuleService from "../../services/ModuleService";
+
+
 
 /*({lessonId, widgets, deleteWidget ,createWidget,
      loadAllWidgetsForLesson,
@@ -64,8 +64,7 @@ class WidgetListComponent extends Component {
 
                 <h2>Widget List</h2>
 
-                <h2>{this.props.lessonId}</h2>
-                <h2>{lessonId}</h2>
+                <h2>{this.state.lessonId}</h2>
 
                 <ul className="list-group widgetist">
                     <div className="widgetDiv">

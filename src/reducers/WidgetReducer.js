@@ -2,7 +2,6 @@ import WidgetService from "../services/WidgetService";
 
 let initialState = {
 
-    lessonId: '',
     widgets: [],
     preview: false
 

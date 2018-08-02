@@ -3,8 +3,8 @@ import WidgetListComponent from './WidgetListComponent';
 
 
 const stateToPropertyMapper = state => ({
-        lessonId: this.props.lessonId,
-        widgets: this.loadAllWidgetsForLesson(this.props.lessonId)
+        widgets: state.widgets,
+        preview: state.preview
     }
 );
 

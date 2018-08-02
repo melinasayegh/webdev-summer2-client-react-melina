@@ -3,7 +3,7 @@ import WidgetListComponent from './WidgetListComponent';
 
 
 const stateToPropertyMapper = state => ({
-        lessonId: state.lessonId,
+        selectedLessonId: state.selectedLessonId,
         widgets: state.widgets,
         preview: state.preview
     }
@@ -13,7 +13,12 @@ const dispatcherToPropertyMapper = dispatch => ({
 
         saveLessonId: (lid) => dispatch({
             type: 'SAVE_LESSON_ID',
-            lessonId: lid
+            selectedLessonId: lid
+        }),
+
+        loadWidgets: (widgets) => dispatch({
+            type: 'LOAD_WIDGETS',
+            widgets: widgets
         }),
 
         deleteWidget: (wid) => dispatch({
@@ -31,7 +36,7 @@ const dispatcherToPropertyMapper = dispatch => ({
             widget: w
         }),
 
-        saveWidgets: () => dispatch({
+        saveWidgets: (widgets) => dispatch({
             type: 'SAVE_WIDGETS'
         }),
 

@@ -14,6 +14,7 @@ class WidgetListComponent extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             lessonId: '',
             widgets: [],
@@ -39,12 +40,16 @@ class WidgetListComponent extends Component {
 
     setWidgets = (widgets) => {
         this.setState({widgets: widgets});
+        this.loadWidgets(widgets)
     };
 
     findWidgets = (lessonId) => {
         this.widgetService.findAllWidgetsForLesson(lessonId)
             .then(widgets => this.setWidgets(widgets))
+    };
 
+    loadWidgets = (widgets) => {
+        this.props.loadWidgets(widgets);
     };
 
     render() {
@@ -98,7 +103,6 @@ class WidgetListComponent extends Component {
                                     onClick={() => {
                                         let widget = {
                                             title: widgetTitle.value,
-                                            id: (new Date()).getTime(),
                                             widgetType: widgetType.value
                                         };
                                         widgetTitle.value="";
@@ -110,7 +114,7 @@ class WidgetListComponent extends Component {
                         </li>
 
 
-                        {this.state.widgets.map((widget, index) =>
+                        {this.props.widgets.map((widget, index) =>
 
                             <li className="list-group-item" key={index}>
 

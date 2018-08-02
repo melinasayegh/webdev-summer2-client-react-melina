@@ -21,6 +21,8 @@ const HeadingWidget = ({widget, updateWidget}) => {
                    placeholder="Heading Text"/>
 
 
+            <br/>
+
             <label htmlFor="size">Heading Size</label>
             <select value={widget.size}
                     onChange={() => {

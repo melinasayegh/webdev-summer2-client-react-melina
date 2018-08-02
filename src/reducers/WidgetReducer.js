@@ -2,15 +2,8 @@ import WidgetService from "../services/WidgetService";
 
 let initialState = {
 
-    lessonId: '',
-    widgets: [
-        {title: 'Heading Widget 1', id: 1, widgetType: 'HEADING'},
-        {title: 'Link Widget 1', id: 1, widgetType: 'LINK'},
-        {title: 'Image Widget 1', id: 1, widgetType: 'IMAGE'},
-        {title: 'Paragraph Widget 1', id: 4, widgetType: 'PARAGRAPH'},
-        {title: 'List Widget 1', id: 2, widgetType: 'LIST', ordered: false, listItems: 'item1\nitem2\nitem3'},
-        {title: 'You Tube 1', id: 3, widgetType: 'YOUTUBE', link:"wA_whMl_psA"}
-    ],
+    selectedLessonId: '',
+    widgets: [],
     preview: false
 };
 
@@ -57,16 +50,20 @@ export const widgetReducer = (state=initialState, action) => {
             }
 
 
-
-
         case 'SAVE_LESSON_ID':
-
+            console.log('saving id' + action.selectedLessonId);
             state3 = {
-                lessonId: action.lessonId,
+                selectedLessonId: action.selectedLessonId,
                 widgets: state.widgets
             };
             return state3;
 
+        case 'LOAD_WIDGETS':
+            widgets = this.widgetService.findAllWidgetsForLesson(state.selectedLessonId, state.widgets);
+
+            return {
+                widgets: [widgets]
+            };
 
         case 'DELETE_WIDGET':
 
@@ -85,6 +82,7 @@ export const widgetReducer = (state=initialState, action) => {
             }
 
         case 'ADD_WIDGET':
+            this.widgetService.createWidget(state.selectedLessonId, action.widget);
             return {
                 widgets: [
                     // take all the widgets that were already there
@@ -105,7 +103,7 @@ export const widgetReducer = (state=initialState, action) => {
             };
 
         case 'SAVE_WIDGETS':
-            this.widgetService.saveWidgets(state.lessonId, state.widgets);
+            this.widgetService.saveWidgets(state.selectedLessonId, state.widgets);
             return state;
 
         case 'FIND_ALL_WIDGETS':

@@ -1,8 +1,5 @@
 let _singleton = Symbol();
 
-//const W_L_API_URL = 'http://localhost:8080/api/lesson/LID/widget';
-//const WIDGET_API_URL = 'http://localhost:8080/api/widget';
-
 const W_L_API_URL = 'https://webdev-server-java-melina.herokuapp.com/api/lesson/LID/widget';
 const WIDGET_API_URL = 'https://webdev-server-java-melina.herokuapp.com/api/widget';
 const W_L_API_URL_SAVE = 'https://webdev-server-java-melina.herokuapp.com/api/lesson/LID/widgets';

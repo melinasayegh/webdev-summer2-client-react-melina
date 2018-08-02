@@ -13,7 +13,7 @@ export const widgetReducer = (state=initialState, action) => {
     let fromIndex;
     let toIndex;
     let widgets = [];
-    let state2;
+
     let state3;
 
     switch (action.type) {
@@ -24,10 +24,8 @@ export const widgetReducer = (state=initialState, action) => {
 
             if (fromIndex > 1) {
                 toIndex = fromIndex--;
-                state2 = JSON.parse(JSON.stringify(state));
-                // state2 = Object.assign(state);
-                state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
-                return state2;
+                state.widgets.splice(toIndex, 0, state.widgets.splice(fromIndex, 1)[0]);
+                return state;
             } else {
                 window.alert("This is already the first in the list");
                 return state;
@@ -39,10 +37,8 @@ export const widgetReducer = (state=initialState, action) => {
 
             if (fromIndex < (state.widgets.length - 1)) {
                 toIndex = fromIndex++;
-                state2 = JSON.parse(JSON.stringify(state));
-                // state2 = Object.assign(state);g
-                state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
-                return state2;
+                state.widgets.splice(toIndex, 0, state.widgets.splice(fromIndex, 1)[0]);
+                return state;
             } else {
                 window.alert("This is already the last in the list");
                 return state;
@@ -85,7 +81,6 @@ export const widgetReducer = (state=initialState, action) => {
             }
 
         case 'ADD_WIDGET':
-            this.widgetService.createWidget(state.selectedLessonId, action.widget);
             return {
                 widgets: [
                     // take all the widgets that were already there

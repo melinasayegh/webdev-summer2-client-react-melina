@@ -20,7 +20,6 @@ const HeadingWidget = ({widget, updateWidget}) => {
                    className="form-control" id="text"
                    placeholder="Heading Text"/>
 
-
             <br/>
 
             <label htmlFor="size">Heading Size</label>

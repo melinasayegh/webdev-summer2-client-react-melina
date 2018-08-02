@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const LinkWidget = ({widget, updateWidget}) => {
     let text;
@@ -33,8 +34,13 @@ export const LinkWidget = ({widget, updateWidget}) => {
 
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
+
+            <a href={widget.href}>{widget.text}</a>
 
         </div>
     )

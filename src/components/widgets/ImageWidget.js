@@ -20,8 +20,12 @@ export const ImageWidget = ({widget, updateWidget}) => {
                    className="form-control"/>
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
+
             <label htmlFor="img">Image</label>
             <br/>
             <div className="img-container">

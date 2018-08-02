@@ -19,8 +19,11 @@ export const ParagraphWidget = ({widget, updateWidget}) => {
             </textarea>
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
 
             <p>
                 {widget.text}

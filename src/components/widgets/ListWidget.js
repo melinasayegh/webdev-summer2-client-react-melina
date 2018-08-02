@@ -33,8 +33,12 @@ export const ListWidget = ({widget, updateWidget}) => {
             </select>
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
+
             {!widget.ordered &&
                 <ul>
                     {() => {

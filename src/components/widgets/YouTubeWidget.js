@@ -21,8 +21,13 @@ export const YouTubeWidget = ({widget, updateWidget}) => {
                    className="form-control"/>
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
+
+
             <label htmlFor="video">YouTube Video</label>
             <br/>
             <div className="video-container">

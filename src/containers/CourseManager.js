@@ -30,12 +30,14 @@ export default class CourseManager extends Component {
                                         <h1 className="heading1">Course Manager</h1>
                                         <p> Welcome to the Course Manager</p>
 
-                                        <Link to="/courses">View Courses</Link>
+                                        <Link to="/course">View Courses</Link>
+                                        <br/>
+                                        <Link to="/widget">View Widgets</Link>
                                     </div>
                                 </Route>
 
                                 <Route id="courseList"
-                                       exact path="/courses"
+                                       exact path="/course"
                                        component={CourseList}>
                                 </Route>
 
@@ -55,10 +57,10 @@ export default class CourseManager extends Component {
                                        component={WidgetListContainer}>
                                 </Route>*/}
 
-                                {/*<Route id="widgets"
-                                       exact path="/widgets"
+                                <Route id="widgets"
+                                       exact path="/widget"
                                        component={WidgetListContainer}>
-                                </Route>*/}
+                                </Route>
                             </Switch>
                         </div>
                 </Router>

@@ -135,7 +135,6 @@ class WidgetListComponent extends Component {
                                             ref={node => widgetType = node}
                                             value={widget.widgetType}
                                             onChange={() => {
-
                                                 let w = {
                                                     id: widget.id,
                                                     widgetType: widgetType.value
@@ -171,8 +170,6 @@ class WidgetListComponent extends Component {
                                                className="form-control" id="name"
                                                placeholder="Widget Name"/>
                                     </div>
-
-
                                 </div>
 
                                 <br/>

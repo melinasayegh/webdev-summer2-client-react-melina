@@ -39,8 +39,12 @@ const HeadingWidget = ({widget, updateWidget}) => {
             </select>
 
             <hr className="half-rule"/>
+            <h4>Preview: </h4>
+            <hr className="half-rule"/>
 
-            <h4>Preview</h4>
+            <p>{widget.title}</p>
+            <hr className="half-rule"/>
+
             {widget.size === '1' && <h1>{widget.text}</h1>}
             {widget.size === '2' && <h2>{widget.text}</h2>}
             {widget.size === '3' && <h3>{widget.text}</h3>}

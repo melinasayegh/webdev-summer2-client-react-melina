@@ -33,13 +33,15 @@ export const LinkWidget = ({widget, updateWidget, isPreview}) => {
                           }}
                           value={widget.href}>
                 </textarea>
-            </div>
 
-            <div className="preview-mode">
 
                 <hr className="half-rule"/>
                 <h4>Preview: </h4>
                 <hr className="half-rule"/>
+
+            </div>
+
+            <div className="preview-mode">
 
                 <p>{widget.title}</p>
                 <hr className="half-rule"/>

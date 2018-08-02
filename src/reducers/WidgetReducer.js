@@ -1,7 +1,6 @@
 import WidgetService from "../services/WidgetService";
 
 let initialState = {
-
     selectedLessonId: '',
     widgets: [],
     isPreview: false
@@ -54,15 +53,18 @@ export const widgetReducer = (state=initialState, action) => {
             console.log('saving id' + action.selectedLessonId);
             state3 = {
                 selectedLessonId: action.selectedLessonId,
-                widgets: state.widgets
+                widgets: state.widgets,
+                isPreview: state.isPreview
             };
-            return state3;
+            state = state3;
+            return state;
 
         case 'LOAD_WIDGETS':
             widgets = this.widgetService.findAllWidgetsForLesson(state.selectedLessonId, state.widgets);
 
             return {
-                widgets: [widgets]
+                widgets: [widgets],
+                isPreview: state.isPreview
             };
 
         case 'DELETE_WIDGET':
@@ -75,7 +77,8 @@ export const widgetReducer = (state=initialState, action) => {
                     widgets: state.widgets.filter(
                         // return if id is not the one just deleted
                         widget => widget.id !== action.widgetId
-                    )
+                    ),
+                    isPreview: state.isPreview
                 }
             } else {
                 return state;
@@ -88,7 +91,8 @@ export const widgetReducer = (state=initialState, action) => {
                     // take all the widgets that were already there
                     ...state.widgets,
                     action.widget
-                ]
+                ],
+                isPreview: state.isPreview
             };
 
         case 'UPDATE_WIDGET':
@@ -99,7 +103,8 @@ export const widgetReducer = (state=initialState, action) => {
                     } else {
                         return widget;
                     }
-                })
+                }),
+                isPreview: state.isPreview
             };
 
         case 'SAVE_WIDGETS':
@@ -108,11 +113,13 @@ export const widgetReducer = (state=initialState, action) => {
 
         case 'FIND_ALL_WIDGETS':
             return {
-                widgets: action.widgets
+                widgets: action.widgets,
+                isPreview: state.isPreview
             };
 
         case 'TOGGLE_PREVIEW':
             return {
+                widgets: state.widgets,
                 isPreview: !state.isPreview
             };
 

@@ -21,12 +21,14 @@ export const YouTubeWidget = ({widget, updateWidget, isPreview}) => {
                        updateWidget(widget);
                    }}
                    className="form-control"/>
-            </div>
 
-            <div className="preview-mode">
                 <hr className="half-rule"/>
                 <h4>Preview: </h4>
                 <hr className="half-rule"/>
+
+            </div>
+
+            <div className="preview-mode">
 
                 <p>{widget.title}</p>
                 <hr className="half-rule"/>

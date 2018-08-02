@@ -123,7 +123,7 @@ class WidgetListComponent extends Component {
 
                             <li className="list-group-item" key={index}>
 
-                                <div className="">
+                                <div className={(this.props.isPreview ? 'hide-edit' : 'edit-mode')}>
 
                                 <span className="row float-right">
 
@@ -182,27 +182,33 @@ class WidgetListComponent extends Component {
                                 <div>
                                     {widget.widgetType === 'HEADING'
                                     && <HeadingWidget widget={widget}
-                                                      updateWidget={this.props.updateWidget}/>}
+                                                      updateWidget={this.props.updateWidget}
+                                                      isPreview={this.props.isPreview}/>}
 
                                     {widget.widgetType === 'LINK'
                                     && <LinkWidget widget={widget}
-                                                   updateWidget={this.props.updateWidget}/>}
+                                                   updateWidget={this.props.updateWidget}
+                                                   isPreview={this.props.isPreview}/>}
 
                                     {widget.widgetType === 'IMAGE'
                                     && <ImageWidget widget={widget}
-                                                    updateWidget={this.props.updateWidget}/>}
+                                                    updateWidget={this.props.updateWidget}
+                                                    isPreview={this.props.isPreview}/>}
 
                                     {widget.widgetType === 'PARAGRAPH'
                                     && <ParagraphWidget widget={widget}
-                                                        updateWidget={this.props.updateWidget}/>}
+                                                        updateWidget={this.props.updateWidget}
+                                                        isPreview={this.props.isPreview}/>}
 
                                     {widget.widgetType === 'LIST'
                                     && <ListWidget widget={widget}
-                                                   updateWidget={this.props.updateWidget}/>}
+                                                   updateWidget={this.props.updateWidget}
+                                                   isPreview={this.props.isPreview}/>}
 
                                     {widget.widgetType === 'YOUTUBE'
                                     && <YouTubeWidget widget={widget}
-                                                      updateWidget={this.props.updateWidget}/>}
+                                                      updateWidget={this.props.updateWidget}
+                                                      isPreview={this.props.isPreview}/>}
                                 </div>
                             </li>
                         )}

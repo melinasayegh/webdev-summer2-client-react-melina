@@ -28,6 +28,7 @@
 
 .hide-edit {
     display: none;
+    visibility: hidden;
 }
 
 

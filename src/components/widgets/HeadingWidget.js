@@ -39,12 +39,14 @@ const HeadingWidget = ({widget, updateWidget, isPreview}) => {
                     <option value="3">Heading 3</option>
                     <option value="4">Heading 4</option>
                 </select>
-            </div>
 
-            <div className="preview-mode">
                 <hr className="half-rule"/>
                 <h4>Preview: </h4>
                 <hr className="half-rule"/>
+
+            </div>
+
+            <div className="preview-mode">
 
                 <p>{widget.title}</p>
                 <hr className="half-rule"/>

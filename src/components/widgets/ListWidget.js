@@ -35,12 +35,14 @@ export const ListWidget = ({widget, updateWidget, isPreview}) => {
                     <option value="true">Ordered</option>
                     <option value="">Unordered</option>
                 </select>
-            </div>
 
-            <div className="preview-mode">
                 <hr className="half-rule"/>
                 <h4>Preview: </h4>
                 <hr className="half-rule"/>
+
+            </div>
+
+            <div className="preview-mode">
 
                 <p>{widget.title}</p>
                 <hr className="half-rule"/>
@@ -53,6 +55,7 @@ export const ListWidget = ({widget, updateWidget, isPreview}) => {
                                 (<li key={index}>{item}</li>))}}}
                     </ul>
                 }
+
                 {widget.ordered &&
                     <ol>
                         {() => {

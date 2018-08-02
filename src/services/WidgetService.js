@@ -5,6 +5,7 @@ let _singleton = Symbol();
 
 const W_L_API_URL = 'https://webdev-server-java-melina.herokuapp.com/api/lesson/LID/widget';
 const WIDGET_API_URL = 'https://webdev-server-java-melina.herokuapp.com/api/widget';
+const W_L_API_URL_SAVE = 'https://webdev-server-java-melina.herokuapp.com/api/lesson/LID/widgets';
 
 export default class WidgetService {
     constructor(singletonToken) {
@@ -72,8 +73,8 @@ export default class WidgetService {
             return response.json(); })
     }
 
-    saveWidgets(widgets) {
-        return fetch(WIDGET_API_URL, {
+    saveWidgets(lessonId, widgets) {
+        return fetch(W_L_API_URL_SAVE.replace('LID', lessonId), {
             method: 'post',
             body: JSON.stringify(widgets),
             headers: { 'Content-Type': 'application/json' }

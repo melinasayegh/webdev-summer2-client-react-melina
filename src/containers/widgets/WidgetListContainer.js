@@ -3,12 +3,18 @@ import WidgetListComponent from './WidgetListComponent';
 
 
 const stateToPropertyMapper = state => ({
+        lessonId: state.lessonId,
         widgets: state.widgets,
         preview: state.preview
     }
 );
 
 const dispatcherToPropertyMapper = dispatch => ({
+
+        saveLessonId: (lid) => dispatch({
+            type: 'SAVE_LESSON_ID',
+            lessonId: lid
+        }),
 
         deleteWidget: (wid) => dispatch({
             type: 'DELETE_WIDGET',

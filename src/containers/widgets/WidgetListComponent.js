@@ -10,18 +10,6 @@ import {ImageWidget} from "../../components/widgets/ImageWidget";
 import '../../css/widgets.css';
 
 
-
-/*({lessonId, widgets, deleteWidget ,createWidget,
-     loadAllWidgetsForLesson,
-     updateWidget, saveWidgets, up, down}) => {
-
-
-     }
-
-let widgetTitle;
-let widgetType;
-let lessonWidgets = loadAllWidgetsForLesson(lessonId);*/
-
 class WidgetListComponent extends Component {
 
     constructor(props) {
@@ -43,9 +31,13 @@ class WidgetListComponent extends Component {
 
     setLessonId = (lessonId) => {
         this.setState({lessonId: lessonId});
+        this.props.saveLessonId(lessonId);
     };
 
     render() {
+
+        let widgetTitle;
+        let widgetType;
 
         return (
             <div className="widgetList">
@@ -57,14 +49,13 @@ class WidgetListComponent extends Component {
                 </div>
 
 
-                <button onClick={saveWidgets}
+                <button onClick={this.props.saveWidgets}
                         className="btn btn-primary float-right">Save</button>
             </span>
 
 
                 <h2>Widget List</h2>
-
-                <h2>{this.state.lessonId}</h2>
+                <h3>{this.state.lessonId}</h3>
 
                 <ul className="list-group widgetist">
                     <div className="widgetDiv">
@@ -98,14 +89,15 @@ class WidgetListComponent extends Component {
                                             widgetType: widgetType.value
                                         };
                                         widgetTitle.value="";
-                                        createWidget(widget)
+                                        this.props.createWidget(widget)
                                     }}>
                                 Add
                             </button>
                         </span>
                         </li>
 
-                        {widgets.map((widget, index) =>
+
+                        {this.props.widgets.map((widget, index) =>
 
                             <li className="list-group-item" key={index}>
 
@@ -114,11 +106,11 @@ class WidgetListComponent extends Component {
                                 <span className="row float-right">
 
                                     <button className="btn btn-warning btn-sm btn-group"
-                                            onClick={() => up(widget.id)}>
+                                            onClick={() => this.props.up(widget.id)}>
                                     <i className="fa fa-arrow-up" aria-hidden="true"/>
                                     </button>
                                     <button className="btn btn-warning btn-sm col-xs-1 btn-group"
-                                            onClick={() => down(widget.id)}>
+                                            onClick={() => this.props.down(widget.id)}>
                                         <i className="fa fa-arrow-down" aria-hidden="true"/>
                                     </button>
 
@@ -131,7 +123,7 @@ class WidgetListComponent extends Component {
                                                     id: widget.id,
                                                     widgetType: widgetType.value
                                                 };
-                                                updateWidget(w);
+                                                this.props.updateWidget(w);
                                             }}>
                                         <option value="HEADING">Heading</option>
                                         <option value="LINK">Link</option>
@@ -142,7 +134,7 @@ class WidgetListComponent extends Component {
                                     </select>
 
                                     <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
-                                            onClick={() => deleteWidget(widget.id)}>
+                                            onClick={() => this.props.deleteWidget(widget.id)}>
                                         <i className="fa fa-times" aria-hidden="true"/>
                                     </button>
                                 </span>
@@ -155,7 +147,7 @@ class WidgetListComponent extends Component {
                                         <label htmlFor="name">Widget Name</label>
                                         <input onChange={() => {
                                             widget.title = widgetTitle.value;
-                                            updateWidget(widget)
+                                            this.props.updateWidget(widget)
                                         }}
                                                ref={node => widgetTitle = node}
                                                className="form-control" id="name"
@@ -168,12 +160,12 @@ class WidgetListComponent extends Component {
                                 <br/>
 
                                 <div>
-                                    {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
-                                    {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={updateWidget}/>}
-                                    {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={updateWidget}/>}
-                                    {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={updateWidget}/>}
-                                    {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
-                                    {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={updateWidget}/>}
+                                    {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                    {widget.widgetType === 'YOUTUBE' && <YouTubeWidget widget={widget} updateWidget={this.props.updateWidget}/>}
                                 </div>
                             </li>
                         )}

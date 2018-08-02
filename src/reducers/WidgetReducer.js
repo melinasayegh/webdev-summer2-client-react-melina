@@ -2,6 +2,7 @@ import WidgetService from "../services/WidgetService";
 
 let initialState = {
 
+    lessonId: '',
     widgets: [],
     preview: false
 
@@ -25,6 +26,7 @@ export const widgetReducer = (state=initialState, action) => {
     let toIndex;
     let widgets = [];
     let state2;
+    let state3;
 
     switch (action.type) {
 
@@ -45,6 +47,16 @@ export const widgetReducer = (state=initialState, action) => {
             // state2 = Object.assign(state);
             state2.widgets.splice(toIndex, 0, state2.widgets.splice(fromIndex, 1)[0]);
             return state2;
+
+
+        case 'SAVE_LESSON_ID':
+
+            state3 = {
+                lessonId: action.lessonId,
+                widgets: state.widgets
+            };
+            return state3;
+
 
         case 'DELETE_WIDGET':
 
@@ -83,7 +95,7 @@ export const widgetReducer = (state=initialState, action) => {
             };
 
         case 'SAVE_WIDGETS':
-            this.widgetService.saveWidgets(state.widgets);
+            this.widgetService.saveWidgets(state.lessonId, state.widgets);
             return state;
 
         case 'FIND_ALL_WIDGETS':

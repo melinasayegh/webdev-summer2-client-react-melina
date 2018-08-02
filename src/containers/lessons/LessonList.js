@@ -154,7 +154,6 @@ export default class LessonList extends Component {
 
                 {!this.state.widgetsHidden &&
                 <WidgetListContainer lessonId={this.state.selectedLessonId}/>}
-
             </div>
         );
     }

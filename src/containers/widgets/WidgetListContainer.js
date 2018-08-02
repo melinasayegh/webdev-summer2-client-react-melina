@@ -5,7 +5,7 @@ import WidgetListComponent from './WidgetListComponent';
 const stateToPropertyMapper = state => ({
         selectedLessonId: state.selectedLessonId,
         widgets: state.widgets,
-        preview: state.preview
+        isPreview: state.isPreview
     }
 );
 
@@ -38,6 +38,10 @@ const dispatcherToPropertyMapper = dispatch => ({
 
         saveWidgets: (widgets) => dispatch({
             type: 'SAVE_WIDGETS'
+        }),
+
+        togglePreview: () => dispatch({
+            type: 'TOGGLE_PREVIEW'
         }),
 
         loadAllWidgetsForLesson: () => {

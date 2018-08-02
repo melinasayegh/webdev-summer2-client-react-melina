@@ -1,47 +1,52 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import '../../css/widgets.css';
 
-export const LinkWidget = ({widget, updateWidget}) => {
+export const LinkWidget = ({widget, updateWidget, isPreview}) => {
     let text;
     let href;
 
     return(
         <div>
-            <label htmlFor="linkText">Link</label>
-            <textarea id="linkText"
-                      ref={node => text = node}
-                      placeholder="Link text."
-                      className="form-control"
-                      onChange={() => {
-                          widget.text = text.value;
-                          updateWidget(widget)
-                      }}
-                      value={widget.text}>
-            </textarea>
 
-            <br/>
+            <div className={(isPreview ? 'hide-edit' : 'edit-mode')}>
+                <label htmlFor="linkText">Link</label>
+                <textarea id="linkText"
+                          ref={node => text = node}
+                          placeholder="Link text."
+                          className="form-control"
+                          onChange={() => {
+                              widget.text = text.value;
+                              updateWidget(widget)
+                          }}
+                          value={widget.text}>
+                </textarea>
 
-            <label htmlFor="url">URL</label>
-            <textarea ref={node => href = node}
-                      className="form-control" id="url"
-                      placeholder="Enter URL."
-                      onChange={() => {
-                          widget.href = href.value;
-                          updateWidget(widget);
-                      }}
-                      value={widget.href}>
-            </textarea>
+                <br/>
 
+                <label htmlFor="url">URL</label>
+                <textarea ref={node => href = node}
+                          className="form-control" id="url"
+                          placeholder="Enter URL."
+                          onChange={() => {
+                              widget.href = href.value;
+                              updateWidget(widget);
+                          }}
+                          value={widget.href}>
+                </textarea>
+            </div>
 
-            <hr className="half-rule"/>
-            <h4>Preview: </h4>
-            <hr className="half-rule"/>
+            <div className="preview-mode">
 
-            <p>{widget.title}</p>
-            <hr className="half-rule"/>
+                <hr className="half-rule"/>
+                <h4>Preview: </h4>
+                <hr className="half-rule"/>
 
-            <a href={widget.href}>{widget.text}</a>
+                <p>{widget.title}</p>
+                <hr className="half-rule"/>
 
+                <a href={widget.href}>{widget.text}</a>
+
+            </div>
         </div>
     )
 };

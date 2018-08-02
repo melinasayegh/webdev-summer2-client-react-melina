@@ -61,11 +61,16 @@ class WidgetListComponent extends Component {
             <div className="widgetList">
 
             <span className="row pull-right">
-                <div className="material-switch">
-                    <input id="switch" name="switchPreview" type="checkbox"/>
-                    <label htmlFor="switch" className="label-success">Preview</label>
-                </div>
 
+           {/*     <div className="material-switch">
+                    <input id="switch" name="switchPreview" type="checkbox"
+                            onClick={this.props.togglePreview()}/>
+                    <label htmlFor="switch" className="label-success">Preview</label>
+                </div>*/}
+
+
+                <button onClick={this.props.togglePreview}
+                        className="btn btn-secondary float-right">Preview</button>
 
                 <button onClick={this.props.saveWidgets}
                         className="btn btn-primary float-right">Save</button>

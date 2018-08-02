@@ -26,6 +26,10 @@
      padding-top: 10px;
 }
 
+.hide-edit {
+    display: none;
+}
+
 
 /*hide checkbox*/
 /*hide checkbox*/

@@ -4,7 +4,7 @@ let initialState = {
 
     selectedLessonId: '',
     widgets: [],
-    preview: false
+    isPreview: false
 };
 
 export const widgetReducer = (state=initialState, action) => {
@@ -109,6 +109,11 @@ export const widgetReducer = (state=initialState, action) => {
         case 'FIND_ALL_WIDGETS':
             return {
                 widgets: action.widgets
+            };
+
+        case 'TOGGLE_PREVIEW':
+            return {
+                isPreview: !state.isPreview
             };
 
         default:

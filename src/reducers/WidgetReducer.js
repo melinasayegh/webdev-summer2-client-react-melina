@@ -14,7 +14,7 @@ export const widgetReducer = (state=initialState, action) => {
     let toIndex;
     let widgets = [];
 
-    let state3;
+    let state2;
 
     switch (action.type) {
 
@@ -46,13 +46,12 @@ export const widgetReducer = (state=initialState, action) => {
 
 
         case 'SAVE_LESSON_ID':
-            console.log('saving id' + action.selectedLessonId);
-            state3 = {
+            state2 = {
                 selectedLessonId: action.selectedLessonId,
                 widgets: state.widgets,
                 isPreview: state.isPreview
             };
-            state = state3;
+            state = state2;
             return state;
 
         case 'LOAD_WIDGETS':

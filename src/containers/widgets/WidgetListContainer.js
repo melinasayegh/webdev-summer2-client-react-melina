@@ -43,14 +43,18 @@ const dispatcherToPropertyMapper = dispatch => ({
         togglePreview: () => dispatch({
             type: 'TOGGLE_PREVIEW'
         }),
+/*
 
-        loadAllWidgetsForLesson: () => {
-            this.widgetService.findAllWidgetsForLesson()
-                .then(widgets => dispatch({
+        loadAllWidgetsForLesson: (lid) => {
+            this.widgetService.findAllWidgetsForLesson(lid)
+                .then((widgets) =>
+
+                    dispatch({
                     type: 'FIND_ALL_WIDGETS',
                     widgets: widgets
                 }))
         },
+*/
 
         up: (wid) => dispatch({
             type: 'UP',

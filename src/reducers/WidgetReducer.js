@@ -81,6 +81,8 @@ export const widgetReducer = (state=initialState, action) => {
             }
 
         case 'ADD_WIDGET':
+            this.widgetService.createWidget(state.selectedLessonId, action.widget);
+
             return {
                 widgets: [
                     // take all the widgets that were already there

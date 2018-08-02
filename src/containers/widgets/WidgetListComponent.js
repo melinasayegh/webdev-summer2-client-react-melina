@@ -54,31 +54,26 @@ class WidgetListComponent extends Component {
 
     render() {
 
-        let widgetTitle;
-        let widgetType;
+        let widgetTitle = "New Widget";
+        let widgetType = 'HEADING';
 
         return (
             <div className="widgetList">
 
             <span className="row pull-right">
 
-           {/*     <div className="material-switch">
-                    <input id="switch" name="switchPreview" type="checkbox"
-                            onClick={this.props.togglePreview()}/>
-                    <label htmlFor="switch" className="label-success">Preview</label>
-                </div>*/}
-
-
-                <button onClick={this.props.togglePreview}
-                        className="btn btn-secondary float-right">Preview</button>
+                <label className="preview-text">Preview</label>
+                <label className="switch switch-label">
+                    <input onClick={this.props.togglePreview} type="checkbox"/>
+                    <span className="slider round"/>
+                </label>
 
                 <button onClick={this.props.saveWidgets}
-                        className="btn btn-primary float-right">Save</button>
+                        className="btn btn-primary save-btn float-right">Save</button>
             </span>
 
 
                 <h2>Widget List</h2>
-                <h3>{this.state.lessonId}</h3>
 
                 <ul className="list-group widgetist">
                     <div className="widgetDiv">
@@ -90,8 +85,8 @@ class WidgetListComponent extends Component {
                             <span className="row add-new-widget">
 
                             <input className="form-control col-4"
-                                   placeholder="Widget Title"
-                                   ref={(node) => {widgetTitle = node}}/>
+                                   ref={(node) => {widgetTitle = node}}
+                                   placeholder="Widget Title"/>
 
                             <select className="form-control create-widget-selector col-4"
                                     ref={node => widgetType = node}>
@@ -106,12 +101,12 @@ class WidgetListComponent extends Component {
 
                             <button className="btn btn-success btn-sm-2 col-xs-2 btn-group"
                                     onClick={() => {
-                                        let widget = {
+                                        let newWidget = {
                                             title: widgetTitle.value,
                                             widgetType: widgetType.value
                                         };
-                                        widgetTitle.value="";
-                                        this.props.createWidget(widget)
+                                        widgetTitle.value = '';
+                                        this.props.createWidget(newWidget)
                                     }}>
                                 Add
                             </button>
@@ -125,40 +120,40 @@ class WidgetListComponent extends Component {
 
                                 <div className={(this.props.isPreview ? 'hide-edit' : 'edit-mode')}>
 
-                                <span className="row float-right">
+                                    <span className="row float-right">
 
-                                    <button className="btn btn-warning btn-sm btn-group"
-                                            onClick={() => this.props.up(widget.id)}>
-                                    <i className="fa fa-arrow-up" aria-hidden="true"/>
-                                    </button>
-                                    <button className="btn btn-warning btn-sm col-xs-1 btn-group"
-                                            onClick={() => this.props.down(widget.id)}>
-                                        <i className="fa fa-arrow-down" aria-hidden="true"/>
-                                    </button>
+                                        <button className="btn btn-warning btn-sm btn-group"
+                                                onClick={() => this.props.up(widget.id)}>
+                                        <i className="fa fa-arrow-up" aria-hidden="true"/>
+                                        </button>
+                                        <button className="btn btn-warning btn-sm col-xs-1 btn-group"
+                                                onClick={() => this.props.down(widget.id)}>
+                                            <i className="fa fa-arrow-down" aria-hidden="true"/>
+                                        </button>
 
-                                    <select className="form-control col-4 col-sm-4 col-xs-4"
-                                            ref={node => widgetType = node}
-                                            value={widget.widgetType}
-                                            onChange={() => {
-                                                let w = {
-                                                    id: widget.id,
-                                                    widgetType: widgetType.value
-                                                };
-                                                this.props.updateWidget(w);
-                                            }}>
-                                        <option value="HEADING">Heading</option>
-                                        <option value="LINK">Link</option>
-                                        <option value="IMAGE">Image</option>
-                                        <option value="PARAGRAPH">Paragraph</option>
-                                        <option value="LIST">List</option>
-                                        <option value="YOUTUBE">YouTube</option>
-                                    </select>
+                                        <select className="form-control col-4 col-sm-4 col-xs-4"
+                                                ref={node => widgetType = node}
+                                                value={widget.widgetType}
+                                                onChange={() => {
+                                                    let w = {
+                                                        id: widget.id,
+                                                        widgetType: widgetType.value
+                                                    };
+                                                    this.props.updateWidget(w);
+                                                }}>
+                                            <option value="HEADING">Heading</option>
+                                            <option value="LINK">Link</option>
+                                            <option value="IMAGE">Image</option>
+                                            <option value="PARAGRAPH">Paragraph</option>
+                                            <option value="LIST">List</option>
+                                            <option value="YOUTUBE">YouTube</option>
+                                        </select>
 
-                                    <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
-                                            onClick={() => this.props.deleteWidget(widget.id)}>
-                                        <i className="fa fa-times" aria-hidden="true"/>
-                                    </button>
-                                </span>
+                                        <button className="btn btn-danger btn-sm col-xs-2 btn-group float-right"
+                                                onClick={() => this.props.deleteWidget(widget.id)}>
+                                            <i className="fa fa-times" aria-hidden="true"/>
+                                        </button>
+                                    </span>
 
 
                                     <h5 className="widget-type">{widget.widgetType} WIDGET</h5>

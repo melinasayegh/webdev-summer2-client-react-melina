@@ -8,9 +8,6 @@
     margin-top: 20px;
 }
 
-.save-preview {
-    padding-right: 25px;
-}
 
 .widget-list .list-group-item {
     margin-bottom: 20px;
@@ -35,16 +32,28 @@
     visibility: hidden;
 }
 
-.preview-text {
-    margin-left: -22px;
-    padding: 5px;
+.switch-label {
+    margin-left: -50px;
     font-size: 18px;
+}
+
+.preview-text .preview-switch {
+    display: inline-block;
+    vertical-align: center;
 }
 
 .save-btn {
     padding-left: 15px;
 }
 
+.preview-div {
+    padding-right: 15px;
+}
+
+.save-btn, .preview-div{
+    display: inline-block;
+    vertical-align: center;
+}
 
 /* switch https://www.w3schools.com/howto/howto_css_switch.asp*/
 /* The switch - the box around the slider */

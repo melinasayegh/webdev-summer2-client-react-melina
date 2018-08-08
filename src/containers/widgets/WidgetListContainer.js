@@ -55,7 +55,6 @@ const dispatcherToPropertyMapper = dispatch => ({
                 }))
         },
 */
-
         up: (wid) => dispatch({
             type: 'UP',
             widgetId: wid

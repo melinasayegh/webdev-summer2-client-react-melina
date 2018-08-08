@@ -15,10 +15,11 @@ class WidgetListComponent extends Component {
     constructor(props) {
         super(props);
 
+        let widgetTitle;
+        let widgetType;
+
         this.state = {
             lessonId: '',
-            widgets: [],
-            preview: false
         };
 
         this.widgetService = WidgetService.instance;
@@ -38,25 +39,12 @@ class WidgetListComponent extends Component {
         this.props.saveLessonId(lessonId);
     };
 
-    setWidgets = (widgets) => {
-        this.setState({widgets: widgets});
-        this.loadWidgets(widgets)
-    };
-
     findWidgets = (lessonId) => {
         this.widgetService.findAllWidgetsForLesson(lessonId)
-            .then(widgets => this.setWidgets(widgets))
-    };
-
-    loadWidgets = (widgets) => {
-        this.props.loadWidgets(widgets);
+            .then(widgets => this.props.loadWidgets(widgets))
     };
 
     render() {
-
-        let widgetTitle = "New Widget";
-        let widgetType = 'HEADING';
-
         return (
             <div className="container-fluid widget-container">
 
@@ -89,11 +77,11 @@ class WidgetListComponent extends Component {
                                 <span className="row add-new-widget">
 
                                 <input className="form-control col-4"
-                                       ref={(node) => {widgetTitle = node}}
+                                       ref={(node) => {this.widgetTitle = node}}
                                        placeholder="Widget Title"/>
 
                                 <select className="form-control create-widget-selector col-4"
-                                        ref={node => widgetType = node}>
+                                        ref={node => this.widgetType = node}>
                                     <option value="HEADING">Select Widget Type --</option>
                                     <option value="HEADING">Heading</option>
                                     <option value="LINK">Link</option>
@@ -106,13 +94,13 @@ class WidgetListComponent extends Component {
                                 <button className="btn btn-success btn-sm-2 col-xs-2 btn-group"
                                         onClick={() => {
                                             let newWidget = {
-                                                title: widgetTitle.value,
-                                                widgetType: widgetType.value
+                                                title: this.widgetTitle.value,
+                                                widgetType: this.widgetType.value
                                             };
-                                            widgetTitle.value = '';
-                                            console.log("title is: " + widgetTitle.value,);
-                                            console.log("type is: " + widgetType.value);
-                                            this.props.createWidget(newWidget)
+                                            this.widgetTitle.value = '';
+                                            console.log("title is: " + this.widgetTitle.value,);
+                                            console.log("type is: " + this.widgetType.value);
+                                            this.props.createWidget(this.state.lessonId, newWidget);
                                         }}>
                                     Add
                                 </button>
@@ -138,12 +126,12 @@ class WidgetListComponent extends Component {
                                             </button>
 
                                             <select className="form-control col-4 col-sm-4 col-xs-4"
-                                                    ref={node => widgetType = node}
+                                                    ref={node => this.widgetType = node}
                                                     value={widget.widgetType}
                                                     onChange={() => {
                                                         let w = {
-                                                            id: widget.id,
-                                                            widgetType: widgetType.value
+                                                            id: this.widget.id,
+                                                            widgetType: this.widgetType.value
                                                         };
                                                         this.props.updateWidget(w);
                                                     }}>
@@ -169,10 +157,10 @@ class WidgetListComponent extends Component {
                                             <label htmlFor="name">Widget Name</label>
                                             <input value={widget.title}
                                                    onChange={() => {
-                                                widget.title = widgetTitle.value;
+                                                widget.title = this.widgetTitle.value;
                                                 this.props.updateWidget(widget)
                                             }}
-                                                   ref={node => widgetTitle = node}
+                                                   ref={node => this.widgetTitle = node}
                                                    className="form-control" id="name"
                                                    placeholder="Widget Name"/>
                                         </div>
@@ -221,4 +209,16 @@ class WidgetListComponent extends Component {
     }
 }
 
-export default WidgetListComponent;
+const stateToPropertyMapper = (state) => ({
+    widgets: state.widgets,
+    isPreview: state.isPreview
+});
+
+const dispatchToPropertyMapper = dispatch => ({
+        findAllWidgetsForLesson: (lessonId) =>
+            actions.findAllWidgetsForLesson(dispatch, lessonId),
+    }
+);
+
+export const WidgetList =
+    connect(stateToPropertyMapper, dispatchToPropertyMapper)(WidgetListComponent);
